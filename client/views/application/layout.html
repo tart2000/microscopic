@@ -1,15 +1,12 @@
-<head>
-  <title>Microscopic</title>
-</head>
-<body>
+<template name="layout">
   <div class="container">
     <header class="navbar">
       <div class="navbar-inner">
-        <a class="brand" href="/">Microscopic</a>
+        <a class="brand" href="{{pathFor 'projectsList'}}">Microscope</a>
       </div>
     </header>
     <div id="main" class="row-fluid">
-      {{> projectsList}}
+{{> yield}}
     </div>
   </div>
-</body>
+</template>

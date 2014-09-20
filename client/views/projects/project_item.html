@@ -1,8 +1,10 @@
 <template name="projectItem">
   <div class="col-md-3">
     <div class="">
-        <img class="responsive" src="/public/images/SWAG.jpg">
+        <a href="{{pathFor 'projectPage'}}">
+        <img class="responsive" src="{{pathFor}}/public/images/SWAG.jpg">
         <h4>{{title}} - {{baseline}}</h4>
+        </a>
     </div>
   </div>
 </template>
