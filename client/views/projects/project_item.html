@@ -1,9 +1,11 @@
 <template name="projectItem">
   <div class="col-md-3">
-    <div class="">
+    <div class="project-thumb">
         <a href="{{pathFor 'projectPage'}}">
-        <img class="responsive" src="{{pathFor}}/public/images/SWAG.jpg">
-        <h4>{{title}} - {{baseline}}</h4>
+        <img class="img-responsive" src="/images/SWAG.jpg">
+        <div class="project-thumb-title">
+            <h4>{{title}} - {{baseline}}</h4>
+        </div>
         </a>
     </div>
   </div>
