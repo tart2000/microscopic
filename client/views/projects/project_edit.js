@@ -1,9 +1,11 @@
 Template.projectEdit.events({ 
-    'submit form': function(e) {
+    'submit': function(e) {
         e.preventDefault();
         var currentProjectId = this._id;
         var projectProperties = {
-            title: $(e.target).find('[name=title]').val(), baseline: $(e.target).find('[name=baseline]').val()
+            title: $(e.target).find('[name=title]').val(), 
+            baseline: $(e.target).find('[name=baseline]').val(),
+            edition: $(e.target).find('[id=edition]').val()
         };
         Projects.update(currentProjectId, {$set: projectProperties}, function(error) { if (error) {
             // display the error to the user
