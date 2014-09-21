@@ -1,5 +1,9 @@
 body {
     background-color: #e7e7e7; 
+    font-size: 16px;
+}
+.logo {
+    margin-left:15px;
 }
 #main {
     margin-top: 80px;
@@ -14,4 +18,22 @@ body {
     padding-left: 10px;
     padding-right: 10px; 
     padding-bottom: 5px;
+}
+#project-title {
+    padding-left: 15px;
+    padding-right:15px;
+    margin-bottom: 10px;
+}
+#project-container {
+    background-color: white !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.edit {
+    position: absolute;
+    margin-left: -30px;
+    width: 100%;
+}
+#project-container .img-responsive {
+    border-radius: 6px;
 }
