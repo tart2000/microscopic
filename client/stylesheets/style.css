@@ -44,3 +44,6 @@ body {
 .right {
     float:right;
 }
+.command-buttons {
+    margin-top: 45px;
+}
