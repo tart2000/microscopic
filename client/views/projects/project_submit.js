@@ -1,5 +1,6 @@
 Template.projectSubmit.events({ 
     'submit': function(e) {
+        console.log(e);
         e.preventDefault();
     
     var project = {

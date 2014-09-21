@@ -37,3 +37,7 @@ body {
 #project-container .img-responsive {
     border-radius: 6px;
 }
+.save {
+    margin-top: 30px;
+    float: right;
+}
