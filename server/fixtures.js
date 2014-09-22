@@ -2,9 +2,10 @@ if (Projects.find().count() === 0) {
 
     Projects.insert({ 
         title: 'Telescope',
-        baseline:'something awesome',
+        baseline:'something more than awesome',
         author: 'Sacha Grief',
         edition:'Montreal',
+        tags:[],
     }); 
 
     Projects.insert({ 
@@ -12,6 +13,7 @@ if (Projects.find().count() === 0) {
         baseline : 'building awesome apps easily',
         author: 'Tom Coleman',
         edition:'Nantes',
+        tags:[],
     }); 
 
     Projects.insert({ 
@@ -19,6 +21,7 @@ if (Projects.find().count() === 0) {
         baseline : 'a one-way trip to funky town',
         author: 'Tom Coleman',
         edition:'Leman',
+        tags:[],
     }); 
 
     Projects.insert({ 
@@ -26,6 +29,7 @@ if (Projects.find().count() === 0) {
         baseline : 'Defenitely something worth looking into!',
         author: 'John Good',
         edition:'Leman',
+        tags:[],
     }); 
 
 

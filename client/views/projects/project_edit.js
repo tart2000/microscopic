@@ -23,5 +23,11 @@ Template.projectEdit.events({
     'click .cancel': function(e) { 
         e.preventDefault();
         Router.go('projectPage', {_id: this._id});
+    },
+    'click .add-tag': function(e) {
+        var currentProjectId = this._id;
+        var new_tag = $(e.target).parent().find('[id=tagbox]').val();
+        Projects.update({_id:currentProjectId}, {$push: {tags: new_tag}});
+        $('#tagbox').val('');
     }
 });
