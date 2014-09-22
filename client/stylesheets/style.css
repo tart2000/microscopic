@@ -4,6 +4,7 @@ body {
 }
 #main {
     margin-top: 80px;
+    margin-bottom: 0px;
 }
 .project-thumb {
     background-color: white;
@@ -50,4 +51,14 @@ body {
 }
 .command-buttons {
     margin-top: 45px;
+}
+#footer {
+    background-color: rgb(80, 80, 80); 
+    color:#f7f7f7;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding-top: 30px; 
+    padding-bottom: 30px;
+    margin-top: 30px;
 }
