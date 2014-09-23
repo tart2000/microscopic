@@ -1,38 +1,52 @@
 body {
-    background-color: #e7e7e7; 
+    background-color: rgb(80, 80, 80);     
     font-size: 16px;
+}
+form {
+    margin-bottom: 100px;
 }
 #main {
     margin-top: 80px;
     margin-bottom: 0px;
+    
+}
+#content-wrapper {
+    height: auto !important;
+    background-color: #e7e7e7; 
+    background-image: url('bg.png');
 }
 .project-thumb {
-    background-color: white;
+    background-color: #F9FAFB;
     margin-bottom: 30px;
     border-radius: 6px;
     overflow: hidden;
-    height: 275px;
+    border:1px #EBECED solid;
 }
 .project-thumb-title {
     padding-left: 10px;
     padding-right: 10px; 
-    height: 69px;
+    height: 72px;
     padding-bottom: 5px;
     overflow: hidden;
 }
 .local {
     padding-left: 15px;
     padding-right: 15px;
+    color: black;
 }
 #project-title {
     padding-left: 15px;
     padding-right:15px;
     margin-bottom: 10px;
 }
+#project-hub {
+    margin-bottom: 8px;
+}
 #project-container {
     background-color: white !important;
     padding-top: 15px;
     padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 .edit {
     position: absolute;
@@ -55,10 +69,44 @@ body {
 #footer {
     background-color: rgb(80, 80, 80); 
     color:#f7f7f7;
-    position: relative;
-    bottom: 0;
     width: 100%;
     padding-top: 30px; 
     padding-bottom: 30px;
-    margin-top: 30px;
+}
+#footer h4 {
+    text-transform: uppercase;
+}
+/* Flat UI fixes */
+h4 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 19px;
+    font-weight: 300;
+    color: rgb(80, 80, 80);
+}
+h1 {
+    font-size: 50px;
+}
+#footer h4 {
+    color: #f7f7f7;
+}
+.project-thumb p {
+    margin-bottom: 5px;
+}
+.navbar-default {
+    background-color: white;
+    border-bottom: #EBECED 1px solid;
+
+}
+.navbar-nav > li > .dropdown-menu {
+    border-radius: 0px;
+    margin-top: 0px;
+}
+
+.fa-2x {
+    font-size: 1.5em;
+}
+p {
+    margin-top: 10px;
+    line-height: 1.3;
 }

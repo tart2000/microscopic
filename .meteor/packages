@@ -8,11 +8,12 @@ insecure
 mizzao:bootstrap-3
 iron:router
 sacha:spin
-ian:accounts-ui-bootstrap-3
 accounts-password
 pfafman:font-awesome-4
 jparker:gravatar
 accounts-facebook
 accounts-twitter
 accounts-google
+handlebars
+ian:accounts-ui-bootstrap-3
 

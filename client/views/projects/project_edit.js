@@ -17,6 +17,7 @@ Template.projectEdit.events({
         if (confirm("Delete this project?")) {
             var currentProjectId = this._id;
             Projects.remove(currentProjectId);
+            projectCount = projectCount - 1;
             Router.go('projectsList');
         }
     },

@@ -1,7 +1,10 @@
 Template.projectSubmit.events({ 
     'submit': function(e) {
         e.preventDefault();
-    
+
+        projectCount = projectCount + 1;
+        console.log(projectCount);
+
     var project = {
         title: $(e.target).find('[id=title]').val(), 
         baseline: $(e.target).find('[id=baseline]').val(),
