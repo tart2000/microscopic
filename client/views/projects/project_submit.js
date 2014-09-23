@@ -13,6 +13,7 @@ Template.projectSubmit.events({
     }
 
     project._id = Projects.insert(project);
-        Router.go('projectPage', project);
+    Router.go('projectPage', project);
+    Alert.add('your project has been created!', 'success');
     }
 });

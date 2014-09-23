@@ -11,6 +11,7 @@ Template.projectEdit.events({
             // display the error to the user
             alert(error.reason); } else {
                 Router.go('projectPage', {_id: currentProjectId});
+                Alert.add('your project has been edited', 'success');
             }
         }); },
     'click .delete': function(e) { e.preventDefault();
@@ -19,6 +20,7 @@ Template.projectEdit.events({
             Projects.remove(currentProjectId);
             projectCount = projectCount - 1;
             Router.go('projectsList');
+            Alert.add('your project has been deleted...', 'success');
         }
     },
     'click .cancel': function(e) { 

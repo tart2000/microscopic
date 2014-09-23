@@ -71,6 +71,7 @@ sha@1.0.0
 spacebars-compiler@1.0.2
 spacebars@1.0.1
 srp@1.0.0
+steeve:simple-bootstrap3-alerts@0.0.2
 stylus@1.0.4
 templating@1.0.6
 tracker@1.0.2
