@@ -32,7 +32,6 @@ if (Projects.find().count() === 0) {
         tags:[],
     }); 
 
-    projectCount = 4;
 
 } 
 

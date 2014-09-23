@@ -2,7 +2,6 @@ Template.projectSubmit.events({
     'submit': function(e) {
         e.preventDefault();
 
-        projectCount = projectCount + 1;
         console.log(projectCount);
 
     var project = {
