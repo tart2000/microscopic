@@ -3,9 +3,12 @@
     {{#each hubs}}
         <h2><a href="{{pathFor 'hubPage'}}">{{name}}</a></h2>
             <div class="row">
-                {{#each hubProjects}}
+                {{#each hub4Projects}}
                     {{> projectItem}}
                 {{/each}}
+            </div>
+            <div class="hub-link">
+                <h6><a href="{{pathFor 'hubPage'}}">View all projects for {{name}} →</a></h6>
             </div>
     {{/each}}
     </div>

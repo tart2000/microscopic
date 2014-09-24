@@ -3,7 +3,7 @@ return Hubs.find(); }
 });
 
 Template.hubsList.helpers({ 
-    hubProjects: function() {
-        return Projects.find({edition: this.name}); 
+    hub4Projects: function() {
+        return Projects.find({edition: this.name}, {limit:4}); 
     }
 });
