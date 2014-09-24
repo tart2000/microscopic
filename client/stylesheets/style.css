@@ -122,3 +122,18 @@ p {
 .hub-link {
     margin-top: -15px;
 }
+.list-tags h6 {
+    margin-top: 6px; 
+}
+.tag {
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background-color: #95A5A6;
+    padding: 6px 12px 5px 12px;
+    display: inline-block;
+    border-radius: 20px;
+    color:#ECF0F1;
+}
+.tagbox {
+    margin-top: 10px;
+}

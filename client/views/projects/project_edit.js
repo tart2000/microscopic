@@ -39,3 +39,10 @@ Template.projectEdit.helpers({
         return Hubs.find(); 
     }
 });
+
+Template.projectEdit.helpers({
+    projectTags: function() {
+        return this.tags; 
+    }
+});
+

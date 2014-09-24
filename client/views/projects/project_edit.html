@@ -39,7 +39,10 @@
         </div>
         <div class="col-md-6">
             <div class="list-tags">
-                {{tags}}
+                {{#each projectTags}}
+                    <span class="tag">{{this}}  <span data-role="remove"><i class="fa fa-times"></i></span>
+                    </span>
+                {{/each}}
             </div>
         </div>
     </div>
