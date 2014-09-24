@@ -4,6 +4,7 @@ if (Projects.find().count() === 0) {
         title: 'Telescope',
         baseline:'something more than awesome',
         author: 'Sacha Grief',
+        edition:'Montreal',
         tags:[],
     }); 
 
@@ -11,6 +12,7 @@ if (Projects.find().count() === 0) {
         title: 'Meteor',
         baseline : 'building awesome apps easily',
         author: 'Tom Coleman',
+        edition:'Nantes',
         tags:[],
     }); 
 
@@ -18,6 +20,7 @@ if (Projects.find().count() === 0) {
         title: 'PingPong',
         baseline : 'a one-way trip to funky town',
         author: 'Tom Coleman',
+        edition:'Lille',
         tags:[],
     }); 
 
@@ -25,6 +28,7 @@ if (Projects.find().count() === 0) {
         title: 'The Meteor Book',
         baseline : 'Defenitely something worth looking into!',
         author: 'John Good',
+        edition: 'Montreal',
         tags:[],
     }); 
 
@@ -34,30 +38,37 @@ if (Projects.find().count() === 0) {
 if (Hubs.find().count() === 0) {
     Hubs.insert({
         name:'Montreal',
-        projects:[],
+        museum: 'Museum of Fine Arts',
+        thumblink:'/hubs/artsmtl.png',
     });
     Hubs.insert({
         name:'Geneve',
-        projects:[],
+        museum: 'Musée d art et d histoire de Genève',
+        thumblink:'/hubs/genevehistoire.png',
     });
     Hubs.insert({
         name:'Derby',
-        projects:[],
+        museum: 'Derby Silk Museum',
+        thumblink:'/hubs/derbysilk.png',
     });
     Hubs.insert({
         name:'Nantes',
-        projects:[],
+        museum: 'Museum of natural history',
+        thumblink:'/hubs/naturenantes.png',
     });
     Hubs.insert({
         name:'Arles',
-        projects:[],
+        museum: 'Musée départemental d Arles antique avec le Museon Arlaten ',
+        thumblink:'/hubs/arlesantique.png',
     });
     Hubs.insert({
         name:'Lille',
-        projects:[],
+        museum: 'Musée d Histoire Naturelle et de Géologie de Lille',
+        thumblink:'/hubs/geolille.png',
     });
     Hubs.insert({
         name:'Saint-Etienne',
-        projects:[],
+        museum: 'Musée d art et d industrie de Saint-Etienne',
+        thumblink:'/hubs/stetienne.png',
     });
 }
