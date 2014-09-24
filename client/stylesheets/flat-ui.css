@@ -2827,6 +2827,9 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .form-inline .radio {
   padding-left: 32px;
   }
+
+/*! navbar comment
+
 .navbar {
   min-height: 53px;
   margin-bottom: 30px;
@@ -3665,6 +3668,10 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   margin-top: 25.5px;
   margin-bottom: 25.5px;
   }
+
+end comment */
+
+
 .bootstrap-tagsinput {
   padding: 6px 1px 1px 6px;
   margin-bottom: 18px;
