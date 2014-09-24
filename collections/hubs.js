@@ -1,0 +1,1 @@
+Hubs = new Meteor.Collection('hubs');

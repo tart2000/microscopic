@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(80, 80, 80);     
+    background-color: white;     
     font-size: 16px;
 }
 form {
@@ -67,8 +67,7 @@ form {
     margin-top: 45px;
 }
 #footer {
-    background-color: rgb(80, 80, 80); 
-    color:#f7f7f7;
+    color:#CECECE;
     width: 100%;
     padding-top: 30px; 
     padding-bottom: 30px;
@@ -87,8 +86,11 @@ h4 {
 h1 {
     font-size: 50px;
 }
-#footer h4 {
-    color: #f7f7f7;
+#footer h4, #footer a {
+    color: #CECECE;
+}
+#footer a :hover {
+    color: rgb(80, 80, 80);
 }
 .project-thumb p {
     margin-bottom: 5px;

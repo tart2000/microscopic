@@ -33,3 +33,9 @@ Template.projectEdit.events({
         $('#tagbox').val('');
     }
 });
+
+Template.projectEdit.helpers({ 
+    hubs: function() {
+        return Hubs.find(); 
+    }
+});

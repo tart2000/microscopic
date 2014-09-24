@@ -2,7 +2,6 @@ Template.projectSubmit.events({
     'submit': function(e) {
         e.preventDefault();
 
-        console.log(projectCount);
 
     var project = {
         title: $(e.target).find('[id=title]').val(), 
@@ -14,5 +13,11 @@ Template.projectSubmit.events({
     project._id = Projects.insert(project);
     Router.go('projectPage', project);
     Alert.add('your project has been created!', 'success');
+    }
+});
+
+Template.projectSubmit.helpers({ 
+    hubs: function() {
+        return Hubs.find(); 
     }
 });

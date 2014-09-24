@@ -19,9 +19,9 @@
         <label for="edition">Edition</label>
         <div class="controls">
             <select id="edition" class="form-control">
-                <option value="Montreal">Montréal</option>
-                <option value="Nantes">Nantes</option>
-                <option value="Leman">Léman</option>
+                {{#each hubs}}
+                <option value="{{name}}">{{name}}</option>
+                {{/each}}
             </select>
         </div>
     </div>
