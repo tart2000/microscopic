@@ -1,0 +1,12 @@
+<template name="hubsList">
+    <div class="container">
+    {{#each hubs}}
+        <h2><a href="{{pathFor 'hubPage'}}">{{name}}</a></h2>
+            <div class="row">
+                {{#each hubProjects}}
+                    {{> projectItem}}
+                {{/each}}
+            </div>
+    {{/each}}
+    </div>
+</template>

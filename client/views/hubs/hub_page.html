@@ -1,0 +1,10 @@
+<template name="hubPage">
+    <div class="container">
+        <h2>{{name}}</h2>
+        <div class="row">
+            {{#each hubProjects}}
+                {{> projectItem}}
+            {{/each}}
+        </div>
+    </div>
+</template>
