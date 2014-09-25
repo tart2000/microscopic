@@ -4,3 +4,6 @@ Meteor.publish('projects', function() {
 Meteor.publish('hubs', function() { 
     return Hubs.find();
 });
+Meteor.publish('comments', function() { 
+    return Comments.find();
+});

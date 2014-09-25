@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-4">
                 <div class="edit text-right">
-                    <a href="{{pathFor 'projectEdit'}}"><i class="fa fa-cog fa-2x"></i></a>
+                    <a href="{{pathFor 'projectEdit'}}">Edit</a>
                 </div>
                 
                 <h4><i class="fa fa-users"></i>  Team</h4>
@@ -23,20 +23,99 @@
                 <a href="#">Prénom Nom</a> sound design<br>
                 <a href="#">Prénom Nom</a> special effects<br>
                 <a href="#">Prénom Nom</a> magic<br>
+                </p>
                 <h4><i class="fa fa-magic"></i>  Facilitator</h4>
                 <a href="#">Prénom Nom</a>
                 <h4><i class="fa fa-thumbs-up"></i>  Special thanks</h4>
                 <a href="#">John Good</a>
-                <p></p>
-                <a href="#">http://projectrealpage.com</a>
-                </p>
-                <h4> Tags</h4>
-                <div class="tagbox">
-                {{#each projectTags}}
-                    <span class="tag">{{this}}</span>
-                {{/each}}
-                </div>
+                <hr>
+                {{#if hasUrl}}
+                    <h4><i class="fa fa-link"></i> <a href="{{url}}">{{url}}</a></h4>
+                    <hr>
+                {{/if}}
+                
+                {{#if hasTags}}
+                    <h4><i class="fa fa-tags"></i> Tags</h4>
+                    <div class="tagbox">
+                    {{#each projectTags}}
+                        <span class="tag">{{this}}</span>
+                    {{/each}}
+                    </div>
+                    <hr>
+                {{/if}}
             </div>
-        </div> <!-- row -->
+        </div> <!-- row  end first part -->
+        <div class="container mt">
+        <div class="row">
+            <!-- nav tabs -->
+            <ul class="nav nav-pills choices" role="tablist" id="tabs">
+                <li class="active"><a role="tab" data-toggle="tab" href="#desc">Description</a></li>
+                <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
+                <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
+                <li><a role="tab" data-toggle="tab" href="#proc">Process</a></li>
+                <li><a role="tab" data-toggle="tab" href="#disc">Discussion</a></li>
+            </ul>
+            <!-- end navtabs -->
+
+            <!-- tabs -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="desc">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div> <!-- end first tab -->
+
+                <div class="tab-pane" id="inst">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div> <!-- end second tab -->
+
+                <div class="tab-pane" id="upda">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div> <!-- end 3rd tab -->
+
+                <div class="tab-pane" id="proc">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div> <!-- end second tab -->
+
+                <div class="tab-pane" id="disc">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul class="comments mt">
+                            {{#each projectComments}}
+                              {{> comment}}
+                            {{/each}}
+                          </ul>
+                          {{> commentSubmit}}
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+
+                </div> <!-- end second tab -->
+            </div>
+            <!-- end tabs -->
+
+        </div> <!-- row end second part -->
+        </div>
     </div>
 </template>

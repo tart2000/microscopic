@@ -5,7 +5,8 @@ Template.projectEdit.events({
         var projectProperties = {
             title: $(e.target).find('[name=title]').val(), 
             baseline: $(e.target).find('[name=baseline]').val(),
-            edition: $(e.target).find('[id=edition]').val()
+            edition: $(e.target).find('[id=edition]').val(),
+            url: $(e.target).find('[name=url]').val()
         };
         Projects.update(currentProjectId, {$set: projectProperties}, function(error) { if (error) {
             // display the error to the user

@@ -137,3 +137,33 @@ p {
 .tagbox {
     margin-top: 10px;
 }
+hr {
+    margin-top: 12px; 
+    margin-bottom: 12px;
+}
+.mt {
+    margin-top: 15px;
+}
+/* comments styling */
+.comments {
+    padding-left: 0px !important;
+    padding-right: 15px;
+}
+.comments li {
+    list-style: none;
+    width: 100%;
+}
+.comment {
+    background-color: #F9FAFB;
+    border-left: 2px #95A5A6 solid;
+    padding: 0px 10px 0px 15px;
+    margin-bottom: 4px;
+    display: flex;
+}
+.comment-meta {
+    font-size: 0.8em;
+    color: #95A5A6;
+}
+.comment p {
+    margin-bottom: 5px;
+}
