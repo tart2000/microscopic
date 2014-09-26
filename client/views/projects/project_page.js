@@ -10,5 +10,10 @@ Template.projectPage.helpers({
     },
     projectComments: function() {
         return Comments.find({projectId: this._id}); 
+    },
+    projectCommentCount : function() {
+        var comCount = Comments.find({projectId: this._id}).count(); 
+        if (comCount > 0)
+        return Comments.find({projectId: this._id}).count();
     }
 });

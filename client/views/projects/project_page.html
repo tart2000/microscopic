@@ -5,7 +5,7 @@
     <div id="project-hub" class="text-right">
         <h4><strong>{{edition}}  </strong><i class="fa fa-map-marker"></i></h4>
     </div>
-    <div id="project-container" class="col-md-12">
+    <div class="col-md-12 project-container">
         <div class="row">
             <div class="col-md-8">
                 <img src="/images/SWAG.jpg" class="img-responsive" alt="Responsive image"> 
@@ -45,77 +45,76 @@
                 {{/if}}
             </div>
         </div> <!-- row  end first part -->
-        <div class="container mt">
-        <div class="row">
-            <!-- nav tabs -->
-            <ul class="nav nav-pills choices" role="tablist" id="tabs">
-                <li class="active"><a role="tab" data-toggle="tab" href="#desc">Description</a></li>
-                <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
-                <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
-                <li><a role="tab" data-toggle="tab" href="#proc">Process</a></li>
-                <li><a role="tab" data-toggle="tab" href="#disc">Discussion</a></li>
-            </ul>
-            <!-- end navtabs -->
+    </div><!-- end project container -->
 
-            <!-- tabs -->
-            <div class="tab-content">
-                <div class="tab-pane active" id="desc">
-                    <div class="col-md-8">
 
-                    </div>
-                    <div class="col-md-4">
+    <div class="">
+        <!-- nav tabs -->
+        <ul class="nav nav-tabs choices" role="tablist" id="tabs">
+            <li class="active"><a role="tab" data-toggle="tab" href="#desc">Description</a></li>
+            <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
+            <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
+            <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
+            <li><a role="tab" data-toggle="tab" href="#proc">Process</a></li>
+            
+        </ul>
+        <!-- end navtabs -->
+    </div>
 
-                    </div>
-                </div> <!-- end first tab -->
+    <div class="col-md-12 project-container">
+        <!-- tabs -->
+        <div class="tab-content">
+            <div class="tab-pane active row" id="desc">
+                <div class="col-md-8">
 
-                <div class="tab-pane" id="inst">
-                    <div class="col-md-8">
+                </div>
+                <div class="col-md-4">
 
-                    </div>
-                    <div class="col-md-4">
+                </div>
+            </div> <!-- end first tab -->
 
-                    </div>
-                </div> <!-- end second tab -->
+            <div class="tab-pane row" id="inst">
+                <div class="col-md-8">
 
-                <div class="tab-pane" id="upda">
-                    <div class="col-md-8">
+                </div>
+                <div class="col-md-4">
 
-                    </div>
-                    <div class="col-md-4">
+                </div>
+            </div> <!-- end second tab -->
 
-                    </div>
-                </div> <!-- end 3rd tab -->
+            <div class="tab-pane row" id="disc">
+                <div class="col-md-8">
+                    <ul class="comments">
+                    {{#each projectComments}}
+                      {{> comment}}
+                    {{/each}}
+                  </ul>
+                  {{> commentSubmit}}
+                </div>
+                <div class="col-md-4">
 
-                <div class="tab-pane" id="proc">
-                    <div class="col-md-8">
+                </div>
+            </div> <!-- end tab -->
 
-                    </div>
-                    <div class="col-md-4">
+            <div class="tab-pane row" id="upda">
+                <div class="col-md-8">
 
-                    </div>
-                </div> <!-- end second tab -->
+                </div>
+                <div class="col-md-4">
 
-                <div class="tab-pane" id="disc">
+                </div>
+            </div> <!-- end 4th tab -->
 
-                    <div class="row">
-                        <div class="col-md-8">
-                            <ul class="comments mt">
-                            {{#each projectComments}}
-                              {{> comment}}
-                            {{/each}}
-                          </ul>
-                          {{> commentSubmit}}
-                        </div>
-                        <div class="col-md-4">
+            <div class="tab-pane row" id="proc">
+                <div class="col-md-8">
 
-                        </div>
-                    </div>
+                </div>
+                <div class="col-md-4">
 
-                </div> <!-- end second tab -->
-            </div>
-            <!-- end tabs -->
+                </div>
+            </div> <!-- end 5th tab -->
+        </div> <!-- end tab content -->
 
-        </div> <!-- row end second part -->
-        </div>
+        <!-- end tabs -->
     </div>
 </template>

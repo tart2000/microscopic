@@ -42,7 +42,7 @@ form {
 #project-hub {
     margin-bottom: 8px;
 }
-#project-container {
+.project-container {
     background-color: white !important;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -85,6 +85,7 @@ h4 {
 }
 h1 {
     font-size: 50px;
+    margin-top: 5px;
 }
 #footer h4, #footer a {
     color: #CECECE;
@@ -144,10 +145,13 @@ hr {
 .mt {
     margin-top: 15px;
 }
+.mb {
+    margin-bottom: 15px;
+}
 /* comments styling */
 .comments {
     padding-left: 0px !important;
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .comments li {
     list-style: none;
@@ -166,4 +170,15 @@ hr {
 }
 .comment p {
     margin-bottom: 5px;
+}
+.avatar-thumb {
+    padding: 15px 15px 15px 0px;
+}
+.avatar-thumb img {
+    border-radius: 50%;
+}
+.comment-content {
+    width: 100%;
+    padding-top: 10px;
+    line-height: 1.4;
 }
