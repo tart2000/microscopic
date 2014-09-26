@@ -1,9 +1,12 @@
 <template name="commentSubmit">
-  <form name="comment" class="comment-form">
+    <div class="comment">
+        {{> avatarThumb}}
+        <div class="arrow-left-submit"></div>
+        <div class="comment-submit">
+        <form name="comment" class="comment-form">
     <div class="control-group">
         <div class="controls">
-            <label for="body">Comment on this project</label>
-            <textarea class="form-control" name="body"></textarea>
+            <textarea class="form-control" placeholder="Leave a comment" name="body"></textarea>
         </div>
     </div>
     <div class="control-group mt">
@@ -12,4 +15,8 @@
         </div>
     </div>
   </form>
+</div>
+    </div>
+
+
 </template>

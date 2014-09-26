@@ -164,27 +164,54 @@ hr {
     width: 100%;
 }
 .comment {
-    background-color: #F9FAFB;
-    border-left: 2px #95A5A6 solid;
-    padding: 0px 10px 0px 15px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     display: flex;
 }
 .comment-meta {
     font-size: 0.8em;
     color: #95A5A6;
+    display: inline;
+    float: right;
+    margin-top: 2px;
 }
 .comment p {
     margin-bottom: 5px;
 }
 .avatar-thumb {
-    padding: 15px 15px 15px 0px;
+    padding: 0px 5px 5px 0px;
 }
 .avatar-thumb img {
-    border-radius: 50%;
+    border-radius: 4px;
+}
+.comment-title {
+    background-color: #F7F7F7;
+    padding: 6px;
 }
 .comment-content {
     width: 100%;
-    padding-top: 10px;
     line-height: 1.4;
+    border: 2px #F7F7F7 solid;
+    border-radius: 6px;
+}
+.comment-body {
+    padding: 6px;
+}
+.arrow-left {
+    width: 0; 
+    height: 0; 
+    margin-top: 9px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-right:8px solid #F7F7F7; 
+}
+.arrow-left-submit {
+    width: 0; 
+    height: 0; 
+    margin-top: 9px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-right:8px solid #bdc3c7; 
+}
+.comment-submit {
+    width: 100%;
 }

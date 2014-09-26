@@ -1,12 +1,14 @@
 <template name="comment">
     <div class="comment">
-        <div class="avatar-thumb">
-            <img src="/thumb.jpg">
-        </div>
+        {{> avatarThumb}}
+        <div class="arrow-left"></div>
         <div class="comment-content">
-            <strong>{{author}}</strong><br/>
-            {{body}}
-            <div class="comment-meta text-right">{{submittedText}}</div>
+            <div class="comment-title">
+                <strong>{{author}}</strong><div class="comment-meta text-right">{{submittedText}}</div>
+            </div>
+            <div class="comment-body">
+                {{body}}
+            </div>    
         </div>
     </div>
 </template>
