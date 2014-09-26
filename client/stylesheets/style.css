@@ -56,6 +56,9 @@ form {
 .project-container .img-responsive {
     border-radius: 6px;
 }
+.project-container .tab-pane .img-responsive {
+    border-radius: 0px;
+}
 .save {
     margin-top: 30px;
     float: right;
