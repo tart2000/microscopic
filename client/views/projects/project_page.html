@@ -5,120 +5,98 @@
     <div id="project-hub" class="text-right">
         <h4><strong>{{edition}}  </strong><i class="fa fa-map-marker"></i></h4>
     </div>
-    <div class="col-md-12 project-container">
-        <div class="row">
-            <div class="col-md-8">
-                <img src="/images/SWAG.jpg" class="img-responsive" alt="Responsive image"> 
-            </div>
-            <div class="col-md-4">
+    <div class="container">
+    <div class="row project-container">
+        
+
+        <div class="col-sm-4 col-sm-push-8">
+            <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
+                <li class="active"><a role="tab" data-toggle="tab" href="#desc">Description</a></li>
+                <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
+                <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
+                <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
+                <li><a role="tab" data-toggle="tab" href="#proc">Process</a></li>
+            </ul>
+            <div class="right-sidebar">
                 <div class="edit text-right">
-                    <a href="{{pathFor 'projectEdit'}}">Edit</a>
+                    <a href="{{pathFor 'projectEdit'}}">Edit project info</a>
                 </div>
-                
-                <h4><i class="fa fa-users"></i>  Team</h4>
-                <p>
-                <a href="#">Prénom Nom</a> designer<br>
-                <a href="#">Prénom Nom</a> maker<br>
-                <a href="#">Prénom Nom</a> communication<br>
-                <a href="#">Prénom Nom</a> sound design<br>
-                <a href="#">Prénom Nom</a> special effects<br>
-                <a href="#">Prénom Nom</a> magic<br>
-                </p>
-                <h4><i class="fa fa-magic"></i>  Facilitator</h4>
-                <a href="#">Prénom Nom</a>
-                <h4><i class="fa fa-thumbs-up"></i>  Special thanks</h4>
-                <a href="#">John Good</a>
-                <hr>
                 {{#if hasUrl}}
-                    <h4><i class="fa fa-link"></i> <a href="{{url}}">{{url}}</a></h4>
-                    <hr>
+                     <a href="{{url}}">{{url}}</a>
                 {{/if}}
                 
                 {{#if hasTags}}
-                    <h4><i class="fa fa-tags"></i> Tags</h4>
                     <div class="tagbox">
                     {{#each projectTags}}
                         <span class="tag">{{this}}</span>
                     {{/each}}
                     </div>
-                    <hr>
                 {{/if}}
+                <hr>
+                <strong>Team</strong>
             </div>
-        </div> <!-- row  end first part -->
-    </div><!-- end project container -->
+        </div> <!-- end col-sm-3 -->
 
+        <div class="col-sm-8 col-sm-pull-4">
+            <!-- tabs -->
+            <div class="tab-content">
+                <div class="tab-pane active row" id="desc">
+                    <div class="col-md-12">
+                        <img src="/images/SWAG.jpg" class="img-responsive" alt="Responsive image">
 
-    <div class="">
-        <!-- nav tabs -->
-        <ul class="nav nav-tabs choices" role="tablist" id="tabs">
-            <li class="active"><a role="tab" data-toggle="tab" href="#desc">Description</a></li>
-            <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
-            <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
-            <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
-            <li><a role="tab" data-toggle="tab" href="#proc">Process</a></li>
-            
-        </ul>
-        <!-- end navtabs -->
-    </div>
+                    </div>
+                    <div class="col-md-12">
+                         Description
+                    </div>
+                </div> <!-- end first tab -->
 
-    <div class="col-md-12 project-container">
-        <!-- tabs -->
-        <div class="tab-content">
-            <div class="tab-pane active row" id="desc">
-                <div class="col-md-8">
+                <div class="tab-pane row" id="inst">
+                    <div class="col-md-8">
 
-                </div>
-                <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
 
-                </div>
-            </div> <!-- end first tab -->
+                    </div>
+                </div> <!-- end second tab -->
 
-            <div class="tab-pane row" id="inst">
-                <div class="col-md-8">
-
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div> <!-- end second tab -->
-
-            <div class="tab-pane row" id="disc">
-                <div class="col-md-8">
+                <div class="tab-pane" id="disc">
+                    {{#if currentUser}}
+                        {{> commentSubmit}}
+                    {{else}}
+                        <div class="text-right comment-please">Please log in to leave a comment</div>
+                    {{/if}} 
+                    <p></p>
                     <ul class="comments">
-                    {{#each projectComments}}
-                      {{> comment}}
-                    {{/each}}
-                  </ul>
-                {{#if currentUser}}
-                    {{> commentSubmit}}
-                {{else}}
-                    <div class="comment-meta">Please log in to leave a comment</div>
-                {{/if}} 
-                </div>
-                <div class="col-md-4">
+                        {{#each projectComments}}
+                          {{> comment}}
+                        {{/each}}
+                    </ul>
+                    
 
-                </div>
-            </div> <!-- end tab -->
+                </div> <!-- end tab -->
 
-            <div class="tab-pane row" id="upda">
-                <div class="col-md-8">
+                <div class="tab-pane row" id="upda">
+                    <div class="col-md-8">
 
-                </div>
-                <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
 
-                </div>
-            </div> <!-- end 4th tab -->
+                    </div>
+                </div> <!-- end 4th tab -->
 
-            <div class="tab-pane row" id="proc">
-                <div class="col-md-8">
+                <div class="tab-pane row" id="proc">
+                    <div class="col-md-8">
 
-                </div>
-                <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
 
-                </div>
-            </div> <!-- end 5th tab -->
-        </div> <!-- end tab content -->
+                    </div>
+                </div> <!-- end 5th tab -->
+            </div> <!-- end tab content -->
+        </div> <!-- end col-sm-9 -->
 
-        <!-- end tabs -->
+
     </div>
+    </div> <!-- end page -->
+
 </template>

@@ -2,9 +2,7 @@ body {
     background-color: white;     
     font-size: 16px;
 }
-form {
-    margin-bottom: 100px;
-}
+
 #main {
     margin-top: 80px;
     margin-bottom: 0px;
@@ -49,8 +47,7 @@ form {
     margin-bottom: 15px;
 }
 .edit {
-    position: absolute;
-    margin-left: -30px;
+
     width: 100%;
 }
 .project-container .img-responsive {
@@ -174,6 +171,10 @@ hr {
     float: right;
     margin-top: 2px;
 }
+.comment-please {
+    font-size: 0.8em;
+    color: #95A5A6;
+}
 .comment p {
     margin-bottom: 5px;
 }
@@ -214,4 +215,11 @@ hr {
 }
 .comment-submit {
     width: 100%;
+}
+.right-sidebar {
+    border-top:1px solid #ddd;
+    padding: 15px;
+}
+.container {
+    max-width: 970px;
 }
