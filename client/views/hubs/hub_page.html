@@ -1,21 +1,88 @@
 <template name="hubPage">
-    <div class="container">
-        <h2>{{name}} - {{museum}}</h2>
-        <div id="project-container" class="col-md-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{{thumblink}}" class="img-responsive" alt="Responsive image"> 
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-            </div>
-        </div>
-        <h3>Projects</h3>
+    <div id="project-title" class="text-center col-md-12">
+        <h1>{{name}} - {{museum}}</h1>
+    </div>
+    <div class="col-md-12 project-container">
         <div class="row">
-            {{#each hubProjects}}
-                {{> projectItem}}
-            {{/each}}
-        </div>
+            <div class="col-md-3">
+                <img src="{{thumblink}}" class="img-responsive" alt="Responsive image"> 
+            </div>
+            <div class="col-md-6">
+                
+            </div>
+        </div> 
+    </div><!-- end project container -->
+
+    <div class="">
+        <!-- nav tabs -->
+        <ul class="nav nav-tabs choices" role="tablist" id="tabs">
+            <li class="active"><a role="tab" data-toggle="tab" href="#projects">Projects</a></li>
+            <li class=""><a role="tab" data-toggle="tab" href="#participants">Participants</a></li>
+            <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
+            <li><a role="tab" data-toggle="tab" href="#upda">Updates</a></li>
+            <li><a role="tab" data-toggle="tab" href="#organization">Organization</a></li>
+            
+        </ul>
+        <!-- end navtabs -->
+    </div>
+
+
+    <div class="col-md-12 project-container">
+        <!-- tabs -->
+        <div class="tab-content">
+            <div class="tab-pane active row" id="projects">
+
+                    {{#each hubProjects}}
+                        {{> projectItem}}
+                    {{/each}}
+
+            </div> <!-- end first tab -->
+
+            <div class="tab-pane row" id="participants">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div> <!-- end second tab -->
+
+            <div class="tab-pane row" id="disc">
+                <div class="col-md-8">
+
+                <!-- 
+                    <ul class="comments">
+                    {{#each projectComments}}
+                      {{> comment}}
+                    {{/each}}
+                  </ul>
+                  {{> commentSubmit}}
+                -->
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div> <!-- end tab -->
+
+            <div class="tab-pane row" id="upda">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div> <!-- end 4th tab -->
+
+            <div class="tab-pane row" id="organization">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div> <!-- end 5th tab -->
+        </div> <!-- end tab content -->
+
+        <!-- end tabs -->
     </div>
 </template>

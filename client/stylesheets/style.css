@@ -53,7 +53,7 @@ form {
     margin-left: -30px;
     width: 100%;
 }
-#project-container .img-responsive {
+.project-container .img-responsive {
     border-radius: 6px;
 }
 .save {
@@ -147,6 +147,9 @@ hr {
 }
 .mb {
     margin-bottom: 15px;
+}
+.pt {
+    padding-top: 15px;
 }
 /* comments styling */
 .comments {
