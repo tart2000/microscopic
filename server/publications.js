@@ -31,5 +31,5 @@ Meteor.publish('singleUser', function(userId) {
 });
 
 Meteor.publish('usersData', function () {
-    return Meteor.users.find({}, {fields: {'username': 1}});
+    return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1}});
 });
