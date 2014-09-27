@@ -12,7 +12,7 @@ if (Hubs.find().count() === 0) {
 
      var laaId = Meteor.users.insert({
          emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Laa Laa", thumblink: "/user_images/tinky.jpg" }, 
+         profile : { name : "Laa Laa", thumblink: "/user_images/laalaa.jpg" }, 
          username : "laa"
      });
      var laa = Meteor.users.findOne(laaId);
