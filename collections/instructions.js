@@ -1,0 +1,1 @@
+Instructions = new Meteor.Collection('instructions');
