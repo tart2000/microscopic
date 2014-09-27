@@ -1,0 +1,6 @@
+<template name="usersList">
+    {{#each users}}
+        <a href="{{pathFor 'userProfile'}}">{{username}}</a>
+    {{/each}}
+
+</template>
