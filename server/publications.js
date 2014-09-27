@@ -25,3 +25,7 @@ Meteor.publish('licences', function() {
 Meteor.publish('instructions', function() { 
     return Instructions.find();
 });
+
+Meteor.publish('singleUser', function(userId) {
+	return Meteor.users.find(userId);
+});

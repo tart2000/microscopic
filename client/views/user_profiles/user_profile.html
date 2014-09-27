@@ -1,0 +1,9 @@
+ <template name="user_profile">
+ 	{{#if profile.thumblink}} <img src="{{profile.thumblink}}" />
+	{{else}}
+		<i class="avatar fa fa-user"></i>
+	{{/if}}
+	<p>{{profile.name}} AKA {{username}} </p>
+	<p>{{emails.[0].address}}</p>  
+	<p></p>  
+</template>	
