@@ -1,0 +1,1 @@
+Licences = new Meteor.Collection('licences');

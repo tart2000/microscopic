@@ -1,0 +1,1 @@
+PrjPhotos = new Meteor.Collection('prjphotos');
