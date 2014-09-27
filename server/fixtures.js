@@ -3,23 +3,20 @@ if (Hubs.find().count() === 0) {
 	var now = new Date().getTime();
 
 	/* The user data */
-	var tinkyId = Meteor.users.insert({
-		profile: { 
-			name: 'Tinky Winky',
-			email: 'tinkywinky@teletubbyland.ln',
-			thumlink: 'public/images/tinkywinky.jpg'
-		}
-	});
-	var tinky = Meteor.users.findOne(tinkyId);
+     var tinkyId = Meteor.users.insert({
+         emails : [  {  address : "tinkywinky@teletubbyland.ln",  verified : false } ], 
+         profile : { name : "Tinky Winky", thumblink: "/user_images/tinky.jpg" }, 
+         username : "tinky" 
+     });
+     var tinky = Meteor.users.findOne(tinkyId);
 
-	var laaId = Meteor.users.insert({
-		profile: { 
-			name: 'Laa Laa',
-			email: 'laalaa@teletubbyland.ln',
-			thumblink: 'public/images/laalaa.jpg'
-		}
-	});
-	var laa = Meteor.users.findOne(laaId);
+     var laaId = Meteor.users.insert({
+         emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
+         profile : { name : "Laa Laa", thumblink: "/user_images/tinky.jpg" }, 
+         username : "laa"
+     });
+     var laa = Meteor.users.findOne(laaId);
+
 
 	/* The hub data */
     var montrealID = Hubs.insert({
