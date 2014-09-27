@@ -31,23 +31,19 @@
             <input name="url" class="form-control" type="text" value="{{url}}" placeholder="http://"/>
         </div>
     </div>
-    <div class="row pt">
-        <div class="col-md-6">
-            <div class="form-inline">
-                <label for="tags">Tags</label>
-                <input id="tagbox" class="form-control" type="text" placeholder="Tags"/>
-                <a href="#" class="btn btn-default add-tag">Add</a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="list-tags">
-                {{#each projectTags}}
-                    <span class="tag">{{this}}  <span data-role="remove"><i class="fa fa-times"></i></span>
-                    </span>
-                {{/each}}
-            </div>
-        </div>
+    <div class="form-inline">
+        <label for="tags">Tags</label>
+        <input id="tagbox" class="form-control" type="text" placeholder="Tags"/>
+        <a href="#" class="btn btn-default add-tag">Add</a>
     </div>
+
+    <div class="list-tags mt">
+        {{#each projectTags}}
+            <span class="tag">{{this}}  <span data-role="remove"><i class="fa fa-times"></i></span>
+            </span>
+        {{/each}}
+    </div>
+
 
     <div class="form-group">
         <div class="controls command-buttons">
