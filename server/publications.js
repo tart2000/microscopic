@@ -29,3 +29,7 @@ Meteor.publish('instructions', function() {
 Meteor.publish('singleUser', function(userId) {
 	return Meteor.users.find(userId);
 });
+
+Meteor.publish('usersData', function () {
+    return Meteor.users.find({}, {fields: {'username': 1}});
+});
