@@ -3,7 +3,7 @@
         <h1>{{title}} - {{baseline}}</h1>
     </div>
     <div id="project-hub" class="text-right">
-        <h4><strong>{{edition}}  </strong><i class="fa fa-map-marker"></i></h4>
+        <h4><strong>{{hub}}  </strong><i class="fa fa-map-marker"></i></h4>
     </div>
     <div class="container">
     <div class="row project-container">
@@ -15,7 +15,6 @@
                 <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
                 <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
                 <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
-                <li><a role="tab" data-toggle="tab" href="#proc">Process</a></li>
             </ul>
             <div class="right-sidebar">
                 <div class="edit text-right">
@@ -43,10 +42,9 @@
                 <div class="tab-pane active row" id="desc">
                     <div class="col-md-12">
                         <img src="/images/SWAG.jpg" class="img-responsive" alt="Responsive image">
-
-                    </div>
-                    <div class="col-md-12">
-                         Description
+                        <div class="mt mb">
+                            {{description}}
+                        </div>
                     </div>
                 </div> <!-- end first tab -->
 
@@ -84,14 +82,7 @@
                     </div>
                 </div> <!-- end 4th tab -->
 
-                <div class="tab-pane row" id="proc">
-                    <div class="col-md-8">
 
-                    </div>
-                    <div class="col-md-4">
-
-                    </div>
-                </div> <!-- end 5th tab -->
             </div> <!-- end tab content -->
         </div> <!-- end col-sm-9 -->
 

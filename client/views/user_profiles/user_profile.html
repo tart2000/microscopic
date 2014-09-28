@@ -1,9 +1,27 @@
  <template name="userProfile">
- 	{{#if profile.thumblink}} <img src="{{profile.thumblink}}" />
-	{{else}}
-		<i class="avatar fa fa-user"></i>
-	{{/if}}
-	<p>{{profile.name}} AKA {{username}} </p>
-	<p>{{emails.[0].address}}</p>  
-	<p></p>  
+    <div class="container">
+        <div class="row project-container">
+            <div class="col-sm-3">
+             	{{#if profile.thumblink}} <img src="{{profile.thumblink}}" class="img-responsive">
+            	{{else}}
+            		<i class="avatar fa fa-user"></i>
+            	{{/if}}
+            	<h3>{{profile.name}} </h3>
+                <h6> {{username}} </h6>
+                <div class="social-icons">
+                	<i class="fa fa-facebook-square fa-2x"></i>
+                    <i class="fa fa-twitter-square fa-2x"></i>
+                    <i class="fa fa-instagram fa-2x"></i>
+                    <i class="fa fa-tumblr-square fa-2x"></i>
+                    <a href="mailto:{{emails.[0].address}}" target="_blank"><i class="fa fa-envelope-square fa-2x"></i></a>
+                </div>
+                <h7><i class="fa fa-map-marker"></i>Montreal</h7>
+            </div> <!-- end first column --> 
+
+            <div class="col-sm-9">
+                activity goes here (latest comments, etc.)
+            </div>    
+        </div>
+    </div>
+
 </template>	

@@ -53,9 +53,6 @@ body {
 .project-container .img-responsive {
     border-radius: 6px;
 }
-.project-container .tab-pane .img-responsive {
-    border-radius: 0px;
-}
 .save {
     margin-top: 30px;
     float: right;
@@ -86,6 +83,15 @@ h4 {
 h1 {
     font-size: 50px;
     margin-top: 5px;
+}
+h3 {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+h6 {
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 #footer h4, #footer a {
     color: #CECECE;
@@ -219,9 +225,14 @@ hr {
     width: 100%;
 }
 .right-sidebar {
-    border-top:1px solid #ddd;
     padding: 15px;
 }
 .container {
     max-width: 970px;
+}
+.fa {
+    margin-right: 5px;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #95A5A6;
 }

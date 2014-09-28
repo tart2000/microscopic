@@ -6,7 +6,7 @@ Template.projectSubmit.events({
     var project = {
         title: $(e.target).find('[id=title]').val(), 
         baseline: $(e.target).find('[id=baseline]').val(),
-        edition: $(e.target).find('[id=edition]').val(),
+        hub: $(e.target).find('[id=hub]').val(),
         team: []
     }
 

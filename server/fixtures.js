@@ -35,7 +35,7 @@ if (Hubs.find().count() === 0) {
 
     Hubs.insert({
         name:'Geneve',
-        museum: 'Musée d art et d histoire de Genève',
+        museum: 'Musée d\'art et d\'histoire de Genève',
         thumblink:'/hubs/genevehistoire.png',
     });
     Hubs.insert({
@@ -50,17 +50,17 @@ if (Hubs.find().count() === 0) {
     });
     Hubs.insert({
         name:'Arles',
-        museum: 'Musée départemental d Arles antique avec le Museon Arlaten ',
+        museum: 'Musée départemental d\'Arles antique avec le Museon Arlaten ',
         thumblink:'/hubs/arlesantique.png',
     });
     Hubs.insert({
         name:'Lille',
-        museum: 'Musée d Histoire Naturelle et de Géologie de Lille',
+        museum: 'Musée d\'Histoire Naturelle et de Géologie de Lille',
         thumblink:'/hubs/geolille.png',
     });
     Hubs.insert({
         name:'Saint-Etienne',
-        museum: 'Musée d art et d industrie de Saint-Etienne',
+        museum: 'Musée d\'art et d industrie de Saint-Etienne',
         thumblink:'/hubs/stetienne.png',
     });
 
@@ -68,11 +68,11 @@ if (Hubs.find().count() === 0) {
     var omgID = Projects.insert({ 
         title: 'OMG',
         baseline:'Oh My Gallery',
-        body: 'Le projet Oh My Gallery ! est un portail de découverte interactif qui ouvre le périmètre géographique et temporel des œuvres de la Galerie de Temps du Louvre-Lens. Autour de la Madeleine à la veilleuse de Georges de La Tour, le prototype propose un voyage virtuel à travers l\'espace et le temps par bonds successifs. Le visiteur crée son propre musée imaginaire.',
+        description: 'Le projet Oh My Gallery ! est un portail de découverte interactif qui ouvre le périmètre géographique et temporel des œuvres de la Galerie de Temps du Louvre-Lens. Autour de la Madeleine à la veilleuse de Georges de La Tour, le prototype propose un voyage virtuel à travers l\'espace et le temps par bonds successifs. Le visiteur crée son propre musée imaginaire.',
         author: tinky.profile.name,
         authorID: tinkyId,
         hubID:montrealID,
-        hub: montreal,
+        hub: 'Montreal',
         thumblink: 'public/images/SWAG.jpg',
         commentsCount: 0,
         tags:[],
@@ -82,11 +82,11 @@ if (Hubs.find().count() === 0) {
     var exploraID = Projects.insert({ 
         title: 'Explora',
         baseline:'Mix li Nord',
-        body: 'Avec l\'Explora, découvrez une nouvelle expérience du musée et de la région. A la fois sensoriel et interactif, Explora vous invite à poursuivre votre expérience muséale sur le territoire du Nord-Pas-de-Calais. Soyez curieux, et interagissez, c\'est vous qui choisissez votre destination!',
+        description: 'Avec l\'Explora, découvrez une nouvelle expérience du musée et de la région. A la fois sensoriel et interactif, Explora vous invite à poursuivre votre expérience muséale sur le territoire du Nord-Pas-de-Calais. Soyez curieux, et interagissez, c\'est vous qui choisissez votre destination!',
         author: laa.profile.name,
         authorID: laaId,
         hubID:montrealID,
-        hub: montreal,
+        hub: 'Montreal',
         thumblink: 'public/images/SWAG.jpg',
         commentsCount: 0,
         tags:[],

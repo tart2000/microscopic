@@ -1,5 +1,5 @@
 Template.hubPage.helpers({ 
     hubProjects: function() {
-        return Projects.find({edition: this.name}); 
+        return Projects.find({hub: this.name}); 
     }
 });
