@@ -15,5 +15,15 @@ Template.projectPage.helpers({
         var comCount = Comments.find({projectId: this._id}).count(); 
         if (comCount > 0)
         return Comments.find({projectId: this._id}).count();
+    },
+    licenceImage: function() {
+        var thisLicence = this.licence;
+        var theLicence = Licences.findOne({name: thisLicence});
+        return theLicence.thumblink;
+    }, 
+    licenceLink: function() {
+        var thisLicence = this.licence;
+        var theLicence = Licences.findOne({name: thisLicence});
+        return theLicence.url;
     }
 });
