@@ -36,7 +36,11 @@ Template.projectEdit.events({
     }
 });
 
+
 Template.projectEdit.helpers({ 
+    currentProjectId: function() {
+        return this._id;
+    },
     hubs: function() {
         return Hubs.find(); 
     }, 
@@ -46,16 +50,17 @@ Template.projectEdit.helpers({
     projectTags: function() {
         return this.tags; 
     },
-    isLicence: function() {
-        var thisProject = Projects.findOne();
+    isLicence: function(currentProjectId) {
+        var thisProject = Projects.findOne(currentProjectId);
         var thisProjectLicence = thisProject.licence;
         var licenceOption = this.name;
+        console.log(currentProjectId.title);
         if (licenceOption === thisProjectLicence) {
             return 'selected';
         };
     },
-    isHub: function() {
-        var thisProject = Projects.findOne();
+    isHub: function(currentProjectId) {
+        var thisProject = Projects.findOne(currentProjectId);
         var thisProjectHub = thisProject.hub;
         var hubOption = this.name;
         if (hubOption === thisProjectHub) {
