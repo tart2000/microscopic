@@ -6,6 +6,7 @@ Template.projectEdit.events({
             title: $(e.target).find('[name=title]').val(), 
             baseline: $(e.target).find('[name=baseline]').val(),
             hub: $(e.target).find('[id=hub]').val(),
+            licence:  $(e.target).find('[id=licences]').val(),
             url: $(e.target).find('[name=url]').val()
         };
         Projects.update(currentProjectId, {$set: projectProperties}, function(error) { if (error) {
@@ -38,6 +39,12 @@ Template.projectEdit.events({
 Template.projectEdit.helpers({ 
     hubs: function() {
         return Hubs.find(); 
+    }
+});
+
+Template.projectEdit.helpers({ 
+    licences: function() {
+        return Licences.find(); 
     }
 });
 

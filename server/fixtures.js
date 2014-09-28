@@ -156,7 +156,7 @@ if (Licences.find().count() === 0) {
         /* The Licences */
     Licences.insert({
         name: 'CC-0',
-        thumblink: '/licences/cc0.png',
+        thumblink: '/licences/cc0.jpg',
         url: 'http://creativecommons.org/publicdomain/zero/1.0/',
     });
     Licences.insert({
