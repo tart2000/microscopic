@@ -4,7 +4,7 @@
   </div>
     <div class="container">
     <div class="row project-container">
-        
+    <form>        
 
         <div class="col-sm-4 col-sm-push-8">
             <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
@@ -13,6 +13,13 @@
                 <li class=""><a role="tab" data-toggle="tab" href="#description">Description</a></li>
                 <li class=""><a role="tab" data-toggle="tab" href="#instructions">Instructions</a></li>
             </ul>
+            <div class="form-group">
+                                <div class="controls command-buttons">
+                                    <a class="btn btn-danger delete" href="#">Delete project</a>
+                                    <input type="submit" id="save" value="Save" class="btn btn-primary submit right"/>
+                                    <a class="btn btn-default cancel right" href="#" style="margin-right:15px">Back to project</a>
+                                </div>
+                            </div>
         </div> <!-- end col-sm-3 -->
 
         <div class="col-sm-8 col-sm-pull-4">
@@ -20,7 +27,6 @@
             <div class="tab-content">
                 <div class="tab-pane active row" id="basic">
                     <div class="col-md-12">
-                          <form class="">
                             <div class="form-group">
                                 <label class="control-label" for="title">Project name</label>
                                 <div class="controls">
@@ -71,14 +77,6 @@
                                     </span>
                                 {{/each}}
                             </div>
-                            <div class="form-group">
-                                <div class="controls command-buttons">
-                                    <a class="btn btn-danger delete" href="#">Delete project</a>
-                                    <input type="submit" id="save" value="Save" class="btn btn-primary submit right"/>
-                                    <a class="btn btn-default cancel right" href="#" style="margin-right:15px">Cancel</a>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div> <!-- end tab -->
 
@@ -88,10 +86,9 @@
 
                 <div class="tab-pane row" id="description">
                     <div class="col-md-12">
-                        <img src="/images/SWAG.jpg" class="img-responsive" alt="Responsive image">
-                        <div class="mt mb">
-                            {{description}}
-                        </div>
+                            <label class="control-label" for="projectdescription">Edit your project description</label>
+                            <textarea id="projectdescription" class="form-control" value="{{description}}" rows="15"></textarea>
+                            <label class="control-label" for="">Your project images</label> 
                     </div>
                 </div> <!-- end tab -->
 
@@ -109,26 +106,7 @@
             </div> <!-- end tab content -->
         </div> <!-- end col-sm-9 -->
 
-
+    </form>
     </div>
     </div> <!-- end page -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </template>
