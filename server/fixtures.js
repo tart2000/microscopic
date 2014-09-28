@@ -17,6 +17,13 @@ if (Hubs.find().count() === 0) {
      });
      var laa = Meteor.users.findOne(laaId);
 
+     var ladyId = Meteor.users.insert({
+         emails : [  {  address : "ladylee@gmail.com",  verified : false } ], 
+         profile : { name : "Lady Lé", thumblink: "/user_images/lady.jpg" }, 
+         username : "lady"
+     });
+     var lady = Meteor.users.findOne(ladyId);
+
 
 	/* The hub data */
     var montrealID = Hubs.insert({
@@ -126,14 +133,6 @@ if (Hubs.find().count() === 0) {
     	thumlink: 'public/images/SWAG.jpg'
     });
 
-    /* The Licences */
-    Licences.insert({
-    	name: 'CCBY',
-    	thumlink: 'public/images/ccby.gif',
-    	url: 'http://creativecommons.org/licenses/by/2.0/',
-    	projectID: omgID
-    });
-
     /* The Instructions */
     Instructions.insert({
     	title: 'STEP 1',
@@ -152,3 +151,43 @@ if (Hubs.find().count() === 0) {
     })
 
 } 
+
+if (Licences.find().count() === 0) {
+        /* The Licences */
+    Licences.insert({
+        name: 'CC-0',
+        thumblink: '/licences/cc0.png',
+        url: 'http://creativecommons.org/publicdomain/zero/1.0/',
+    });
+    Licences.insert({
+        name: 'CC-BY',
+        thumblink: '/licences/ccby.png',
+        url: 'http://creativecommons.org/licenses/by/2.0/',
+        projectID: omgID
+    });
+    Licences.insert({
+        name:'CC-BY-SA', 
+        thumblink: '/licences/ccbysa.png',
+        url: 'http://creativecommons.org/licenses/by-sa/4.0/',
+    })
+    Licences.insert({
+        name:'CC-BY-ND', 
+        thumblink: '/licences/ccbynd.jpg',
+        url: 'http://creativecommons.org/licenses/by-nd/4.0/',
+    })
+    Licences.insert({
+        name:'CC-BY-NC', 
+        thumblink: '/licences/ccbync.jpg',
+        url: 'http://creativecommons.org/licenses/by-nc/4.0/',
+    })
+    Licences.insert({
+        name:'CC-BY-NC-SA', 
+        thumblink: '/licences/ccbyncsa.png',
+        url: 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
+    })
+    Licences.insert({
+        name:'CC-BY-NC-ND', 
+        thumblink: '/licences/ccbyncnd.png',
+        url: 'http://creativecommons.org/licenses/by-nc-nd/4.0/',
+    })
+}

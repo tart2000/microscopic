@@ -151,6 +151,9 @@ hr {
 .pt {
     padding-top: 15px;
 }
+.pb {
+    padding-bottom: 15px;
+}
 /* comments styling */
 .comments {
     padding-left: 0px !important;
