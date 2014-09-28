@@ -1,8 +1,12 @@
 <template name="userItem">
     <div class="col-md-2 col-sm-3 col-xs-4">
-        <a href="{{pathFor 'userProfile'}}">
-            <img src="{{profile.thumblink}}" class="img-responsive">
-            {{username}}
-        </a>
+        <div class="user-thumb">
+            <a href="{{pathFor 'userProfile'}}">
+                <img src="{{profile.thumblink}}" class="img-responsive">
+                <div class="user-thumb-title">
+                    {{username}}
+                </div>
+            </a>
+        </div>
     </div>
 </template>

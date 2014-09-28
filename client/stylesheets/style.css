@@ -242,3 +242,13 @@ hr {
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: #95A5A6;
 }
+.user-thumb {
+    background-color: #F9FAFB;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+    border:1px #EBECED solid;
+}
+.user-thumb-title {
+    padding: 5px 10px 5px 10px;
+}
