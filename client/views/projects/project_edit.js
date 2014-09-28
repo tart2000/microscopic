@@ -39,18 +39,29 @@ Template.projectEdit.events({
 Template.projectEdit.helpers({ 
     hubs: function() {
         return Hubs.find(); 
-    }
-});
-
-Template.projectEdit.helpers({ 
+    }, 
     licences: function() {
         return Licences.find(); 
-    }
-});
-
-Template.projectEdit.helpers({
+    },
     projectTags: function() {
         return this.tags; 
-    }
+    },
+    isLicence: function() {
+        var thisProject = Projects.findOne();
+        var thisProjectLicence = thisProject.licence;
+        var licenceOption = this.name;
+        if (licenceOption === thisProjectLicence) {
+            return 'selected';
+        };
+    },
+    isHub: function() {
+        var thisProject = Projects.findOne();
+        var thisProjectHub = thisProject.hub;
+        var hubOption = this.name;
+        if (hubOption === thisProjectHub) {
+            return 'selected';
+        };
+    },
 });
+
 
