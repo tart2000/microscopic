@@ -55,7 +55,6 @@ Template.projectEdit.helpers({
         var thisProject = Projects.findOne(currentProjectId);
         var thisProjectLicence = thisProject.licence;
         var licenceOption = this.name;
-        console.log(currentProjectId.title);
         if (licenceOption === thisProjectLicence) {
             return 'selected';
         };

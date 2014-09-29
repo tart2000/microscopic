@@ -25,5 +25,11 @@ Template.projectPage.helpers({
         var thisLicence = this.licence;
         var theLicence = Licences.findOne({name: thisLicence});
         return theLicence.url;
+    }, 
+    htmldescription: function() {
+        var converter = new Showdown.converter();
+        var description = this.description;
+        var htmldescription = converter.makeHtml(description); 
+        return htmldescription;  
     }
 });

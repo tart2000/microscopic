@@ -9,7 +9,7 @@
     <div class="row project-container">
         
 
-        <div class="col-sm-4 col-sm-push-8">
+        <div class="col-sm-3 col-sm-push-9">
             <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
                 <li class="active"><a role="tab" data-toggle="tab" href="#desc">Description</a></li>
                 <li class=""><a role="tab" data-toggle="tab" href="#inst">Instructions</a></li>
@@ -17,9 +17,7 @@
                 <li><a role="tab" data-toggle="tab" href="#upda">Updates <span class="badge">12</span></a></li>
             </ul>
             <div class="right-sidebar">
-                <div class="edit text-right">
-                    <a href="{{pathFor 'projectEdit'}}">Edit project</a>
-                </div>
+                <a class="btn btn-default btn-block mb" href="{{pathFor 'projectEdit'}}">Edit project</a>
                 {{#if hasUrl}}
                      <a href="{{url}}">{{url}}</a>
                 {{/if}}
@@ -38,14 +36,15 @@
             </div>
         </div> <!-- end col-sm-3 -->
 
-        <div class="col-sm-8 col-sm-pull-4">
+        <div class="col-sm-9 col-sm-pull-3">
             <!-- tabs -->
             <div class="tab-content">
                 <div class="tab-pane active row" id="desc">
                     <div class="col-md-12">
                         <img src="/images/SWAG.jpg" class="img-responsive" alt="Responsive image">
-                        <div class="mt mb">
-                            {{description}}
+                        <div id="htmldescription" class="mt mb">
+                            <span></span>
+                            {{htmldescription}}
                         </div>
                     </div>
                 </div> <!-- end first tab -->
