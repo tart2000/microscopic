@@ -31,5 +31,11 @@ Template.projectPage.helpers({
         var description = this.description;
         var htmldescription = converter.makeHtml(description); 
         return htmldescription;  
-    }
+    },
+    htmlinstructions: function() {
+        var converter = new Showdown.converter();
+        var instructions = this.instructions;
+        var htmlinstructions = converter.makeHtml(instructions); 
+        return htmlinstructions;  
+    },
 });

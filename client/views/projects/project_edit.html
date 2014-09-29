@@ -94,13 +94,12 @@
                     </div>
                 </div> <!-- end tab -->
 
-                
-
-
-
                 <div class="tab-pane row" id="instructions">
                     <div class="col-md-12">
-
+                        <label class="control-label" for="projectinstructions">Explain how to make your project. You can use Markdown.</label><br/>
+                        {{>markdownCheatsheet}}
+                        <textarea id="projectinstructions" class="form-control" value="{{instructions}}" rows="15"></textarea>
+                        <label class="control-label" for="">Images</label> 
                     </div>
                 </div> <!-- end 4th tab -->
 
