@@ -62,6 +62,16 @@ Template.projectEdit.helpers({
     projectTags: function() {
         return this.tags; 
     },
+    projectTags2: function() {
+        var tags = this.tags;
+        var length = tags.length; 
+        var thetags = "";
+        console.log(length);
+        for (var i=0; i < length; i++) {
+            thetags = thetags + '<div class="tag">' + tags[i] + '<a href="#" class="remove-tag"><i class="fa fa-times" style="margin-left:5px"></i></a></div>';
+        };
+        return thetags;
+    },
     isLicence: function(currentProjectId) {
         var thisProject = Projects.findOne(currentProjectId);
         var thisProjectLicence = thisProject.licence;
