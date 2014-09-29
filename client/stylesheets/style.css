@@ -276,3 +276,16 @@ hr {
 .user-thumb-title {
     padding: 5px 10px 5px 10px;
 }
+#cheatsheet p {
+    font-size: 14px;
+}
+#cheat {
+    position: relative;
+    top: -15px;
+}
+#cheatsheet {
+    background-color: #F9FAFB;
+}
+#htmldescription a:link {
+    text-decoration: underline;
+}
