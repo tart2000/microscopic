@@ -102,6 +102,9 @@ h6 {
 a {
     color: #2C3E50;
 }
+blockquote {
+    margin-bottom: 15px;
+}
 #footer h4, #footer a {
     color: #CECECE;
 }
@@ -209,7 +212,8 @@ hr {
     margin-bottom: 5px;
 }
 .avatar-thumb {
-    padding: 0px 5px 5px 0px;
+    padding: 0px 5px 10px 0px;
+    display: inline-block;
 }
 .avatar-thumb img {
     border-radius: 4px;
@@ -264,6 +268,10 @@ hr {
 .nav-pills > li > a:hover {
     border-left:1px solid #2C3E50;
     background-color: #F7F7F7;
+}
+.nav-pills > .active > a > .badge {
+    background-color: #2C3E50;
+    color: white;
 }
 /** users  **/
 .user-thumb {
