@@ -85,24 +85,38 @@
 
                 <div class="tab-pane row" id="updates">
                     <div class="col-md-4">
-                        <a class="btn btn-default btn-block mb" href="">New update</a>
+                        
                         <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
-                            <li class="active"><a role="tab" data-toggle="tab" href="">Making of our Kickstarter video</a></li>
+                            <a class="btn btn-default btn-block mb" role="tab" data-toggle="tab" href="#new-update">New update</a>
+                            <li class="active"><a role="tab" data-toggle="tab" href="#update-1">Making of our Kickstarter video</a></li>
                             <li class=""><a role="tab" data-toggle="tab" href="#">Update 2</a></li>
                             <li><a role="tab" data-toggle="tab" href="#">Update 3</a></li>
                             <li><a role="tab" data-toggle="tab" href="#">Update 4</a></li>
                         </ul>
                     </div>
                     <div class="col-md-8">
-                        <form id="new-update"> 
-                            <label class="control-label" for="updatetitle">Post an update on your project</label>
-                            {{>markdownCheatsheet}}
-                            <input name="updatetitle" class="form-control mb" type="text" value="{{updatetitle}}" placeholder="Update title"/>
-                            <textarea id="update-content" class="form-control" value="{{body}}" rows="15" placeholder="Your update"></textarea>
-                        </form>
-                        <div id="content-body">
-                            une update sélectionnée ici 
-                            <p>Commentaires ici</p>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="new-update">
+                                <form id=""> 
+                                    <label class="control-label" for="updatetitle">Post an update on your project</label>
+                                    {{>markdownCheatsheet}}
+                                    <input name="updatetitle" class="form-control mb" type="text" value="{{updatetitle}}" placeholder="Update title"/>
+                                    <textarea id="update-content" class="form-control" value="{{body}}" rows="15" placeholder="Your update"></textarea>
+                                    <div class="form-group">
+                                        <div class="controls command-buttons right">
+                                            <a class="btn btn-danger delete" href="#">Delete update</a>
+                                            <a class="btn btn-default cancel" href="#">Cancel</a>
+                                            <input class="btn btn-primary submit" type="submit" id="save" value="Post update"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane active" id="update-1">
+                                <div id="content-body-1">
+                                    une update sélectionnée ici 
+                                    <p>Commentaires ici</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- end 4th tab -->
