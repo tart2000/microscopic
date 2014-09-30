@@ -59,6 +59,9 @@ body {
 .project-container .img-responsive {
     border-radius: 6px;
 }
+.project-sidebar {
+    padding-left: 0px;
+}
 .right {
     float:right;
 }
