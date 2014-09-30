@@ -17,3 +17,6 @@ accounts-google
 handlebars
 ian:accounts-ui-bootstrap-3
 steeve:simple-bootstrap3-alerts
+cfs:standard-packages
+cfs:filesystem
+

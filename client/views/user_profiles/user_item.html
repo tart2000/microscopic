@@ -1,7 +1,7 @@
 <template name="userItem">
     <div class="col-md-2 col-sm-3 col-xs-4">
         <a href="{{pathFor 'userProfile'}}">
-        	{{#if profile.thumblink}} <img src="{{getUserPhoto}}" class="img-responsive">
+        	{{#if profile.thumblink}} <img src="{{getUserPhoto}}" class="img-responsive" data-toggle="tooltip" data-placement="top" title="{{username}}">
             	{{else}}
             		<img src="/thumb.jpg" class="img-responsive">
             	{{/if}}
