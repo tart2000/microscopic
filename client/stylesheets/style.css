@@ -258,7 +258,7 @@ hr {
     font-weight: 600;
 }
 .right-sidebar {
-    padding: 15px;
+    padding: 15px 0px 15px 15px;
 }
 .nav-pills > li > a {
     border-radius: 0px;
@@ -296,4 +296,13 @@ hr {
 }
 #htmldescription a:link {
     text-decoration: underline;
+}
+/** Updates **/
+.callout .selected {
+    padding: 5px 15px;
+    border-left:2px solid #2C3E50;
+    margin-bottom: 15px;
+}
+.update-title {
+    font-weight: 600;
 }
