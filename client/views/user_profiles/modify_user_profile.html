@@ -15,7 +15,6 @@
                                 <div class="controls command-buttons">
                                     <input class="btn btn-block btn-primary submit" type="submit" id="save" value="Save"/>
                                     <a class="btn btn-default btn-block cancel" href="#">Cancel</a>
-                                    <a class="btn btn-danger btn-block" href="#">Delete account</a>
                                 </div>
                             </div>
                         </div>
@@ -35,8 +34,8 @@
                                 </div>
                                 Select image here 
                                     <input id="upload" type="file" />
-                                <img src="{{getUserPhoto}}" class="img-responsive"/>
-                                <div class="form-group">
+                                <img src="{{getUserPhoto}}" class="img-responsive mt"/>
+                                <div class="form-group mt">
                                     <label for="hub">Edition</label>
                                     <div class="controls">
                                         <select id="hub" class="form-control">
@@ -50,15 +49,52 @@
                         </div> <!-- end basic info tab -->
 
                         <div class="tab-pane" id="social">
-                            
-                            <div class="form-inline">
-                                <label for="coreteam">Facebook</label>
-                                <input id="coreteam" class="form-control" type="text" placeholder="http://"/>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="facebook" class="col-sm-4 control-label">Facebook</label>
+                                    <div class="col-sm-8">
+                                        <input id="facebook" class="form-control" type="text" placeholder="http://"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="twitter" class="col-sm-4 control-label">Twitter</label>
+                                    <div class="col-sm-8">
+                                        <input id="twitter" class="form-control" type="text" placeholder="http://"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="linkedin" class="col-sm-4 control-label">LinkedIn</label>
+                                    <div class="col-sm-8">
+                                        <input id="linkedin" class="form-control" type="text" placeholder="http://"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="instagram" class="col-sm-4 control-label">Instagram</label>
+                                    <div class="col-sm-8">
+                                        <input id="instagram" class="form-control" type="text" placeholder="http://"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tumblr" class="col-sm-4 control-label">Tumblr</label>
+                                    <div class="col-sm-8">
+                                        <input id="tumblr" class="form-control" type="text" placeholder="http://"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website" class="col-sm-4 control-label">Personal website</label>
+                                    <div class="col-sm-8">
+                                        <input id="website" class="form-control" type="text" placeholder="http://"/>
+                                    </div>
+                                </div>
                             </div>
                         </div> <!-- end social tab -->
 
-                        <div class="tab-pane row" id="settings">
-                            users can modify their settings here
+                        <div class="tab-pane row" id="preferences">
+                            <div class="col-md-12">
+                                users can modify their settings, change their password here
+
+                                <a class="btn btn-default right" href="#">Delete account  <i class="fa fa-times" style="margin-left:5px"></i></a>
+                            </div>
                         </div> <!-- end description tab -->
 
                     </div> <!-- end tab content -->
