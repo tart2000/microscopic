@@ -175,14 +175,17 @@ hr {
 .mb {
     margin-bottom: 15px;
 }
+.ml {
+    margin-left: 15px;
+}
+.md {
+    margin-right: 15px;
+}
 .pt {
     padding-top: 15px;
 }
 .pb {
     padding-bottom: 15px;
-}
-.form-inline {
-    margin-top: 30px;
 }
 .input-lg {
     height: 60px;
@@ -322,4 +325,7 @@ hr {
     border-radius: 6px; 
     background-color: #F9FAFB;
     padding: 20px;
+}
+label {
+    font-weight: 700;
 }

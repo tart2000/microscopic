@@ -10,7 +10,8 @@ Template.projectEdit.events({
             licence:  $(e.target).find('[id=licences]').val(),
             url: $(e.target).find('[name=url]').val(), 
             description: $(e.target).find('[id=projectdescription]').val(),
-            instructions: $(e.target).find('[id=projectinstructions]').val()
+            instructions: $(e.target).find('[id=projectinstructions]').val(),
+            videolink: $(e.target).find('[name=projectvideo]').val()
         };
         Projects.update(currentProjectId, {$set: projectProperties}, function(error) { if (error) {
             // display the error to the user

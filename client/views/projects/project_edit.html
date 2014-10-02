@@ -63,27 +63,54 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group pb">
                                 <label class="control-label" for="url">External URL</label>
                                 <div class="controls">
                                     <input name="url" class="form-control" type="text" value="{{url}}" placeholder="http://"/>
                                 </div>
                             </div>
-                            <div class="form-inline">
+                            <div class="form-inline mt">
                                 <label for="tags">Tags</label>
                                 <input id="tagbox" class="form-control" type="text" placeholder="Tags"/>
                                 <a href="#" class="btn btn-default add-tag">Add</a>
                             </div>
-
                             <div class="list-tags mt">
                                 {{{projectTags2}}}
                             </div>
                     </div>
-                </div> <!-- end tab -->
+                </div> <!-- end basic info tab -->
 
                 <div class="tab-pane" id="team">
-                    edit team here
-                </div> <!-- end tab -->
+                    <label for="coreteam">Coreteam</label>
+                    <div class="form-inline">
+                        <input id="coreteam" class="form-control" type="text" placeholder="Add team member"/>
+                        <a href="#" class="btn btn-default add-member">Add</a>
+                    </div>
+                     <div class="project-images mt mb">
+                        {{coreteam}}
+                        <li>John Good  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                        <li>Alison crazy  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                    </div>
+                    <label for="facilitator">Facilitator</label>
+                    <div class="form-inline">
+                        <input id="facilitator" class="form-control" type="text" placeholder="Faciliatator"/>
+                        <a href="#" class="btn btn-default add-thanks">Add</a>
+                    </div>
+                     <div class="project-images mt mb">
+                        {{facilitator}}
+                        <li>Danger Tom  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                    </div>  
+                    <label for="thanks">Special thanks</label>
+                    <div class="form-inline">
+                        <input id="thanks" class="form-control" type="text" placeholder="Say tanks!"/>
+                        <a href="#" class="btn btn-default add-thanks">Add</a>
+                    </div>
+                     <div class="project-images mt">
+                        {{thanks}}
+                        <li>Madness Luke  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                        <li>Epic John  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                    </div>
+                </div> <!-- end team tab -->
 
                 <div class="tab-pane row" id="description">
                     <div class="col-md-12">
@@ -100,21 +127,35 @@
                         </div>
                         <label class="control-label mt" for="project-video">Your project video</label> 
                         <div class="controls">
-                            <input name="project-video" class="form-control" type="text" value="{{video}}" placeholder="http://"/>
+                            <input name="projectvideo" class="form-control" type="text" value="{{videolink}}" placeholder="http://"/>
                         </div>
                     </div>
-                </div> <!-- end tab -->
+                </div> <!-- end description tab -->
 
                 <div class="tab-pane row" id="instructions">
                     <div class="col-md-12">
                         <label class="control-label" for="projectinstructions">Explain how to make your project. You can use Markdown.</label><br/>
                         {{>markdownCheatsheet}}
                         <textarea id="projectinstructions" class="form-control" value="{{instructions}}" rows="15"></textarea>
-                        <label class="control-label" for="">Images</label> 
-
-                        <label class="control-label" for="">Source files</label> 
+                        <label class="control-label mt" for="">Your 'how-to' images</label> 
+                        <div class="image-import">
+                            <strong>Drag & drop how-to images here</strong> or choose a file: 
+                            <input type="file" name="file">
+                        </div>
+                        <div class="project-images mt">
+                            Image thumbnails appear here and can be reorganised with drag&drop.
+                        </div> 
+                        <label class="control-label mt" for="">Source files</label> 
+                        <div class="image-import">
+                            <strong>Drag & drop source files here</strong> or choose a file: 
+                            <input type="file" name="file">
+                        </div>
+                        <div class="project-images mt">
+                            <li>file.pdf  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                            <li>another_file.stl  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                        </div> 
                     </div>
-                </div> <!-- end 4th tab -->
+                </div> <!-- end instructions tab -->
 
 
             </div> <!-- end tab content -->
