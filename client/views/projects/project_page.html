@@ -10,6 +10,7 @@
         
 
         <div class="col-sm-3 col-sm-push-9 project-sidebar">
+            <a class="btn btn-default btn-block mb" href="{{pathFor 'projectEdit'}}">Edit project</a>
             <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
                 <li class="active"><a role="tab" data-toggle="tab" href="#description">Description</a></li>
                 <li class=""><a role="tab" data-toggle="tab" href="#instructions">Instructions</a></li>
@@ -17,8 +18,8 @@
                 <li><a role="tab" data-toggle="tab" href="#updates">Updates <span class="badge">12</span></a></li>
             </ul>
             <div class="right-sidebar">
-                <a class="btn btn-default btn-block mb" href="{{pathFor 'projectEdit'}}">Edit project</a>
                 
+                <hr>
                 <strong>Team</strong><br/>
                 {{>avatarThumb}}
                 {{>avatarThumb}}
@@ -28,20 +29,25 @@
                 {{>avatarThumb}}
                 <p></p>
                 {{author}}
-                <hr>
+                
+                
                 {{#if hasUrl}}
-                     <a href="{{url}}">{{url}}</a>
+                    <hr>
+                    <a href="{{url}}">{{url}}</a>
                 {{/if}}
                 
                 {{#if hasTags}}
+                    <hr>
                     <div class="tagbox">
                     {{#each projectTags}}
                         <span class="tag">{{this}}</span>
                     {{/each}}
                     </div>
                 {{/if}}
-                <hr>
-                <a href="{{licenceLink}}" target="_blank"><img src="{{licenceImage}}" class="img-responsive mt" width="120px"></a>
+                {{#if licence}} 
+                    <hr>
+                    <a href="{{licenceLink}}" target="_blank"><img src="{{licenceImage}}" class="img-responsive mt" width="120px"></a>
+                {{/if}}
             </div>
         </div> <!-- end col-sm-3 -->
 

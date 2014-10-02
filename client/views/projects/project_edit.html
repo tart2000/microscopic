@@ -90,7 +90,18 @@
                         <label class="control-label" for="projectdescription">Edit your project description. You can use Markdown.</label><br/>
                         {{>markdownCheatsheet}}
                         <textarea id="projectdescription" class="form-control" value="{{description}}" rows="15"></textarea>
-                        <label class="control-label" for="">Your project images</label> 
+                        <label class="control-label mt" for="">Your project images</label> 
+                        <div class="image-import">
+                            <strong>Drag & drop images here</strong> or choose a file: 
+                            <input type="file" name="file">
+                        </div>
+                        <div class="project-images mt">
+                            Image thumbnails appear here and can be reorganised with drag&drop.
+                        </div>
+                        <label class="control-label mt" for="project-video">Your project video</label> 
+                        <div class="controls">
+                            <input name="project-video" class="form-control" type="text" value="{{video}}" placeholder="http://"/>
+                        </div>
                     </div>
                 </div> <!-- end tab -->
 
@@ -100,6 +111,8 @@
                         {{>markdownCheatsheet}}
                         <textarea id="projectinstructions" class="form-control" value="{{instructions}}" rows="15"></textarea>
                         <label class="control-label" for="">Images</label> 
+
+                        <label class="control-label" for="">Source files</label> 
                     </div>
                 </div> <!-- end 4th tab -->
 

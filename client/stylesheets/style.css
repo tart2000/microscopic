@@ -163,7 +163,7 @@ p {
     color:#ECF0F1;
 }
 .tagbox {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 hr {
     margin-top: 12px; 
@@ -308,4 +308,18 @@ hr {
 }
 .update-title {
     font-weight: 600;
+}
+.image-import {
+    width: 100%;
+    border-radius: 6px; 
+    border: 3px solid #bdc3c7;
+    border-style: dashed;
+    background-color: #F9FAFB;
+    padding: 20px;
+}
+.project-images {
+    width: 100%;
+    border-radius: 6px; 
+    background-color: #F9FAFB;
+    padding: 20px;
 }
