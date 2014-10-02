@@ -1,15 +1,5 @@
 <template name="userItem">
     <div class="col-md-2 col-sm-3 col-xs-4">
-<<<<<<< HEAD
-        <div class="user-thumb">
-            <a href="{{pathFor 'userProfile'}}">
-                <img src="{{profile.thumblink}}" class="img-responsive">
-                <div class="user-thumb-title">
-                    {{username}}
-                </div>
-            </a>
-        </div>
-=======
         <a href="{{pathFor 'userProfile'}}">
         	{{#if profile.thumblink}} <img src="{{getUserPhoto}}" class="img-responsive" data-toggle="tooltip" data-placement="top" title="{{username}}">
             	{{else}}
@@ -17,6 +7,5 @@
             	{{/if}}
             {{username}}
         </a>
->>>>>>> userProfilePage
     </div>
 </template>
