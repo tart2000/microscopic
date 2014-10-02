@@ -15,9 +15,10 @@ accounts-facebook
 accounts-twitter
 accounts-google
 handlebars
-ian:accounts-ui-bootstrap-3
 steeve:simple-bootstrap3-alerts
 showdown
 cfs:standard-packages
 cfs:filesystem
+stylus
+accounts-ui
 
