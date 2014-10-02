@@ -19,6 +19,6 @@ steeve:simple-bootstrap3-alerts
 showdown
 cfs:standard-packages
 cfs:filesystem
-stylus
-accounts-ui
+accounts-base
+ian:accounts-ui-bootstrap-3
 

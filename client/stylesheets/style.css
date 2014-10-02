@@ -330,17 +330,4 @@ label {
     font-weight: 700;
 }
 /** dropdown styling **/
-#login-buttons .login-link-and-dropdown-list {
-    padding-top: 17px;
-}
-#login-dropdown-list {
-    top: 59px;
-    right: 0px;
-    left: auto;
-}
-.accounts-dialog {
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border: none;
-}
+

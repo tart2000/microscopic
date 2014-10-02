@@ -27,7 +27,8 @@
               </form>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{pathFor 'projectSubmit'}}">New project</a></li>
-                <li>{{> loginButtons}}</li>
+                {{> loginButtons}}
+                <img src="{{getUserPhoto}}" class="img-responsive">
 
               </ul>
             </div><!--/.nav-collapse -->
