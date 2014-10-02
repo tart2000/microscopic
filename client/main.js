@@ -1,17 +1,17 @@
 Meteor.subscribe('hubs');
 Meteor.subscribe('licences');
 
-Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_AND_EMAIL'
-});
+if(Meteor.isClient) {
+  Accounts.ui.config({ passwordSignupFields: 'USERNAME_AND_EMAIL' });
+};
 
-Template._loginButtonsLoggedInDropdown.rendered = function (){
+Template._loginButtonsLoggedIn.rendered = function (){
     $( "#login-buttons-open-change-password" ).before( "<a href='#' id='profileLink' class='btn btn-default btn-block'>Your profile</a>" );
 };
-Template._loginButtonsLoggedInDropdown.events({
+Template._loginButtonsLoggedIn.events({
     'click #profileLink': function(event) {
         event.stopPropagation();
-        Template._loginButtons.toggleDropdown();
+        $("#login-dropdown-list").toggleClass("open");
         Router.go('userProfile', {_id: Meteor.userId});
     }
 });
