@@ -5,21 +5,21 @@ if (Hubs.find().count() === 0) {
 	/* The user data */
      var tinkyId = Meteor.users.insert({
          emails : [  {  address : "tinkywinky@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Tinky Winky", thumblink: "/user_images/tinky.jpg" }, 
+         profile : { name : "Tinky Winky"}, 
          username : "tinky" 
      });
      var tinky = Meteor.users.findOne(tinkyId);
 
      var laaId = Meteor.users.insert({
          emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Laa Laa", thumblink: "/user_images/laalaa.jpg" }, 
+         profile : { name : "Laa Laa"}, 
          username : "laa"
      });
      var laa = Meteor.users.findOne(laaId);
 
      var ladyId = Meteor.users.insert({
          emails : [  {  address : "ladylee@gmail.com",  verified : false } ], 
-         profile : { name : "Lady Lé", thumblink: "/user_images/lady.jpg" }, 
+         profile : { name : "Lady Lé"}, 
          username : "lady"
      });
      var lady = Meteor.users.findOne(ladyId);

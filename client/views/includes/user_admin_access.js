@@ -2,6 +2,6 @@ Template._loginButtonsLoggedInDropdown.events({
     'click #login-buttons-edit-profile': function(event) {
         event.stopPropagation();
         Template._loginButtons.toggleDropdown();
-        Router.go('profilePage');
+        Router.go('userProfile', {_id: Meteor.userId});
     }
 });
