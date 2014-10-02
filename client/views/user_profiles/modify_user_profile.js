@@ -1,7 +1,21 @@
 Template.modifyUserProfile.helpers({ 
 	getUserPhoto: function() {
 		return userPhotos.findOne(this.profile.thumblink).url();
-	}
+	},
+	hubs: function() {
+        return Hubs.find(); 
+    }, 
+    currentUserId: function() {
+        return this._id;
+    },
+    isHub: function(currentUserId) {
+        var thisUser = Meteor.users.findOne(currentUserId);
+        var thisUserHub = thisUser.profile.hub;
+        var hubOption = this.name;
+        if (hubOption === thisUserHub) {
+            return 'selected';
+        };
+    },
 });
 
 Template.modifyUserProfile.events({
