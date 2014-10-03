@@ -5,7 +5,7 @@ Template.usersList.rendered = function() {
 Template.usersList.helpers({ 
     users: function() {
         if (Session.get("userSearch")) {
-            return Meteor.users.find({hub: Session.get("projectSearch")});    
+            return Meteor.users.find({'profile.hub': Session.get("userSearch")});    
         } else {
             return Meteor.users.find();
         };
@@ -17,8 +17,8 @@ Template.usersList.events({
         var hubname = $(e.target).text();
         $(e.target).parent().parent().find('.active').toggleClass('active'); 
         $(e.target).parent().toggleClass('active');
-        console.log(hubname);
-        Session.set("userSearch", hubname);
+        var hubID = Hubs.findOne({name: hubname})._id;
+        Session.set("userSearch", hubID);
     }, 
     'click .all-pro': function(e) {
         Session.set("userSearch", '');
