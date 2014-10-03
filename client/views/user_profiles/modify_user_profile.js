@@ -16,6 +16,7 @@ Template.modifyUserProfile.helpers({
             return 'selected';
         };
     },
+
 });
 
 Template.modifyUserProfile.events({
