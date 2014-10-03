@@ -1,0 +1,8 @@
+<template name="hubNav">
+    <ul class="nav nav-pills ml mt mb">
+        <li class="active"><a class="all-pro" href="#">All</a></li>
+        {{#each hubs}}
+            <li><a class="hub-selector" href="#">{{name}}</a></li>
+        {{/each}}
+    </ul>
+</template>

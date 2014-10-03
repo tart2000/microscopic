@@ -257,7 +257,7 @@ hr {
     width: 100%;
 }
 /** fix project sidebar **/
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+.project-container .nav-pills > li.active > a, .project-container .nav-pills > li.active > a:hover, .project-container .nav-pills > li.active > a:focus {
     background-color: white;
     color: #2C3E50;
     border-left:2px solid #2C3E50;
@@ -266,16 +266,16 @@ hr {
 .right-sidebar {
     padding: 15px 0px 15px 15px;
 }
-.nav-pills > li > a {
+.project-container .nav-pills > li > a {
     border-radius: 0px;
     color: #777;
     padding:2px 15px;
 }
-.nav-pills > li > a:hover {
+.project-container .nav-pills > li > a:hover {
     border-left:1px solid #2C3E50;
     background-color: #F7F7F7;
 }
-.nav-pills > .active > a > .badge {
+.project-container .nav-pills > .active > a > .badge {
     background-color: #2C3E50;
     color: white;
 }

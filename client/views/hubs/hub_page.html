@@ -13,21 +13,18 @@
         </div> 
     </div><!-- end project container -->
 
-    <div class="">
+    <div class="mb ml">
         <!-- nav tabs -->
-        <ul class="nav nav-tabs choices" role="tablist" id="tabs">
+        <ul class="nav nav-pills choices" role="tablist" id="tabs">
             <li class="active"><a role="tab" data-toggle="tab" href="#projects">Projects</a></li>
-            <li class=""><a role="tab" data-toggle="tab" href="#participants">Participants</a></li>
+            <li class=""><a role="tab" data-toggle="tab" href="#community">Community</a></li>
             <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
-            <li><a role="tab" data-toggle="tab" href="#upda">Updates</a></li>
-            <li><a role="tab" data-toggle="tab" href="#organization">Organization</a></li>
-            
         </ul>
         <!-- end navtabs -->
     </div>
 
 
-    <div class="col-md-12 project-container">
+    <div class="col-md-12">
         <!-- tabs -->
         <div class="tab-content">
             <div class="tab-pane active row" id="projects">
@@ -36,16 +33,13 @@
                         {{> projectItem}}
                     {{/each}}
 
-            </div> <!-- end first tab -->
+            </div> <!-- end projects tab -->
 
-            <div class="tab-pane row" id="participants">
-                <div class="col-md-8">
+            <div class="tab-pane row" id="community">
 
-                </div>
-                <div class="col-md-4">
 
-                </div>
-            </div> <!-- end second tab -->
+                
+            </div> <!-- end community tab -->
 
             <div class="tab-pane row" id="disc">
                 <div class="col-md-8">
@@ -62,25 +56,8 @@
                 <div class="col-md-4">
 
                 </div>
-            </div> <!-- end tab -->
+            </div> <!-- end comments tab -->
 
-            <div class="tab-pane row" id="upda">
-                <div class="col-md-8">
-
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div> <!-- end 4th tab -->
-
-            <div class="tab-pane row" id="organization">
-                <div class="col-md-8">
-
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div> <!-- end 5th tab -->
         </div> <!-- end tab content -->
 
         <!-- end tabs -->
