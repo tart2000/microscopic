@@ -8,6 +8,9 @@ Template.modifyUserProfile.helpers({
     currentUserId: function() {
         return this._id;
     },
+    name: function() {
+        return this.profile.name;
+    },
     isHub: function(currentUserId) {
         var thisUser = Meteor.users.findOne(currentUserId);
         var thisUserHub = thisUser.profile.hub;
