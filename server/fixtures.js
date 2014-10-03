@@ -2,30 +2,7 @@ if (Hubs.find().count() === 0) {
 
 	var now = new Date().getTime();
 
-	/* The user data */
-     var tinkyId = Meteor.users.insert({
-         emails : [  {  address : "tinkywinky@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Tinky Winky"}, 
-         username : "tinky" 
-     });
-     var tinky = Meteor.users.findOne(tinkyId);
-
-     var laaId = Meteor.users.insert({
-         emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Laa Laa"}, 
-         username : "laa"
-     });
-     var laa = Meteor.users.findOne(laaId);
-
-     var ladyId = Meteor.users.insert({
-         emails : [  {  address : "ladylee@gmail.com",  verified : false } ], 
-         profile : { name : "Lady Lé"}, 
-         username : "lady"
-     });
-     var lady = Meteor.users.findOne(ladyId);
-
-
-	/* The hub data */
+    /* The hub data */
     var montrealID = Hubs.insert({
         name:'Montreal',
         museum: 'Museum of Fine Arts',
@@ -33,7 +10,7 @@ if (Hubs.find().count() === 0) {
     });
     var montreal = Hubs.findOne(montrealID);
 
-    Hubs.insert({
+    var geneveID = Hubs.insert({
         name:'Geneve',
         museum: 'Musée d\'art et d\'histoire de Genève',
         thumblink:'/hubs/genevehistoire.png',
@@ -63,6 +40,31 @@ if (Hubs.find().count() === 0) {
         museum: 'Musée d\'art et d industrie de Saint-Etienne',
         thumblink:'/hubs/stetienne.png',
     });
+
+	/* The user data */
+     var tinkyId = Meteor.users.insert({
+         emails : [  {  address : "tinkywinky@teletubbyland.ln",  verified : false } ], 
+         profile : { name : "Tinky Winky", hub : geneveID, role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}}, 
+         username : "tinky" 
+     });
+     var tinky = Meteor.users.findOne(tinkyId);
+
+     var laaId = Meteor.users.insert({
+         emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
+         profile : { name : "Laa Laa"}, 
+         username : "laa"
+     });
+     var laa = Meteor.users.findOne(laaId);
+
+     var ladyId = Meteor.users.insert({
+         emails : [  {  address : "ladylee@gmail.com",  verified : false } ], 
+         profile : { name : "Lady Lé"}, 
+         username : "lady"
+     });
+     var lady = Meteor.users.findOne(ladyId);
+
+
+	
 
     /* The Project Data */
     var omgID = Projects.insert({ 

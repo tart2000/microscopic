@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="baseline">Name</label>
                                     <div class="controls">
-                                        <input name="baseline" class="form-control" type="text" value="{{name}}" placeholder="Your name"/>
+                                        <input name="baseline" class="form-control" type="text" value="{{getUserName}}" placeholder="Your name"/>
                                     </div>
                                 </div>
                                 Select your profile image: 
@@ -39,7 +39,7 @@
                                     <label for="hub">Edition</label>
                                     <div class="controls">
                                         <select id="hub" class="form-control">
-                                            {{#each hubs}}
+                                            {{#each getHubs}}
                                             <option value="{{name}}" selected="{{isHub ..}}">{{name}}</option>
                                             {{/each}}
                                         </select>
@@ -49,9 +49,9 @@
                                     <label for="role">Role</label>
                                     <div class="controls">
                                         <select id="role" class="form-control">
-                                            <option value="Participant" selected="">Participant</option>
-                                            <option value="Support" selected="">Support</option>
-                                            <option value="Organization" selected="">Organization</option>
+                                            <option value="Participant" {{hasRole 'Participant'}}>Participant</option>
+                                            <option value="Support" {{hasRole 'Support'}}>Support</option>
+                                            <option value="Organization" {{hasRole 'Organization'}}>Organization</option>
                                         </select>
                                     </div>
                                 </div>
@@ -63,37 +63,37 @@
                                 <div class="form-group">
                                     <label for="facebook" class="col-sm-4 control-label">Facebook</label>
                                     <div class="col-sm-8">
-                                        <input id="facebook" class="form-control" type="text" placeholder="http://"/>
+                                        <input id="facebook" class="form-control" type="text" placeholder="{{getSocial 'facebook'}}" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="twitter" class="col-sm-4 control-label">Twitter</label>
                                     <div class="col-sm-8">
-                                        <input id="twitter" class="form-control" type="text" placeholder="http://"/>
+                                        <input id="twitter" class="form-control" type="text" placeholder="{{getSocial 'twitter'}}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="linkedin" class="col-sm-4 control-label">LinkedIn</label>
                                     <div class="col-sm-8">
-                                        <input id="linkedin" class="form-control" type="text" placeholder="http://"/>
+                                        <input id="linkedin" class="form-control" type="text" placeholder="{{getSocial 'linkedin'}}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="instagram" class="col-sm-4 control-label">Instagram</label>
                                     <div class="col-sm-8">
-                                        <input id="instagram" class="form-control" type="text" placeholder="http://"/>
+                                        <input id="instagram" class="form-control" type="text" placeholder="{{getSocial 'instagram'}}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="tumblr" class="col-sm-4 control-label">Tumblr</label>
                                     <div class="col-sm-8">
-                                        <input id="tumblr" class="form-control" type="text" placeholder="http://"/>
+                                        <input id="tumblr" class="form-control" type="text" placeholder="{{getSocial 'tumblr'}}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="website" class="col-sm-4 control-label">Personal website</label>
                                     <div class="col-sm-8">
-                                        <input id="website" class="form-control" type="text" placeholder="http://"/>
+                                        <input id="website" class="form-control" type="text" placeholder="{{getSocial 'website'}}"/>
                                     </div>
                                 </div>
                             </div>
