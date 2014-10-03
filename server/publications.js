@@ -38,3 +38,8 @@ Meteor.publish('usersData', function () {
 Meteor.publish('userphotos', function() { 
     return userPhotos.find();
 });
+
+// I need to publish only the id field
+Meteor.publish('prjphotos', function() { 
+    return prjPhotos.find();
+});

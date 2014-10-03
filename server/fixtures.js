@@ -129,12 +129,6 @@ if (Hubs.find().count() === 0) {
     	body: 'I think ours is better though....'
     });
 
-    /* The project photos */
-    PrjPhotos.insert({
-    	projectID: omgID,
-    	thumlink: 'public/images/SWAG.jpg'
-    });
-
     /* The Instructions */
     Instructions.insert({
     	title: 'STEP 1',

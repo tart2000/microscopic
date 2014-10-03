@@ -1,7 +1,3 @@
-userPhotos = new FS.Collection("userphotos", {
-  stores: [new FS.Store.FileSystem("userphotos", FS.Store.rootPath)]
-});
-
 userPhotos = new FS.Collection("userPhotos", {
     stores: [
       new FS.Store.FileSystem("userPhotos", {

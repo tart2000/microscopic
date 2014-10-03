@@ -120,10 +120,16 @@
                         <label class="control-label mt" for="">Your project images</label> 
                         <div class="image-import">
                             <strong>Drag & drop images here</strong> or choose a file: 
-                            <input type="file" name="file">
+                            <input type="file" name="file" id="add-photo-descriptions">
                         </div>
                         <div class="project-images mt">
-                            Image thumbnails appear here and can be reorganised with drag&drop.
+                            Image thumbnails appear here. Click on a photo to select it for the home page.
+                            {{#each getPhotos 'description'}}
+                                <div id="container-{{this._id}}" class="select-photo">
+                                    <div id="delete-{{this._id}}" class="delete-photo">X</div>
+                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive mt"/>
+                                </div>
+                            {{/each}}
                         </div>
                         <label class="control-label mt" for="project-video">Your project video</label> 
                         <div class="controls">
@@ -140,15 +146,21 @@
                         <label class="control-label mt" for="">Your 'how-to' images</label> 
                         <div class="image-import">
                             <strong>Drag & drop how-to images here</strong> or choose a file: 
-                            <input type="file" name="file">
+                            <input type="file" name="file" id="add-photo-instructions">
                         </div>
                         <div class="project-images mt">
-                            Image thumbnails appear here and can be reorganised with drag&drop.
+                            Image thumbnails appear here. The homepage photo is selected with 
+                            {{#each getPhotos 'instruction'}}
+                                <div id="container-{{this._id}}">
+                                    <div id="delete-{{this._id}}" class="delete">X</div>
+                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive mt"/>
+                                </div>
+                            {{/each}}
                         </div> 
                         <label class="control-label mt" for="">Source files</label> 
                         <div class="image-import">
                             <strong>Drag & drop source files here</strong> or choose a file: 
-                            <input type="file" name="file">
+                            <input type="file" name="file" class="update">
                         </div>
                         <div class="project-images mt">
                             <li>file.pdf  <i class="fa fa-times" style="margin-left:5px"></i></li>

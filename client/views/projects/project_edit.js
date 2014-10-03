@@ -1,4 +1,3 @@
-
 Template.projectEdit.events({ 
     'submit': function(e) {
         e.preventDefault();
@@ -47,11 +46,46 @@ Template.projectEdit.events({
         Projects.update({_id:currentProjectId}, {$pull: {tags: old_tag}});
         console.log(old_tag);
         console.log(currentProjectId);
-    }
+    },
+    'click .delete-photo': function(e) {
+        var photoID = $(e.target).attr("id").split("-")[1];
+
+        $("#container-" + photoID).hide(300, function() {
+            prjPhotos.remove(photoID);
+        });
+    },
+    'click .select-photo': function(e) {
+
+    },
+     'change #add-photo-instructions': function(event) {
+        var prjPhoto = new FS.File(event.target.files[0]);
+        prjPhoto.metadata = {projectID: this._id, type: 'instruction'};
+
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {
+            //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        });
+    }, 
+    'change #add-photo-descriptions': function(event) {
+        var prjPhoto = new FS.File(event.target.files[0]);
+        prjPhoto.metadata = {projectID: this._id, type: 'description'};
+
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {
+            //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        });
+    }, 
 });
 
 
 Template.projectEdit.helpers({ 
+    getPhotos: function(type) {
+        switch(type) {
+            case 'instruction':
+                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'instruction'});
+            case 'description':
+                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'});
+        }
+        
+    },
     currentProjectId: function() {
         return this._id;
     },
