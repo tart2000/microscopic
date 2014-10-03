@@ -329,5 +329,19 @@ hr {
 label {
     font-weight: 700;
 }
-/** dropdown styling **/
-
+.nav-pills > li.active > a {
+    background-color: #2C3E50;
+}
+/** slider styling **/
+.selected img {
+    opacity:0.5;
+}
+.carousel-control {
+    width: 10%;
+}
+#myCarousel .img-responsive {
+    border-radius: 0px;
+}
+#slider-thumbs .img-responsive {
+    border-radius: 0px;
+}

@@ -31,7 +31,12 @@
                         <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
                     {{/if}}
                 </div>
-                <h7><i class="fa fa-map-marker"></i>{{getHub}}</h7>
+                {{#if profile.hub}}
+                <h7><i class="fa fa-map-marker"></i>{{getHub}}</h7><br/>
+                {{/if}}
+                {{#if profile.role}}
+                <h7><i class="fa fa-user"></i>{{profile.role}}</h7>
+                {{/if}}
             </div> <!-- end first column --> 
 
             <div class="col-sm-9">
