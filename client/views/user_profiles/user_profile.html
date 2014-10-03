@@ -11,15 +11,27 @@
                 <a class="btn btn-default btn-block mb" href="{{pathFor 'modifyUserProfile'}}">Edit your profile</a>
                 <hr>
                 <div class="social-icons">
-                	<i class="fa fa-facebook-square fa-2x"></i>
-                    <i class="fa fa-twitter-square fa-2x"></i>
-                    <i class="fa fa-linkedin-square fa-2x"></i>
-                    <i class="fa fa-instagram fa-2x"></i>
-                    <i class="fa fa-tumblr-square fa-2x"></i>
-                    <a href="mailto:{{emails.[0].address}}" target="_blank"><i class="fa fa-envelope-square fa-2x"></i></a>
-                    <i class="fa fa-external-link-square fa-2x"></i>
+                	{{#if getSocial 'facebook'}}
+                        <a href="{{getSocial 'facebook'}}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'twitter'}}
+                        <a href="{{getSocial 'twitter'}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'linkedin'}}
+                        <a href="{{getSocial 'linkedin'}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'instagram'}}
+                        <a href="{{getSocial 'instagram'}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'tumblr'}}
+                        <a href="{{getSocial 'tumblr'}}" target="_blank"><i class="fa fa-tumblr-square fa-2x"></i></a>
+                    {{/if}}
+                        <a href="mailto:{{emails.[0].address}}" target="_blank"><i class="fa fa-envelope-square fa-2x"></i></a>
+                    {{#if getSocial 'website'}}
+                        <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
+                    {{/if}}
                 </div>
-                <h7><i class="fa fa-map-marker"></i>Montreal</h7>
+                <h7><i class="fa fa-map-marker"></i>{{getHub}}</h7>
             </div> <!-- end first column --> 
 
             <div class="col-sm-9">
