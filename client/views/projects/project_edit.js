@@ -10,7 +10,7 @@ Template.projectEdit.events({
             url: $(e.target).find('[name=url]').val(), 
             description: $(e.target).find('[id=projectdescription]').val(),
             instructions: $(e.target).find('[id=projectinstructions]').val(),
-            videolink: $(e.target).find('[name=projectvideo]').val()
+            videolink: $(e.target).find('[name=projectvideo]').val(),
         };
         Projects.update(currentProjectId, {$set: projectProperties}, function(error) { if (error) {
             // display the error to the user
@@ -48,14 +48,21 @@ Template.projectEdit.events({
         console.log(currentProjectId);
     },
     'click .delete-photo': function(e) {
-        var photoID = $(e.target).attr("id").split("-")[1];
+        e.preventDefault();
+        var photoID = this._id;
 
         $("#container-" + photoID).hide(300, function() {
             prjPhotos.remove(photoID);
         });
     },
     'click .select-photo': function(e) {
+        e.preventDefault();
+        var photoID = this._id;
+        $(".select-photo").css("border", "none");
+        $("#container-" + photoID).css("border", "2px solid red");
 
+        $(".select-photo").removeAttr("selected");
+        $("#container-" + photoID).attr("selected", true);       
     },
      'change #add-photo-instructions': function(event) {
         var prjPhoto = new FS.File(event.target.files[0]);
