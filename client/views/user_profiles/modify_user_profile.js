@@ -24,7 +24,6 @@ Template.modifyUserProfile.helpers({
         };
     },
     hasRole: function(role) {
-        console.log(role + ', ', this.profile.role);
         if (this.profile.role == role)
             return 'selected';
         else
@@ -64,15 +63,26 @@ Template.modifyUserProfile.events({
         Meteor.users.update(this._id, {$set : {"profile.thumblink" : handle._id} })
         
     }, 
+    'click .cancel':function() {
+        Router.go('userProfile', {_id: this._id});
+    },
     'submit': function(e) {
         e.preventDefault();
         var currentUser = this._id;
         var properties = {
-            'profile.hub' : $(e.target).find('[id=hub]').val(),
+            'profile.name': $(e.target).find('[id=name]').val(),
+            'profile.hub': $(e.target).find('[id=hub]').children(":selected").attr("id"),
+            'profile.role': $(e.target).find('[id=role]').children(":selected").val(),
+            'profile.social.facebook': $(e.target).find('[id=facebook]').val(),
+            'profile.social.twitter': $(e.target).find('[id=twitter]').val(),
+            'profile.social.linkedin': $(e.target).find('[id=linkedin]').val(),
+            'profile.social.instagram': $(e.target).find('[id=instagram]').val(),
+            'profile.social.tumblr': $(e.target).find('[id=tumblr]').val(),
+            'profile.social.website': $(e.target).find('[id=website]').val()
         };
         Meteor.users.update(this._id, {$set: properties});         
         Router.go('userProfile', {_id: currentUser});
-        Alert.add('your profile has been edited', 'success'); 
+        Alert.add('your profile has been edited', 'success');
     },
     
 });
