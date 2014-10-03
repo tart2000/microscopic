@@ -329,5 +329,8 @@ hr {
 label {
     font-weight: 700;
 }
+.nav-pills > li.active > a {
+    background-color: #2C3E50;
+}
 /** dropdown styling **/
 
