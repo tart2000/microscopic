@@ -1,5 +1,7 @@
 <template name="usersList">
     <div class="row mb">
+    {{>hubNav}} 
+    
     {{#each users}}
         {{>userItem}}
     {{/each}}

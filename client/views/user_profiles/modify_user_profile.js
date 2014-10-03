@@ -31,5 +31,17 @@ Template.modifyUserProfile.events({
 
 		Meteor.users.update(this._id, {$set : {"profile.thumblink" : handle._id} })
 		
-	}
+	}, 
+    'submit': function(e) {
+        e.preventDefault();
+        var currentUser = this._id;
+        var properties = {
+            'profile.hub' : $(e.target).find('[id=hub]').val(),
+        };
+        Meteor.users.update(this._id, {$set: properties});         
+        Router.go('userProfile', {_id: currentUser});
+        Alert.add('your profile has been edited', 'success'); 
+    },
+    
 });
+
