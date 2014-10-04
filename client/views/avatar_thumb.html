@@ -1,6 +1,6 @@
 <template name="avatarThumb">
     <div class="avatar-thumb">
-        {{#if getUserPhoto}} <img src="{{this}}" class="img-responsive" width="40px">
+        {{#if getUserPhoto}} <img src="{{getUserPhoto}}" class="img-responsive" width="40px">
         {{else}}
             <img src="/default-avatar.png" class="img-responsive" width="40px">
         {{/if}}
