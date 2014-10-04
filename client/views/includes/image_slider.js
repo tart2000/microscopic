@@ -27,6 +27,16 @@ Template.imageSlider.helpers({
         var images = prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'});
         return images;
     },
+    firstItem: function() {
+      if (this.metadata.rank == 1) {
+        return 'active';
+      }
+    }, 
+    selected: function() {
+      if (this.metadata.rank == 1) {
+        return 'selected';
+      }
+    },
 });
 
 

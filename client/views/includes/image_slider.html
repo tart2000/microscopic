@@ -3,10 +3,6 @@
 <!-- main slider carousel -->
     {{#if projectDescriptionImages}}
 
-    {{#each projectDescriptionImages}}
-        {{this.url}} {{_view.contentIndex}}
-    {{/each}}
-
     <div class="row" id="slider">
         
         <div class="col-md-12" id="carousel-bounding-box">
@@ -14,24 +10,12 @@
                 <!-- main slider carousel items -->
                 <div class="carousel-inner">
 
-                    <div class="active item" data-slide-number="0">
-                        <img src="http://placehold.it/900x600&amp;text=one" class="img-responsive">
+                    {{#each projectDescriptionImages}}
+                    <div class="item {{firstItem}}" data-slide-number="{{this.metadata.rank}}">
+                        <img src="{{this.url}}" class="img-responsive">
                     </div>
-                    <div class="item" data-slide-number="1">
-                      <img src="http://placehold.it/900x600/&amp;text=two" class="img-responsive">
-                    </div>
-                    <div class="item" data-slide-number="2">
-                        <img src="http://placehold.it/900x600&amp;text=three" class="img-responsive">
-                    </div>
-                    <div class="item" data-slide-number="3">
-                        <img src="http://placehold.it/900x600&amp;text=four" class="img-responsive">
-                    </div>
-                    <div class="item" data-slide-number="4">
-                        <img src="http://placehold.it/900x600&amp;text=five" class="img-responsive">
-                    </div>
-                    <div class="item" data-slide-number="5">
-                        <img src="http://placehold.it/900x600&amp;text=six" class="img-responsive">
-                    </div>
+                    {{/each}}
+
                 </div>
                 <!-- Controls -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -45,43 +29,18 @@
 
     </div>
     <!--/main slider carousel-->
-
-
   
     <!-- thumb navigation carousel -->
     <div class="mt hidden-sm hidden-xs" id="slider-thumbs">
             <!-- thumb navigation carousel items -->
           <ul class="list-inline">
+            {{#each projectDescriptionImages}}
             <li> 
-                <a id="carousel-selector-0" class="selected">
-                <img src="http://placehold.it/80x60&amp;text=one" class="img-responsive">
+                <a id="carousel-selector-{{this.metadata.rank}}" class="{{selected}}">
+                <img src="{{this.url}}" class="img-responsive" style="width:80px">
                 </a>
             </li>
-            <li> 
-                <a id="carousel-selector-1">
-                <img src="http://placehold.it/80x60&amp;text=two" class="img-responsive">
-                </a>
-            </li>
-            <li> 
-                <a id="carousel-selector-2">
-                <img src="http://placehold.it/80x60&amp;text=three" class="img-responsive">
-                </a>
-            </li>
-            <li> 
-                <a id="carousel-selector-3">
-                <img src="http://placehold.it/80x60&amp;text=four" class="img-responsive">
-                </a>
-            </li>
-            <li> 
-                <a id="carousel-selector-4">
-                <img src="http://placehold.it/80x60&amp;text=five" class="img-responsive">
-                </a>
-            </li>
-            <li> 
-                <a id="carousel-selector-5">
-                <img src="http://placehold.it/80x60&amp;text=six" class="img-responsive">
-                </a>
-            </li>
+            {{/each}}
             </ul>
      </div>   
     {{/if}}
