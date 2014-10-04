@@ -21,3 +21,12 @@ Template.imageSlider.rendered = function() {
       $('[id=carousel-selector-'+id+']').addClass('selected');
     });  
 };
+
+Template.imageSlider.helpers({
+    projectDescriptionImages: function() {
+        var images = prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'});
+        return images;
+    },
+});
+
+

@@ -1,12 +1,19 @@
 <template name="imageSlider">
 
 <!-- main slider carousel -->
+    {{#if projectDescriptionImages}}
+
+    {{#each projectDescriptionImages}}
+        {{this.url}} {{_view.contentIndex}}
+    {{/each}}
+
     <div class="row" id="slider">
         
         <div class="col-md-12" id="carousel-bounding-box">
             <div id="myCarousel" class="carousel slide">
                 <!-- main slider carousel items -->
                 <div class="carousel-inner">
+
                     <div class="active item" data-slide-number="0">
                         <img src="http://placehold.it/900x600&amp;text=one" class="img-responsive">
                     </div>
@@ -77,5 +84,7 @@
             </li>
             </ul>
      </div>   
-    
+    {{/if}}
+
+
 </template>
