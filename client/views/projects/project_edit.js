@@ -1,3 +1,30 @@
+Template.projectEdit.rendered = function() {
+    getPhotoNumber = function(ID, type) {
+        return prjPhotos.find({"metadata.projectID": ID, "metadata.type": type}).count();
+    }
+    changeRank = function(photo, photoType, changeType) {
+        var photoRank = photo.metadata.rank;
+
+        if (changeType === 'increment')
+            newPhotoRank = photoRank + 1;
+        else 
+            newPhotoRank = photoRank - 1;
+        
+        /* Check if a previous photo exists */
+        var prevPhoto = prjPhotos.findOne({"metadata.rank": newPhotoRank, "metadata.type": photoType});
+
+        if (prevPhoto) {
+            /* Decrement current photo's rank */
+            prjPhotos.update({_id:photo._id}, {$set: {"metadata.rank": newPhotoRank}});
+
+            /* Increment the rank of the previous photo */
+            prjPhotos.update({_id:prevPhoto._id}, {$set: {"metadata.rank": photoRank}});
+
+            return prevPhoto;
+        }  
+    }
+},
+
 Template.projectEdit.events({ 
     'submit': function(e) {
         e.preventDefault();
@@ -44,41 +71,57 @@ Template.projectEdit.events({
         var currentProjectId = this._id;
         var old_tag = $(e.target).parent().parent().text();
         Projects.update({_id:currentProjectId}, {$pull: {tags: old_tag}});
-        console.log(old_tag);
-        console.log(currentProjectId);
     },
     'click .delete-photo': function(e) {
         e.preventDefault();
-        var photoID = this._id;
 
-        $("#container-" + photoID).hide(300, function() {
-            prjPhotos.remove(photoID);
+        if ($(e.target).hasClass("instruction")) 
+            var type = "instruction";
+        else 
+            var type = "description";
+        
+        var deletedPhotoID = this._id;
+        var photoRank = this.metadata.rank;
+        var currentProjectID = Projects.findOne(this.metadata.projectID)._id;
+        var photoNumber = getPhotoNumber(currentProjectID, type); 
+
+        var currentPhoto = this;
+
+        for (var i = photoRank; i <= photoNumber; i++) {
+            if (currentPhoto) {
+                currentPhoto = changeRank(currentPhoto, type, 'increment');
+            }
+        }
+
+        $("#container-" + deletedPhotoID).hide(300, function() {
+            prjPhotos.remove(deletedPhotoID);
         });
     },
-    'click .select-photo': function(e) {
-        e.preventDefault();
-        var photoID = this._id;
-        $(".select-photo").css("border", "none");
-        $("#container-" + photoID).css("border", "2px solid red");
+    'click .rank-up': function(e) {
 
-        $(".select-photo").removeAttr("selected");
-        $("#container-" + photoID).attr("selected", true);       
+        if ($(e.target).hasClass("instruction")) 
+            var type = "instruction";
+        else 
+            var type = "description";
+
+        e.preventDefault();
+        changeRank(this, type, 'decrement');             
     },
      'change #add-photo-instructions': function(event) {
-        var prjPhoto = new FS.File(event.target.files[0]);
-        prjPhoto.metadata = {projectID: this._id, type: 'instruction'};
+        var photoRank = getPhotoNumber(this._id, 'instruction') + 1;
 
-        prjPhotos.insert(prjPhoto, function (err, fileObj) {
-            //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        });
+        var prjPhoto = new FS.File(event.target.files[0]);
+        prjPhoto.metadata = {projectID: this._id, type: 'instruction', rank: photoRank};
+
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {});
     }, 
     'change #add-photo-descriptions': function(event) {
-        var prjPhoto = new FS.File(event.target.files[0]);
-        prjPhoto.metadata = {projectID: this._id, type: 'description'};
+        var photoRank = getPhotoNumber(this._id, 'description') + 1;
 
-        prjPhotos.insert(prjPhoto, function (err, fileObj) {
-            //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        });
+        var prjPhoto = new FS.File(event.target.files[0]);
+        prjPhoto.metadata = {projectID: this._id, type: 'description', rank: photoRank};
+
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {});
     }, 
 });
 
@@ -87,9 +130,9 @@ Template.projectEdit.helpers({
     getPhotos: function(type) {
         switch(type) {
             case 'instruction':
-                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'instruction'});
+                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'instruction'}, {sort: {"metadata.rank": 1}});
             case 'description':
-                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'});
+                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         }
         
     },
@@ -109,7 +152,6 @@ Template.projectEdit.helpers({
         var tags = this.tags;
         var length = tags.length; 
         var thetags = "";
-        console.log(length);
         for (var i=0; i < length; i++) {
             thetags = thetags + '<div class="tag">' + tags[i] + '<a href="#" class="remove-tag"><i class="fa fa-times" style="margin-left:5px"></i></a></div>';
         };

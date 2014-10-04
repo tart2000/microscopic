@@ -125,8 +125,9 @@
                         <div class="project-images mt">
                             Image thumbnails appear here. Click on a photo to select it for the home page.
                             {{#each getPhotos 'description'}}
-                                <div id="container-{{this._id}}" class="select-photo">
-                                    <div id="delete-{{this._id}}" class="delete-photo">X</div>
+                                <div id="container-{{this._id}}">
+                                    <span id="delete-{{this._id}}" class="delete-photo description">X</span>
+                                    <span id="rank-up-{{this._id}}" class="rank-up description">&#x25B2;</span>
                                     <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive mt"/>
                                 </div>
                             {{/each}}
@@ -152,7 +153,8 @@
                             Image thumbnails appear here. The homepage photo is selected with 
                             {{#each getPhotos 'instruction'}}
                                 <div id="container-{{this._id}}">
-                                    <div id="delete-{{this._id}}" class="delete">X</div>
+                                    <span id="delete-{{this._id}}" class="delete-photo instruction">X</span>
+                                    <span id="rank-up-{{this._id}}" class="rank-up instruction">&#x25B2;</span>
                                     <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive mt"/>
                                 </div>
                             {{/each}}
