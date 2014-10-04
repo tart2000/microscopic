@@ -100,14 +100,16 @@ if (Hubs.find().count() === 0) {
     	projectID: omgID,
     	userID: laaId,
     	user: laa.profile.name,
-    	thumblink: laa.profile.thumblink
+    	thumblink: laa.profile.thumblink,
+        role: 'core'
     });
 
     Teams.insert({
     	projectID: omgID,
     	userID: tinkyId,
     	user: tinky.profile.name,
-    	thumblink: tinky.profile.thumblink
+    	thumblink: tinky.profile.thumblink,
+        role: 'facilitator'
     });
 
     /* The comment data */

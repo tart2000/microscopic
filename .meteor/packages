@@ -22,4 +22,5 @@ cfs:filesystem
 accounts-base
 ian:accounts-ui-bootstrap-3
 cfs:graphicsmagick
+mizzao:autocomplete
 

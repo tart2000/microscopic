@@ -81,35 +81,9 @@
                 </div> <!-- end basic info tab -->
 
                 <div class="tab-pane" id="team">
-                    <label for="coreteam">Coreteam</label>
-                    <div class="form-inline">
-                        <input id="coreteam" class="form-control" type="text" placeholder="Add team member"/>
-                        <a href="#" class="btn btn-default add-member">Add</a>
-                    </div>
-                     <div class="project-images mt mb">
-                        {{coreteam}}
-                        <li>John Good  <i class="fa fa-times" style="margin-left:5px"></i></li>
-                        <li>Alison crazy  <i class="fa fa-times" style="margin-left:5px"></i></li>
-                    </div>
-                    <label for="facilitator">Facilitator</label>
-                    <div class="form-inline">
-                        <input id="facilitator" class="form-control" type="text" placeholder="Faciliatator"/>
-                        <a href="#" class="btn btn-default add-thanks">Add</a>
-                    </div>
-                     <div class="project-images mt mb">
-                        {{facilitator}}
-                        <li>Danger Tom  <i class="fa fa-times" style="margin-left:5px"></i></li>
-                    </div>  
-                    <label for="thanks">Special thanks</label>
-                    <div class="form-inline">
-                        <input id="thanks" class="form-control" type="text" placeholder="Say tanks!"/>
-                        <a href="#" class="btn btn-default add-thanks">Add</a>
-                    </div>
-                     <div class="project-images mt">
-                        {{thanks}}
-                        <li>Madness Luke  <i class="fa fa-times" style="margin-left:5px"></i></li>
-                        <li>Epic John  <i class="fa fa-times" style="margin-left:5px"></i></li>
-                    </div>
+                    {{> coreTeamEdit}}
+                    {{> facilitatorEdit}}
+                    {{> thanksEdit}}
                 </div> <!-- end team tab -->
 
                 <div class="tab-pane row" id="description">

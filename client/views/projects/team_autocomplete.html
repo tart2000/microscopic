@@ -1,0 +1,63 @@
+<template name="coreTeamEdit">
+	<label for="coreteam">Coreteam</label>
+    <div class="form-inline">
+        {{> inputAutocomplete settings=settings id="coreteam" class="form-control" type="text" placeholder="Add team member email"}}
+        <a href="#" class="btn btn-default add-member">Add</a>
+    </div>
+     <div class="project-images mt mb">
+        {{#each coreteam}}
+        	<li>
+        		{{#if this.user}}
+        			{{this.user}}
+        		{{else}}
+        			{{this.emails.[0].address}}
+        		{{/if}}
+        		<i class="fa fa-times" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        	</li>
+        {{/each}}
+    </div>
+</template>
+
+<template name="facilitatorEdit">
+	<label for="facilitator">Facilitator</label>
+	<div class="form-inline">
+		{{> inputAutocomplete settings=settings id="facilitator" class="form-control" type="text" placeholder="Faciliatator email"}}
+	    <a href="#" class="btn btn-default add-thanks">Add</a>
+	</div>
+	 <div class="project-images mt mb">
+	    {{#each facilitators}}
+        	<li>
+        		{{#if this.user}}
+        			{{this.user}}
+        		{{else}}
+        			{{this.emails.[0].address}}
+        		{{/if}}
+        		<i class="fa fa-times" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        	</li>
+        {{/each}}
+	</div>  
+</template>
+
+<template name="thanksEdit">
+	<label for="thanks">Special thanks</label>
+    <div class="form-inline">
+    	{{> inputAutocomplete settings=settings id="thanks" class="form-control" type="text" placeholder="Say tanks!"}}
+        <a href="#" class="btn btn-default add-thanks">Add</a>
+    </div>
+     <div class="project-images mt">
+        {{#each thanksTeam}}
+        	<li>
+        		{{#if this.user}}
+        			{{this.user}}
+        		{{else}}
+        			{{this.emails.[0].address}}
+        		{{/if}}
+        		<i class="fa fa-times" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        	</li>
+        {{/each}}
+    </div>
+</template>
+
+<template name="userDropdown">
+    <span class="label label-default">{{emails.[0].address}}</span>
+</template>

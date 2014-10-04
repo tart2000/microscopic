@@ -185,5 +185,3 @@ Template.projectEdit.helpers({
         };
     },
 });
-
-
