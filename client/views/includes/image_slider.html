@@ -11,7 +11,7 @@
                 <div class="carousel-inner">
 
                     {{#each projectDescriptionImages}}
-                    <div class="item {{firstItem}}" data-slide-number="{{this.metadata.rank}}">
+                    <div class="item" data-slide-number="{{this.metadata.rank}}">
                         <img src="{{this.url}}" class="img-responsive">
                     </div>
                     {{/each}}
@@ -36,7 +36,7 @@
           <ul class="list-inline">
             {{#each projectDescriptionImages}}
             <li> 
-                <a id="carousel-selector-{{this.metadata.rank}}" class="{{selected}}">
+                <a id="carousel-selector-{{this.metadata.rank}}" class="">
                 <img src="{{this.url}}" class="img-responsive" style="width:80px">
                 </a>
             </li>

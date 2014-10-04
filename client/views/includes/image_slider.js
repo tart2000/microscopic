@@ -8,6 +8,7 @@ Template.imageSlider.rendered = function() {
       var id_selector = $(this).attr("id");
       var id = id_selector.substr(id_selector.length -1);
       id = parseInt(id);
+      console.log(id);
       $('#myCarousel').carousel(id);
       $('[id^=carousel-selector-]').removeClass('selected');
       $(this).addClass('selected');
@@ -19,23 +20,17 @@ Template.imageSlider.rendered = function() {
       id = parseInt(id);
       $('[id^=carousel-selector-]').removeClass('selected');
       $('[id=carousel-selector-'+id+']').addClass('selected');
-    });  
+    });
+
+    $('#myCarousel .item').first().addClass('active');  
+
+    $('#carousel-selector-1').addClass('selected');
 };
 
 Template.imageSlider.helpers({
     projectDescriptionImages: function() {
         var images = prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         return images;
-    },
-    firstItem: function() {
-      if (this.metadata.rank == 1) {
-        return 'active';
-      }
-    }, 
-    selected: function() {
-      if (this.metadata.rank == 1) {
-        return 'selected';
-      }
     },
 });
 
