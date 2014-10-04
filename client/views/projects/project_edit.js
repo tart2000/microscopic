@@ -2,23 +2,27 @@ Template.projectEdit.rendered = function() {
     getPhotoNumber = function(ID, type) {
         return prjPhotos.find({"metadata.projectID": ID, "metadata.type": type}).count();
     }
-    changeRank = function(photo, photoType, changeType) {
+    changeRank = function(photo, photoType, changeType, projectID) {
         var photoRank = photo.metadata.rank;
 
-        if (changeType === 'increment')
-            newPhotoRank = photoRank + 1;
-        else 
-            newPhotoRank = photoRank - 1;
+        switch(changeType) {
+            case 'increment':
+               newPhotoRank = photoRank + 1;
+               break;
+            case 'decrement':
+                newPhotoRank = photoRank - 1;
+                break;
+        }
         
         /* Check if a previous photo exists */
-        var prevPhoto = prjPhotos.findOne({"metadata.rank": newPhotoRank, "metadata.type": photoType});
+        var prevPhoto = prjPhotos.findOne({"metadata.projectID":projectID, "metadata.rank": newPhotoRank, "metadata.type": photoType}); // find the next photo (+1)
 
         if (prevPhoto) {
             /* Decrement current photo's rank */
-            prjPhotos.update({_id:photo._id}, {$set: {"metadata.rank": newPhotoRank}});
+            prjPhotos.update({_id:photo._id}, {$set: {"metadata.rank": newPhotoRank}}); // Do nothing 
 
             /* Increment the rank of the previous photo */
-            prjPhotos.update({_id:prevPhoto._id}, {$set: {"metadata.rank": photoRank}});
+            prjPhotos.update({_id:prevPhoto._id}, {$set: {"metadata.rank": photoRank}}); //reduce the next photo by one (-1)
 
             return prevPhoto;
         }  
@@ -76,20 +80,25 @@ Template.projectEdit.events({
         e.preventDefault();
 
         if ($(e.target).hasClass("instruction")) 
-            var type = "instruction";
+            var photoType = "instruction";
         else 
-            var type = "description";
+            var photoType = "description";
         
         var deletedPhotoID = this._id;
         var photoRank = this.metadata.rank;
         var currentProjectID = Projects.findOne(this.metadata.projectID)._id;
-        var photoNumber = getPhotoNumber(currentProjectID, type); 
+        var photoNumber = getPhotoNumber(currentProjectID, photoType); 
 
         var currentPhoto = this;
 
-        for (var i = photoRank; i <= photoNumber; i++) {
+        for (var rank = photoRank; rank < photoNumber; rank++) {
             if (currentPhoto) {
-                currentPhoto = changeRank(currentPhoto, type, 'increment');
+
+                /* find the next photo */
+                var currentPhoto = prjPhotos.findOne({"metadata.projectID": currentProjectID, "metadata.rank": rank + 1, "metadata.type": photoType}); 
+
+                /* Reduce the photo's rank by 1 */
+                prjPhotos.update({_id:currentPhoto._id}, {$set: {"metadata.rank": rank}});
             }
         }
 
@@ -99,13 +108,15 @@ Template.projectEdit.events({
     },
     'click .rank-up': function(e) {
 
+        var currentProjectID = Projects.findOne(this.metadata.projectID)._id;
+
         if ($(e.target).hasClass("instruction")) 
             var type = "instruction";
         else 
             var type = "description";
 
         e.preventDefault();
-        changeRank(this, type, 'decrement');             
+        changeRank(this, type, 'decrement', currentProjectID);             
     },
      'change #add-photo-instructions': function(event) {
         var photoRank = getPhotoNumber(this._id, 'instruction') + 1;
