@@ -42,29 +42,32 @@ if (Hubs.find().count() === 0) {
     });
 
 	/* The user data */
-     var tinkyId = Meteor.users.insert({
-         emails : [  {  address : "tinkywinky@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Tinky Winky", hub : geneveID, role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}}, 
-         username : "tinky" 
-     });
+    var tinkyId = Accounts.createUser({
+        username: 'tinky',
+        email: 'tinkywinky@teletubbyland.ln',
+        password: 'asdfasdf',
+        profile : { name : "Tinky Winky", hub : geneveID, role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}},
+    });
+
      var tinky = Meteor.users.findOne(tinkyId);
 
-     var laaId = Meteor.users.insert({
-         emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Laa Laa"}, 
-         username : "laa"
-     });
+    var laaId = Accounts.createUser({
+        username: 'laa',
+        emails: 'laalaa@teletubbyland.ln',
+        password: 'asdfasdf',
+        profile : { name : "Laa Laa"}, 
+    });
      var laa = Meteor.users.findOne(laaId);
 
-     var ladyId = Meteor.users.insert({
-         emails : [  {  address : "ladylee@gmail.com",  verified : false } ], 
-         profile : { name : "Lady Lé"}, 
-         username : "lady"
-     });
+    var ladyId = Accounts.createUser({
+        username: 'lady',
+        emails: 'ladylee@gmail.com',
+        password: 'asdfasdf',
+        profile : { name : "Lady Lé"}, 
+    });
+
      var lady = Meteor.users.findOne(ladyId);
 
-
-	
 
     /* The Project Data */
     var omgID = Projects.insert({ 

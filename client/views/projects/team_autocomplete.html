@@ -7,12 +7,12 @@
      <div class="project-images mt mb">
         {{#each coreteam}}
         	<li>
-        		{{#if this.user}}
+        		{{#if isRegistered this.user}}
         			{{this.user}}
         		{{else}}
-        			{{this.emails.[0].address}}
+        			{{this.email}}
         		{{/if}}
-        		<i class="fa fa-times" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        		<i class="fa fa-times delete-member" style="margin-left:5px" id="delete-{{this._id}}"></i>
         	</li>
         {{/each}}
     </div>
@@ -22,17 +22,17 @@
 	<label for="facilitator">Facilitator</label>
 	<div class="form-inline">
 		{{> inputAutocomplete settings=settings id="facilitator" class="form-control" type="text" placeholder="Faciliatator email"}}
-	    <a href="#" class="btn btn-default add-thanks">Add</a>
+	    <a href="#" class="btn btn-default add-facilitator">Add</a>
 	</div>
 	 <div class="project-images mt mb">
 	    {{#each facilitators}}
         	<li>
-        		{{#if this.user}}
+        		{{#if isRegistered this.user}}
         			{{this.user}}
         		{{else}}
-        			{{this.emails.[0].address}}
+        			{{this.email}}
         		{{/if}}
-        		<i class="fa fa-times" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        		<i class="fa fa-times delete-member" style="margin-left:5px" id="delete-{{this._id}}"></i>
         	</li>
         {{/each}}
 	</div>  
@@ -47,12 +47,12 @@
      <div class="project-images mt">
         {{#each thanksTeam}}
         	<li>
-        		{{#if this.user}}
+        		{{#if isRegistered this.user}}
         			{{this.user}}
         		{{else}}
-        			{{this.emails.[0].address}}
+        			{{this.email}}
         		{{/if}}
-        		<i class="fa fa-times" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        		<i class="fa fa-times delete-member" style="margin-left:5px" id="delete-{{this._id}}"></i>
         	</li>
         {{/each}}
     </div>
@@ -60,4 +60,8 @@
 
 <template name="userDropdown">
     <span class="label label-default">{{emails.[0].address}}</span>
+</template>
+
+<template name="noMatch">
+    <span class="label label-default">We just can't find it... Just add the email and we'll contact him/her!</span>
 </template>
