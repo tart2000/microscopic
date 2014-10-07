@@ -1,4 +1,4 @@
-<template name="imageSlider">
+<template name="descriptionImageSlider">
 
 <!-- main slider carousel -->
     {{#if projectDescriptionImages}}
@@ -6,7 +6,7 @@
     <div class="row" id="slider">
         
         <div class="col-md-12" id="carousel-bounding-box">
-            <div id="myCarousel" class="carousel slide">
+            <div id="descCarousel" class="carousel slide">
                 <!-- main slider carousel items -->
                 <div class="carousel-inner">
 
@@ -18,10 +18,10 @@
 
                 </div>
                 <!-- Controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <a class="left carousel-control" href="#descCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <a class="right carousel-control" href="#descCarousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </div>
@@ -36,7 +36,7 @@
           <ul class="list-inline">
             {{#each projectDescriptionImages}}
             <li> 
-                <a id="carousel-selector-{{this.metadata.rank}}" class="">
+                <a id="desc-carousel-selector-{{this.metadata.rank}}" class="">
                 <img src="{{this.url}}" class="img-responsive" style="width:80px">
                 </a>
             </li>

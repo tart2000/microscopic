@@ -1,0 +1,49 @@
+<template name="instructionsImageSlider">
+
+<!-- main slider carousel -->
+    {{#if projectInstructionImages}}
+
+    <div class="row" id="slider-2">
+        
+        <div class="col-md-12" id="carousel-bounding-box">
+            <div id="instCarousel" class="carousel slide">
+                <!-- main slider carousel items -->
+                <div class="carousel-inner">
+
+                    {{#each projectInstructionImages}}
+                    <div class="item" data-slide-number="{{this.metadata.rank}}">
+                        <img id="this._id" src="{{this.url}}" class="img-responsive">
+                    </div>
+                    {{/each}}
+
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#instCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#instCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!--/main slider carousel-->
+  
+    <!-- thumb navigation carousel -->
+    <div class="mt hidden-sm hidden-xs" id="slider-thumbs-2">
+            <!-- thumb navigation carousel items -->
+          <ul class="list-inline">
+            {{#each projectInstructionImages}}
+            <li> 
+                <a id="inst-carousel-selector-{{this.metadata.rank}}" class="">
+                <img src="{{this.url}}" class="img-responsive" style="width:80px">
+                </a>
+            </li>
+            {{/each}}
+            </ul>
+     </div>   
+    {{/if}}
+
+
+</template>

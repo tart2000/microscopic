@@ -342,7 +342,7 @@ label {
 #myCarousel .img-responsive {
     border-radius: 0px;
 }
-#slider-thumbs .img-responsive {
+#slider-thumbs .img-responsive, #slider-thumbs-2 .img-responsive {
     border-radius: 0px;
 }
 .img-controls {

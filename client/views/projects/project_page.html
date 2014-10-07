@@ -56,7 +56,7 @@
             <div class="tab-content">
                 <div class="tab-pane active row" id="description">
                     <div class="col-md-12">
-                        {{>imageSlider}}
+                        {{>descriptionImageSlider}}
                         <div class="mt mb">
                             <span></span>
                             {{{htmldescription}}}
@@ -66,7 +66,8 @@
 
                 <div class="tab-pane row" id="instructions">
                     <div class="col-md-12">
-                        <div class="mb">
+                        {{>instructionsImageSlider}}
+                        <div class="mt mb">
                             <span></span>
                             {{{htmlinstructions}}}
                         </div>
