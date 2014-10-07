@@ -97,12 +97,14 @@
                             <input type="file" name="file" id="add-photo-descriptions">
                         </div>
                         <div class="project-images mt">
-                            You can reorder your images with the arrows. The top one will be your project featured image.
+                            <label class="control-label">You can reorder your images using the arrows.<br/> The top one will be your project featured image.</label>
                             {{#each getPhotos 'description'}}
-                                <div id="container-{{this._id}}">
-                                    <span id="delete-{{this._id}}" class="delete-photo description"><i class="fa fa-times" style="margin-left:5px"></i></span>
-                                    <span id="rank-up-{{this._id}}" class="rank-up description">&#x25B2;</span>
-                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive mt"/>
+                                <div id="container-{{this._id}}" class="">
+                                    <div class="img-controls">
+                                        <span id="delete-{{this._id}}" class="delete-photo description"><i class="fa fa-times" style="margin-left:5px"></i></span>
+                                        <span id="rank-up-{{this._id}}" class="rank-up description"><i class="fa fa-arrow-up"></i></span>
+                                    </div>
+                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive"/>
                                 </div>
                             {{/each}}
                         </div>
@@ -124,12 +126,14 @@
                             <input type="file" name="file" id="add-photo-instructions">
                         </div>
                         <div class="project-images mt">
-                            Image thumbnails appear here. The homepage photo is selected with 
+                            <label class="control-label">You can reorder your images using the arrows.</label>
                             {{#each getPhotos 'instruction'}}
-                                <div id="container-{{this._id}}">
-                                    <span id="delete-{{this._id}}" class="delete-photo instruction">X</span>
-                                    <span id="rank-up-{{this._id}}" class="rank-up instruction">&#x25B2;</span>
-                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive mt"/>
+                                <div id="container-{{this._id}}" class="">
+                                    <div class="img-controls">
+                                        <span id="delete-{{this._id}}" class="delete-photo instruction"><i class="fa fa-times" style="margin-left:5px"></i></span>
+                                        <span id="rank-up-{{this._id}}" class="rank-up instruction"><i class="fa fa-arrow-up"></i></span>
+                                    </div>
+                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive"/>
                                 </div>
                             {{/each}}
                         </div> 
