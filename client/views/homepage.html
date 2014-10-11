@@ -1,7 +1,12 @@
 <template name="homePage">
-
+    <div class="jumbotron">
+      <h1>Welcome to Museomix</h1>
+      <p>Museomix is a 3-day creative sprint inside a museum. It is happening in 7 museums in 4 different countries on November 7/8/9 2014.</p>
+      <a class="btn btn-primary btn-lg" href="http://museomix.org" target="_blank">Learn more</a>
+    </div>
+    <div class="row">
     {{#each hubs}}
       {{> hubItem}} 
     {{/each}}
-
+    </div>
 </template>
