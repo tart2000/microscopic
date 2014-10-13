@@ -33,16 +33,12 @@ userPhotos = new FS.Collection("userPhotos", {
 });
 
 userPhotos.allow({
-  insert: function(userId, doc) {
-    return true;//(userId && doc.metadata.owner === userId);
-  },
-  update: function(userId, doc, fieldNames, modifier) {
-    return (userId === doc.metadata.owner);
-  },
-  remove: function(userId, doc) {
-    return false;
-  },
-  download: function(userId) {
-    return true//!!userId;
-  }
+  // Any logged in user can add a profile pic
+  insert: function(userId) { if (userId) return true; },
+
+  // Only the user's owner can remove it
+  remove: function(userId, doc) { if (userId == doc.ownner) return true; }, 
+
+  // Anyone can view the profile pic
+  download: function() { return true }
 });

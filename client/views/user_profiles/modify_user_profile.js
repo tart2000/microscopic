@@ -1,11 +1,14 @@
 Template.modifyUserProfile.helpers({ 
     getUserPhoto: function() {
-        /*var userPhoto = userPhotos.findOne(this.profile.thumblink).url();
 
-        if (userPhoto !== undefined)
-          return userPhotos.findOne(this.profile.thumblink).url();
-        else
-            return '';*/
+        if (!this.profile)
+            return;
+
+        if (!this.profile.thumblink) 
+            return;
+
+        if (userPhotos.findOne(this.profile.thumblink))
+            return userPhotos.findOne(this.profile.thumblink).url();
     },
     currentUser: function() {
         return this;
@@ -32,29 +35,35 @@ Template.modifyUserProfile.helpers({
     },
     getSocial: function(medium) {
 
+        if (!this.profile)
+            return;
+
+        if (!this.profile.social)
+            return;
+
         switch(medium) {
             case 'facebook':
-                if (this.profile.social)
+                if (this.profile.social.facebook)
                     return this.profile.social.facebook;
                 break;
             case 'twitter':
-                if (this.profile.social)
+                if (this.profile.social.twitter)
                     return this.profile.social.twitter;
                 break;
             case 'linkedin':
-                if (this.profile.social)
+                if (this.profile.social.linkedin)
                     return this.profile.social.linkedin;
                 break;
             case 'instagram':
-                if (this.profile.social)
+                if (this.profile.social.instagram)
                     return this.profile.social.instagram;
                 break;
             case 'tumblr':
-                if (this.profile.social)
+                if (this.profile.social.tumblr)
                     return this.profile.social.tumblr;
                 break;
             case 'website':
-                if (this.profile.social)
+                if (this.profile.social.website)
                     return this.profile.social.website;
                 break;
         }
@@ -63,20 +72,30 @@ Template.modifyUserProfile.helpers({
 });
 
 Template.modifyUserProfile.events({
-    /*'change #upload': function(event, template) {
-        var userPhoto = this.profile.thumblink;
+    'change #upload': function(event, template) {
 
-        if (userPhoto) 
-            userPhotos.remove(userPhoto);
+        // Check if the user already has a photo & remove it
+        if (this.profile.thumblink) {
+            userPhotos.remove(this.profile.thumblink)
+        }
 
-        var handle = userPhotos.insert(event.target.files[0], function (err, fileObj) {
-            //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        });
+        // Insert the new photo
+        var newPhoto = new FS.File(event.target.files[0]);
+        newPhoto.metadata = {owner: this._id};
+        var handle = userPhotos.insert(newPhoto, function (err, fileObj) {});
 
-        Meteor.users.update(this._id, {$set : {"profile.thumblink" : handle._id} })
-        
+        // Update the user info
+        var user = {
+            thumblink: handle._id,
+            id: this._id
+        }
+
+        Meteor.call('updateUserPhoto', user, function(error) {
+            if (error)
+                return alert(error.reason);
+        });        
     }, 
-    'click .cancel':function() {
+    /*'click .cancel':function() {
         Router.go('userProfile', {_id: this._id});
     },
     'submit': function(e) {

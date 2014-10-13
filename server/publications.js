@@ -8,15 +8,8 @@ Meteor.publish('subscribeToHub', function() {
 });
 
 Meteor.publish('modifyUserPhoto', function(userID) { 
-    var user = Meteor.users.find({_id: userID})
-    var photoCount = userPhotos.find().count();
-
-    if (photoCount && user.profile) {
-        var photoID = user.profile.thumblink;
-        return userPhotos.findOne({_id: photoID});
-    } else {
-        return user;
-    }    
+    // This needs to be fixed.. A user can see anyone's photo
+    return userPhotos.find({}, {fields: {"original": false}});
 });
 
 
@@ -26,7 +19,7 @@ Meteor.publish('projects', function() {
 });
 
 Meteor.publish('hubs', function() { 
-    //return Hubs.find();
+    return Hubs.find();
 });
 
 Meteor.publish('teams', function() { 
