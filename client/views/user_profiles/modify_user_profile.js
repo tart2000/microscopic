@@ -1,11 +1,11 @@
 Template.modifyUserProfile.helpers({ 
     getUserPhoto: function() {
-        var userPhoto = userPhotos.findOne(this.profile.thumblink).url();
+        /*var userPhoto = userPhotos.findOne(this.profile.thumblink).url();
 
         if (userPhoto !== undefined)
           return userPhotos.findOne(this.profile.thumblink).url();
         else
-            return '';
+            return '';*/
     },
     currentUser: function() {
         return this;
@@ -14,7 +14,8 @@ Template.modifyUserProfile.helpers({
         return Hubs.find(); 
     }, 
     getUserName: function() {
-        return this.profile.name;
+        if (this.profile)
+            return this.profile.name;
     },
     isHub: function(currentUser) {
         var thisUserHub = currentUser.profile.hub;
@@ -33,24 +34,36 @@ Template.modifyUserProfile.helpers({
 
         switch(medium) {
             case 'facebook':
-                return this.profile.social.facebook;
+                if (this.profile.social)
+                    return this.profile.social.facebook;
+                break;
             case 'twitter':
-                return this.profile.social.twitter;
+                if (this.profile.social)
+                    return this.profile.social.twitter;
+                break;
             case 'linkedin':
-                return this.profile.social.linkedin;
+                if (this.profile.social)
+                    return this.profile.social.linkedin;
+                break;
             case 'instagram':
-                return this.profile.social.instagram;
+                if (this.profile.social)
+                    return this.profile.social.instagram;
+                break;
             case 'tumblr':
-                return this.profile.social.tumblr;
+                if (this.profile.social)
+                    return this.profile.social.tumblr;
+                break;
             case 'website':
-                return this.profile.social.website;
+                if (this.profile.social)
+                    return this.profile.social.website;
+                break;
         }
     }
 
 });
 
 Template.modifyUserProfile.events({
-    'change #upload': function(event, template) {
+    /*'change #upload': function(event, template) {
         var userPhoto = this.profile.thumblink;
 
         if (userPhoto) 
@@ -83,7 +96,7 @@ Template.modifyUserProfile.events({
         Meteor.users.update(this._id, {$set: properties});         
         Router.go('userProfile', {_id: currentUser});
         Alert.add('your profile has been edited', 'success');
-    },
+    },*/
     
 });
 

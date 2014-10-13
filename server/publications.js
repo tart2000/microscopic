@@ -1,9 +1,32 @@
+/****** Publications for the modification of user profiles ******/
+Meteor.publish('modifySingleUser', function(userId) {
+    return Meteor.users.find(userId, {fields:{emails:true, profile: true, username: true}});
+});
+
+Meteor.publish('subscribeToHub', function() { 
+    return Hubs.find({}, {fields: {name: true}});
+});
+
+Meteor.publish('modifyUserPhoto', function(userID) { 
+    var user = Meteor.users.find({_id: userID})
+    var photoCount = userPhotos.find().count();
+
+    if (photoCount && user.profile) {
+        var photoID = user.profile.thumblink;
+        return userPhotos.findOne({_id: photoID});
+    } else {
+        return user;
+    }    
+});
+
+
+
 Meteor.publish('projects', function() { 
     return Projects.find();
 });
 
 Meteor.publish('hubs', function() { 
-    return Hubs.find();
+    //return Hubs.find();
 });
 
 Meteor.publish('teams', function() { 
@@ -43,3 +66,4 @@ Meteor.publish('userphotos', function() {
 Meteor.publish('prjphotos', function() { 
     return prjPhotos.find({});
 });
+
