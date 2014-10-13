@@ -31,5 +31,16 @@ Template.userProfile.helpers({
         	return socialLink;
         else
         	return false;
-	}
+	},
+    isUser: function() {
+        var currentUser = Meteor.user();
+
+        if (!currentUser)
+            return false;
+
+        if (currentUser._id !== this._id)
+            return false
+
+        return true;
+    }
 });

@@ -8,7 +8,9 @@
             	{{/if}}
             	<h3>{{profile.name}} </h3>
                 <h6> {{username}} </h6>
-                <a class="btn btn-default btn-block mb" href="{{pathFor 'modifyUserProfile'}}">Edit your profile</a>
+                {{#if isUser}}
+                    <a class="btn btn-default btn-block mb" href="{{pathFor 'modifyUserProfile'}}">Edit your profile</a>
+                {{/if}}
                 <hr>
                 <div class="social-icons">
                 	{{#if getSocial 'facebook'}}
