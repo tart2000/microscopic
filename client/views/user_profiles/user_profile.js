@@ -6,25 +6,39 @@ Template.userProfile.helpers({
 		return Hubs.findOne(this.profile.hub).name;
 	},
 	getSocial: function(medium) {
+
+        if (!this.profile)
+            return;
+
+        if (!this.profile.social)
+            return;
+
 		var socialLink = null;
+
 		switch(medium) {
             case 'facebook':
-                socialLink = this.profile.social.facebook;
+                if (this.profile.social.facebook)
+                    socialLink = this.profile.social.facebook;
                 break;
             case 'twitter':
-                socialLink = this.profile.social.twitter;
+                if (this.profile.social.twitter)
+                    socialLink = this.profile.social.twitter;
                 break;
             case 'linkedin':
-                socialLink = this.profile.social.linkedin;
+                if (this.profile.social.linkedin)
+                    socialLink = this.profile.social.linkedin;
                 break;
             case 'instagram':
-                socialLink = this.profile.social.instagram;
+                if (this.profile.social.instagram)
+                    socialLink = this.profile.social.instagram;
                 break;
             case 'tumblr':
-                socialLink = this.profile.social.tumblr;
+                if (this.profile.social.tumblr)
+                    socialLink = this.profile.social.tumblr;
                 break;
             case 'website':
-                socialLink = this.profile.social.website;
+                if (this.profile.social.website)
+                    socialLink = this.profile.social.website;
                 break;
         }
         if (socialLink)
