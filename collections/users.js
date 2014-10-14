@@ -30,6 +30,7 @@ Meteor.methods({
 				userAttributes, 
 				'profile.name', 
 				'profile.role',
+				'profile.hub',
 				'profile.social.facebook',
 				'profile.social.twitter',
 				'profile.social.linkedin',

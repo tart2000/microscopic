@@ -81,7 +81,12 @@ Template.modifyUserProfile.events({
 
         // Insert the new photo
         var newPhoto = new FS.File(event.target.files[0]);
-        newPhoto.metadata = {owner: this._id};
+
+        newPhoto.metadata = {
+            owner: this._id,
+            hub: $('[id=hub]').children(":selected").attr("id")
+        };
+
         var handle = userPhotos.insert(newPhoto, function (err, fileObj) {});
 
         // Update the user info

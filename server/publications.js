@@ -17,11 +17,18 @@ Meteor.publish('usersData', function () {
     return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1, 'profile.hub':1}});
 });
 
-// I need to publish only the id field
 Meteor.publish('allUserPhotos', function() { 
     return userPhotos.find({}, {fields: {"original": false, "metadata": false}});;
 });
 
+/****** Publications for the hub page ******/
+Meteor.publish('hubUsers', function (hubID) {
+    return Meteor.users.find({"profile.hub": hubID}, {fields: {'username': 1, 'profile.thumblink':1}});
+});
+
+Meteor.publish('hubUserPhotos', function(hubID) {
+    return userPhotos.find({"metadata.hub": hubID}, {fields: {"original": false, "metadata": false}});
+});
 
 
 Meteor.publish('projects', function() { 
