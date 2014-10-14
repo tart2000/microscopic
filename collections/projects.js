@@ -3,7 +3,7 @@ Projects = new Meteor.Collection('projects');
 Meteor.methods({
 	updateProject: function(projectAttributes) {
 		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id});
+		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 
 		// ensure the user is logged in
 		if (!user)
@@ -31,8 +31,8 @@ Meteor.methods({
 	},
 	deleteProject: function(projectID) {
 		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id});
-		
+		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+
 		// ensure the user is logged in
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
