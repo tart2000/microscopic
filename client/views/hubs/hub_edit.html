@@ -1,0 +1,65 @@
+<template name="hubEdit">
+    <div id="project-title" class="col-md-12 text-center">
+        <h1>Edit hub info</h1>
+    </div>
+    <div class="container">
+        <div class="row project-container">
+            <form>        
+                <div class="col-sm-3 col-sm-push-9">
+                    <div class="fixed-sidebar">
+                        <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
+                            <li class="active"><a role="tab" data-toggle="tab" href="#basic">Basic info</a></li>
+                            <li class=""><a role="tab" data-toggle="tab" href="#community">Community</a></li>
+                            <li class=""><a role="tab" data-toggle="tab" href="#museum">Museum</a></li>
+                        </ul>
+                        <div class="right-sidebar">
+                            <div class="form-group">
+                                <div class="controls command-buttons">
+                                    <input class="btn btn-block btn-primary submit" type="submit" id="save" value="Save"/>
+                                    <a class="btn btn-default btn-block cancel" href="#">Back to hub</a>
+                                    <a class="btn btn-danger delete btn-block" href="#">Delete project</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-sm-3 -->
+
+                <div class="col-sm-9 col-sm-pull-3">
+                    <!-- tabs -->
+                    <div class="tab-content">
+                        <div class="tab-pane active row" id="basic">
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="title">Hub name</label>
+                                        <div class="controls">
+                                            <input name="title" class="form-control input-lg" type="text" value="{{title}}" placeholder="Hub name"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="country">Country</label>
+                                        <div class="controls">
+                                            <input name="country" class="form-control" type="text" value="{{country}}" placeholder="Country"/>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div> <!-- end basic info tab -->
+
+                        <div class="tab-pane" id="community">
+                            Possibilité d'ajouter des utilisateurs ici? Genre de les inviter en batch par email? 
+                        </div> <!-- end community tab -->
+
+                        <div class="tab-pane row" id="museum">
+                            <div class="col-md-12">
+                                
+                            </div>
+                        </div> <!-- end museum tab -->
+
+            
+                    </div> <!-- end tab content -->
+                </div> <!-- end col-sm-9 -->
+
+            </form>
+        </div>
+    </div> <!-- end page -->
+    
+</template>
