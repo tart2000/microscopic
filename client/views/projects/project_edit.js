@@ -32,8 +32,11 @@ Template.projectEdit.rendered = function() {
 Template.projectEdit.events({ 
     'submit': function(e) {
         e.preventDefault();
+
         var currentProjectId = this._id;
+
         var projectProperties = {
+            id: currentProjectId,
             title: $(e.target).find('[name=title]').val(), 
             baseline: $(e.target).find('[name=baseline]').val(),
             hub: $(e.target).find('[id=hub]').val(),
@@ -43,20 +46,30 @@ Template.projectEdit.events({
             instructions: $(e.target).find('[id=projectinstructions]').val(),
             videolink: $(e.target).find('[name=projectvideo]').val(),
         };
-        Projects.update(currentProjectId, {$set: projectProperties}, function(error) { if (error) {
-            // display the error to the user
-            alert(error.reason); } else {
-                Router.go('projectPage', {_id: currentProjectId});
+
+        Meteor.call('updateProject', projectProperties, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+            else
                 Alert.add('your project has been edited', 'success');
-            }
-        }); },
+        });
+
+        Router.go('projectPage', {_id: currentProjectId});
+
+    },
     'click .delete': function(e) { 
         e.preventDefault();
         if (confirm("Delete this project?")) {
             var currentProjectId = this._id;
-            Projects.remove(currentProjectId);
+
+            Meteor.call('deleteProject', currentProjectId, function(error){
+                if (error)
+                    Alert.add(error.reason, 'danger');
+                else
+                    Alert.add('your project has been deleted...', 'success');
+            });
+
             Router.go('projectsList');
-            Alert.add('your project has been deleted...', 'success');
         }
     },
     'click .cancel': function(e) { 
@@ -141,9 +154,9 @@ Template.projectEdit.helpers({
     getPhotos: function(type) {
         switch(type) {
             case 'instruction':
-                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'instruction'}, {sort: {"metadata.rank": 1}});
+                return prjPhotos.find({"metadata.type": 'instruction'}, {sort: {"metadata.rank": 1}});
             case 'description':
-                return prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
+                return prjPhotos.find({"metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         }
         
     },
