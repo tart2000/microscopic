@@ -1,15 +1,14 @@
-/****** Publications for the modification of user profiles ******/
-Meteor.publish('modifySingleUser', function(userId) {
+/****** Publications for the view / modification of user profiles ******/
+Meteor.publish('singleUser', function(userId) {
     return Meteor.users.find(userId, {fields:{emails:true, profile: true, username: true}});
+});
+
+Meteor.publish('singleUserPhoto', function(userID) { 
+    return userPhotos.find({'metadata.owner':userID}, {fields: {"original": false}});
 });
 
 Meteor.publish('subscribeToHub', function() { 
     return Hubs.find({}, {fields: {name: true}});
-});
-
-Meteor.publish('modifyUserPhoto', function(userID) { 
-    // This needs to be fixed.. A user can see anyone's photo
-    return userPhotos.find({}, {fields: {"original": false}});
 });
 
 /****** Publications for the community ******/
@@ -29,6 +28,10 @@ Meteor.publish('hubUsers', function (hubID) {
 Meteor.publish('hubUserPhotos', function(hubID) {
     return userPhotos.find({"metadata.hub": hubID}, {fields: {"original": false, "metadata": false}});
 });
+
+/****** Publications for viewing a user's profile ******/
+
+
 
 
 Meteor.publish('projects', function() { 
@@ -58,10 +61,10 @@ Meteor.publish('licences', function() {
 Meteor.publish('instructions', function() { 
     return Instructions.find();
 });
-
+/*
 Meteor.publish('singleUser', function(userId) {
 	return Meteor.users.find(userId);
-});
+});*/
 
 
 
