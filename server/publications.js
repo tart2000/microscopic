@@ -39,22 +39,39 @@ Meteor.publish('singleProject', function(projectID) {
     return Projects.find({_id: projectID});
 });
 
+Meteor.publish('singleProjectPhotos', function(projectID) { 
+    return prjPhotos.find({"metadata.projectID": projectID}, {fields: {"original": false}});
+});
+
+Meteor.publish('teams', function() { 
+    return Teams.find({});
+});
+
+
+/****** Publications for the view all projects page ******/
+Meteor.publish('allProjects', function() { 
+    return Projects.find({}, {fields:{title: true, hub: true, thumblink: true}});
+});
+
+Meteor.publish('mainProjectPhoto', function() { 
+    return prjPhotos.find({"metadata.rank":"1"}, {fields: {"original": false}});
+});
+
+
 
 Meteor.publish('prjphotos', function() { 
-    return prjPhotos.find({});
+    return prjPhotos.find({}, {fields: {"original": false}});
 });
 
-Meteor.publish('allProjects', function() { 
-    return Projects.find();
-});
+
+
+
 
 Meteor.publish('hubs', function() { 
     return Hubs.find();
 });
 
-Meteor.publish('teams', function() { 
-    return Teams.find();
-});
+
 
 
 
