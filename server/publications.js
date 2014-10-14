@@ -29,12 +29,22 @@ Meteor.publish('hubUserPhotos', function(hubID) {
     return userPhotos.find({"metadata.hub": hubID}, {fields: {"original": false, "metadata": false}});
 });
 
-/****** Publications for viewing a user's profile ******/
+
+/****** Publications for the project page ******/
+Meteor.publish('comments', function(projectID) { 
+    return Comments.find({"projectId": projectID}, {sort: {submitted: -1}});
+});
+
+Meteor.publish('singleProject', function(projectID) { 
+    return Projects.find({_id: projectID});
+});
 
 
+Meteor.publish('prjphotos', function() { 
+    return prjPhotos.find({});
+});
 
-
-Meteor.publish('projects', function() { 
+Meteor.publish('allProjects', function() { 
     return Projects.find();
 });
 
@@ -46,13 +56,8 @@ Meteor.publish('teams', function() {
     return Teams.find();
 });
 
-Meteor.publish('comments', function() { 
-    return Comments.find();
-});
 
-Meteor.publish('prjPhotos', function() { 
-    return Photos.find();
-});
+
 
 Meteor.publish('licences', function() { 
     return Licences.find();
@@ -73,8 +78,4 @@ Meteor.publish('userphotos', function() {
     return userPhotos.find();
 });
 
-// I need to publish only the id field
-Meteor.publish('prjphotos', function() { 
-    return prjPhotos.find({});
-});
 
