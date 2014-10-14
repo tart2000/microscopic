@@ -12,6 +12,16 @@ Meteor.publish('modifyUserPhoto', function(userID) {
     return userPhotos.find({}, {fields: {"original": false}});
 });
 
+/****** Publications for the community ******/
+Meteor.publish('usersData', function () {
+    return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1, 'profile.hub':1}});
+});
+
+// I need to publish only the id field
+Meteor.publish('allUserPhotos', function() { 
+    return userPhotos.find({}, {fields: {"original": false, "metadata": false}});;
+});
+
 
 
 Meteor.publish('projects', function() { 
@@ -46,9 +56,7 @@ Meteor.publish('singleUser', function(userId) {
 	return Meteor.users.find(userId);
 });
 
-Meteor.publish('usersData', function () {
-    return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1, 'profile.hub':1}});
-});
+
 
 // I need to publish only the id field
 Meteor.publish('userphotos', function() { 
