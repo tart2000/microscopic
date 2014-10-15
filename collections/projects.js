@@ -43,7 +43,7 @@ Meteor.methods({
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
 
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
 
 		// Ensure that the user is in the team or that he is the author
@@ -73,7 +73,7 @@ Meteor.methods({
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
 
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectID}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectID}).author;
 
 		// Ensure that the user is in the team or that he is the author
@@ -99,7 +99,7 @@ Meteor.methods({
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
 
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
 
 		// Ensure that the user is in the team or that he is the author
@@ -122,7 +122,7 @@ Meteor.methods({
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
 
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
 
 		// Ensure that the user is in the team or that he is the author
