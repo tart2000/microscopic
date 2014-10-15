@@ -45,7 +45,7 @@ if (Hubs.find().count() === 0) {
     var tinkyId = Accounts.createUser({
         username: 'tinky',
         email: 'tinkywinky@teletubbyland.ln',
-        password: 'asdfasdf',
+        password: 'tinky',
         profile : { name : "Tinky Winky", hub : geneveID, role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}},
     });
 

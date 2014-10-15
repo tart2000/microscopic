@@ -1,3 +1,21 @@
+Accounts.onCreateUser(function(options, user) {
+
+	if (Teams.findOne()) {
+	    // When the user signs is, check if he is in a team
+		var teamsFound = Teams.find({"email" : user.emails[0].address});    
+
+		teamsFound.forEach(function(team) {
+			Teams.update({'_id':team._id}, {$set: {'userID':user._id, 'user': user.username}});
+		});
+	}
+
+
+	if (options.profile)
+    	user.profile = options.profile;
+
+	return user;
+});
+
 Meteor.methods({
 	updateUserPhoto: function(userAttributes) {
 		var user = Meteor.user();

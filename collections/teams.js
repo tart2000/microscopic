@@ -38,7 +38,15 @@ Meteor.methods({
 
 		// If the user is new, send him an email
 		if (memberAttributes.userID == '') {
-			Meteor.call('sendEmail', memberAttributes.email, user.emails[0].address, ( (!user.profile.name) ? user.username : user.profile.name ) );
+			if (user.profile) {
+				if (user.profile.name)
+					var personInviting = user.profile.name;
+				else 
+					var personInviting = user.username;
+			} else
+				var personInviting = user.username;
+
+			Meteor.call('sendEmail', memberAttributes.email, user.emails[0].address, personInviting );
 		}
 
 		var newMember = _.extend(
