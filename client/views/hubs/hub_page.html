@@ -5,10 +5,34 @@
     <div class="col-md-12 project-container">
         <div class="row">
             <div class="col-md-3">
-                <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
                 <img src="{{thumblink}}" class="img-responsive" alt="Responsive image"> 
+                <div class="social-icons mt">
+                    {{#if getSocial 'facebook'}}
+                        <a href="{{getSocial 'facebook'}}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'twitter'}}
+                        <a href="{{getSocial 'twitter'}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'linkedin'}}
+                        <a href="{{getSocial 'linkedin'}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'instagram'}}
+                        <a href="{{getSocial 'instagram'}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'tumblr'}}
+                        <a href="{{getSocial 'tumblr'}}" target="_blank"><i class="fa fa-tumblr-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'website'}}
+                        <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
+                    {{/if}}
+                </div>
             </div>
             <div class="col-md-6">
+                {{description}}
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
+                <p>{{teams}} teams</p>
                 
             </div>
         </div> 
