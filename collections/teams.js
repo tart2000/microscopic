@@ -1,6 +1,21 @@
 Teams = new Meteor.Collection('teams');
 
 Meteor.methods({
+	sendEmail: function(to, from, personInviting) {
+		/****** TO SEND AN EMAIL ******/
+		/* The MAIL_URL environment variable should be of the form smtp://USERNAME:PASSWORD@HOST:PORT/. Check the docs @ http://docs.meteor.com/#email_send */
+
+		// Let other method calls from the same client start running,
+	    // without waiting for the email sending to complete.
+	    this.unblock();
+
+	    Email.send({
+	      to: to,
+	      from: from,
+	      subject: 'Hey Museomixer, join my project!',
+	      text: 'You have been added to the museomix platform by ' + personInviting + '. Go to xxx & create an account using this email address. Then, start creating amazing projects!'
+	    });
+	},
 	addMember: function(memberAttributes) {
 		var user = Meteor.user();
 
@@ -20,6 +35,11 @@ Meteor.methods({
 
 		if (memberExists)
 			throw new Meteor.Error(302, "You have already added this member as a " + memberExists.role);
+
+		// If the user is new, send him an email
+		if (memberAttributes.userID == '') {
+			Meteor.call('sendEmail', memberAttributes.email, user.emails[0].address, ( (!user.profile.name) ? user.username : user.profile.name ) );
+		}
 
 		var newMember = _.extend(
 			_.pick(
