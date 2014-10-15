@@ -53,9 +53,11 @@
             <div class="tab-content">
                 <div class="tab-pane active row" id="description">
                     <div class="col-md-12">
+                        {{#if videolink}}
                         <div class="videowrapper well">
                             {{>videoEmbed}}
                         </div>
+                        {{/if}}
                         {{>descriptionImageSlider}}
                         <div class="mt mb">
                             <span></span>
