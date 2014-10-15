@@ -1,6 +1,41 @@
 Projects = new Meteor.Collection('projects');
 
 Meteor.methods({
+	createProject: function(projectAttributes) {
+		var user = Meteor.user();
+
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "You need to login before creating a project...");
+
+		var projectInfo = _.extend(
+			_.pick(
+				projectAttributes, 
+				'title', 
+				'baseline',
+				'hub'
+			), 
+			{
+				author: user._id,
+				created: new Date().getTime()
+			}
+		);
+
+		// Insert the project
+		var projectID = Projects.insert(projectInfo);
+
+		// Add the creator to the team
+		Teams.insert({ 
+			"projectID" : projectID, 
+			"userID" : user._id, 
+			"user" : user.username, 
+			"email" : user.emails[0].address, 
+			"role" : "core"
+		});
+
+		return projectID;
+	},
+
 	updateProject: function(projectAttributes) {
 		var user = Meteor.user();
 		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
