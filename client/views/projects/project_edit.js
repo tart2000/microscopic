@@ -108,14 +108,6 @@ Template.projectEdit.events({
     'click .delete-photo': function(e) {
         e.preventDefault();
 
-        // Check that the user can add photos
-        Meteor.call('canModifyProject', this._id, function(error){
-            if (error) {
-                Alert.add(error.reason, 'danger');
-                Router.go('projectPage', {_id: this._id});
-            }   
-        });
-
         if ($(e.target).hasClass("instruction")) 
             var photoType = "instruction";
         else 
@@ -157,14 +149,6 @@ Template.projectEdit.events({
     },
      'change #add-photo-instructions': function(event) {
 
-        // Check that the user can add photos
-        Meteor.call('canModifyProject', this._id, function(error){
-            if (error) {
-                Alert.add(error.reason, 'danger');
-                Router.go('projectPage', {_id: this._id});
-            }   
-        });
-
         var photoRank = getPhotoNumber(this._id, 'instruction') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
@@ -178,14 +162,6 @@ Template.projectEdit.events({
         prjPhotos.insert(prjPhoto, function (err, fileObj) {});
     }, 
     'change #add-photo-descriptions': function(event) {
-
-        // Check that the user can add photos
-        Meteor.call('canModifyProject', this._id, function(error){
-            if (error) {
-                Alert.add(error.reason, 'danger');
-                Router.go('projectPage', {_id: this._id});
-            }   
-        });
 
         var photoRank = getPhotoNumber(this._id, 'description') + 1;
 
