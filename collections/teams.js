@@ -15,6 +15,12 @@ Meteor.methods({
 		if ( (projectAuthor !== user._id) && (!inTeam) )
 			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
+		// Check that the member has not been already added
+		var memberExists = Teams.findOne({"projectID": memberAttributes.projectID, "email" : memberAttributes.email});
+
+		if (memberExists)
+			throw new Meteor.Error(302, "You have already added this member as a " + memberExists.role);
+
 		var newMember = _.extend(
 			_.pick(
 				memberAttributes, 

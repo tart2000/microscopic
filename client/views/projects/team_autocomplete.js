@@ -31,8 +31,12 @@ Template.coreTeamEdit.helpers({
 
           Meteor.call('addMember', newMember, function(error){
             if (error) {
-              Alert.add(error.reason, 'danger');
-              Router.go('projectPage', {_id: currentprojectID});
+              if (error.error = 302) {
+                Alert.add(error.reason, 'warning');
+              } else {
+                Alert.add(error.reason, 'danger');
+                Router.go('projectPage', {_id: currentprojectID});
+              }
             }
           });
           $("#coreteam").val('');
@@ -77,8 +81,12 @@ Template.facilitatorEdit.helpers({
 
           Meteor.call('addMember', newMember, function(error){
             if (error) {
-              Alert.add(error.reason, 'danger');
-              Router.go('projectPage', {_id: currentprojectID});
+              if (error.error = 302) {
+                Alert.add(error.reason, 'warning');
+              } else {
+                Alert.add(error.reason, 'danger');
+                Router.go('projectPage', {_id: currentprojectID});
+              }
             }
           });
           $("#facilitator").val('');
@@ -122,8 +130,12 @@ Template.thanksEdit.helpers({
 
           Meteor.call('addMember', newMember, function(error){
             if (error) {
-              Alert.add(error.reason, 'danger');
-              Router.go('projectPage', {_id: currentprojectID});
+              if (error.error = 302) {
+                Alert.add(error.reason, 'warning');
+              } else {
+                Alert.add(error.reason, 'danger');
+                Router.go('projectPage', {_id: currentprojectID});
+              }
             }
           });
           $("#thanks").val('');
@@ -146,8 +158,12 @@ Template.coreTeamEdit.events({
 
      Meteor.call('addMember', newMember, function(error){
       if (error) {
-        Alert.add(error.reason, 'danger');
-        Router.go('homePage');
+        if (error.error = 302) {
+          Alert.add(error.reason, 'warning');
+        } else {
+          Alert.add(error.reason, 'danger');
+          Router.go('homepage');
+        }
       }
     });
 
@@ -180,8 +196,12 @@ Template.facilitatorEdit.events({
 
      Meteor.call('addMember', newMember, function(error){
       if (error) {
-        Alert.add(error.reason, 'danger');
-        Router.go('homePage');
+        if (error.error = 302) {
+          Alert.add(error.reason, 'warning');
+        } else {
+          Alert.add(error.reason, 'danger');
+          Router.go('homepage');
+        }
       }
     });
 
@@ -214,8 +234,12 @@ Template.thanksEdit.events({
 
      Meteor.call('addMember', newMember, function(error){
       if (error) {
-        Alert.add(error.reason, 'danger');
-        Router.go('homePage');
+        if (error.error = 302) {
+          Alert.add(error.reason, 'warning');
+        } else {
+          Alert.add(error.reason, 'danger');
+          Router.go('homepage');
+        }
       }
     });
 
