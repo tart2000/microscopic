@@ -1,93 +1,48 @@
-Template.coreTeamEdit.settings = function() {
-  var currentprojectID = this._id;
-  return {
-   position: "top",
-   limit:5,
-   rules: [
-     {
-       collection: Meteor.users,
-       field: "emails.0.address",
-       template: Template.userDropdown,
-       noMatchTemplate: Template.noMatch,
-       callback: function(doc) {
-        Teams.insert({
-          "projectID": currentprojectID,
-          userID: doc._id,
-          user: doc.username,
-          email:doc.emails[0].address,
-          role: 'core'
-        });
-        $("#coreteam").val('');
-       }
-     }
-   ]
-  }
-};
-
-Template.facilitatorEdit.settings = function() {
-  var currentprojectID = this._id;
-  return {
-   position: "top",
-   limit:5,
-   rules: [
-     {
-       collection: Meteor.users,
-       field: "emails.0.address",
-       template: Template.userDropdown,
-       noMatchTemplate: Template.noMatch,
-       callback: function(doc) {
-        Teams.insert({
-          "projectID": currentprojectID,
-          userID: doc._id,
-          user: doc.username,
-          email:doc.emails[0].address,
-          role: 'facilitator'
-        });
-        $("#facilitator").val('');
-       }
-     }
-   ]
-  }
-};
-
-Template.thanksEdit.settings = function() {
-  var currentprojectID = this._id;
-  return {
-   position: "top",
-   limit:5,
-   rules: [
-     {
-       collection: Meteor.users,
-       field: "emails.0.address",
-       template: Template.userDropdown,
-       noMatchTemplate: Template.noMatch,
-       callback: function(doc) {
-        Teams.insert({
-          "projectID": currentprojectID,
-          userID: doc._id,
-          user: doc.username,
-          email:doc.emails[0].address,
-          role: 'thanks'
-        });
-        $("#thanks").val('');
-       }
-     }
-   ]
-  }
-};
-
-Template.coreTeamEdit.helpers({ 
+Template.coreTeamEdit.helpers({
   coreteam: function() {
     return Teams.find({"projectID": this._id, "role":"core"});
   },
   isRegistered: function(user) {
 
-    if (user !== undefined)
+    if (user !== '')
       return true;
     else
       return false;
+  },
+  settings: function() {
+    var currentprojectID = this._id;
+    return {
+     position: "top",
+     limit:5,
+     rules: [
+       {
+         collection: Meteor.users,
+         field: "emails.0.address",
+         template: Template.userDropdown,
+         noMatchTemplate: Template.noMatch,
+         callback: function(doc) {
+          var newMember = {
+            'projectID': currentprojectID,
+            'userID': doc._id,
+            'user': doc.username,
+            'email':doc.emails[0].address,
+            'role': 'core'
+          }
+
+          Meteor.call('addMember', newMember, function(error){
+            if (error) {
+              Alert.add(error.reason, 'danger');
+              Router.go('projectPage', {_id: currentprojectID});
+            }
+          });
+          $("#coreteam").val('');
+         }
+       }
+     ]
+    }
   }
 });
+
 
 Template.facilitatorEdit.helpers({ 
   facilitators: function() {
@@ -95,10 +50,42 @@ Template.facilitatorEdit.helpers({
   },
   isRegistered: function(user) {
 
-    if (user !== undefined)
+    if (user !== '')
       return true;
     else
       return false;
+  },
+  settings: function() {
+    var currentprojectID = this._id;
+    return {
+     position: "top",
+     limit:5,
+     rules: [
+       {
+         collection: Meteor.users,
+         field: "emails.0.address",
+         template: Template.userDropdown,
+         noMatchTemplate: Template.noMatch,
+         callback: function(doc) {
+          var newMember = {
+            'projectID': currentprojectID,
+            'userID': doc._id,
+            'user': doc.username,
+            'email':doc.emails[0].address,
+            'role': 'facilitator'
+          }
+
+          Meteor.call('addMember', newMember, function(error){
+            if (error) {
+              Alert.add(error.reason, 'danger');
+              Router.go('projectPage', {_id: currentprojectID});
+            }
+          });
+          $("#facilitator").val('');
+         }
+       }
+     ]
+    }
   }
 });
 
@@ -108,51 +95,143 @@ Template.thanksEdit.helpers({
   },
    isRegistered: function(user) {
 
-    if (user !== undefined)
+    if (user !== '')
       return true;
     else
       return false;
+  },
+  settings: function() {
+    var currentprojectID = this._id;
+    return {
+     position: "top",
+     limit:5,
+     rules: [
+       {
+         collection: Meteor.users,
+         field: "emails.0.address",
+         template: Template.userDropdown,
+         noMatchTemplate: Template.noMatch,
+         callback: function(doc) {
+          var newMember = {
+            'projectID': currentprojectID,
+            'userID': doc._id,
+            'user': doc.username,
+            'email':doc.emails[0].address,
+            'role': 'thanks'
+          }
+
+          Meteor.call('addMember', newMember, function(error){
+            if (error) {
+              Alert.add(error.reason, 'danger');
+              Router.go('projectPage', {_id: currentprojectID});
+            }
+          });
+          $("#thanks").val('');
+         }
+       }
+     ]
+    }
   }
 });
 
 Template.coreTeamEdit.events({ 
   'click .add-member': function(e) {
-    Teams.insert({
+    var newMember = {
       "projectID": this._id,
+      'userID': '',
+      'user': '',
       email: $("#coreteam").val(),
       role: 'core'
+    };
+
+     Meteor.call('addMember', newMember, function(error){
+      if (error) {
+        Alert.add(error.reason, 'danger');
+        Router.go('homePage');
+      }
     });
+
     $("#coreteam").val('');
   },
   'click .delete-member':function(e) {
-    Teams.remove(this._id);
+    var deletedMember = {
+      'deleted': this._id,
+      "projectID": this.projectID
+      }
+
+    Meteor.call('removeMember', deletedMember, function(error){
+      if (error) {
+        Alert.add(error.reason, 'danger');
+        Router.go('homePage');
+      }
+    });
   }
 });
 
 Template.facilitatorEdit.events({ 
   'click .add-facilitator': function(e) {
-    Teams.insert({
+    var newMember = {
       "projectID": this._id,
+      'userID': '',
+      'user': '',
       email: $("#facilitator").val(),
-      role: 'core'
+      role: 'facilitator'
+    };
+
+     Meteor.call('addMember', newMember, function(error){
+      if (error) {
+        Alert.add(error.reason, 'danger');
+        Router.go('homePage');
+      }
     });
+
     $("#facilitator").val('');
   },
   'click .delete-member':function(e) {
-    Teams.remove(this._id);
+    var deletedMember = {
+      'deleted': this._id,
+      "projectID": this.projectID
+      }
+
+    Meteor.call('removeMember', deletedMember, function(error){
+      if (error) {
+        Alert.add(error.reason, 'danger');
+        Router.go('homePage');
+      }
+    });
   }
 });
 
 Template.thanksEdit.events({ 
-  'click .add-facilitator': function(e) {
-    Teams.insert({
+  'click .add-thanks': function(e) {
+    var newMember = {
       "projectID": this._id,
+      'userID': '',
+      'user': '',
       email: $("#thanks").val(),
-      role: 'core'
+      role: 'thanks'
+    };
+
+     Meteor.call('addMember', newMember, function(error){
+      if (error) {
+        Alert.add(error.reason, 'danger');
+        Router.go('homePage');
+      }
     });
+
     $("#thanks").val('');
   },
   'click .delete-member':function(e) {
-    Teams.remove(this._id);
+     var deletedMember = {
+      'deleted': this._id,
+      "projectID": this.projectID
+      }
+
+    Meteor.call('removeMember', deletedMember, function(error){
+      if (error) {
+        Alert.add(error.reason, 'danger');
+        Router.go('homePage');
+      }
+    });
   }
 });

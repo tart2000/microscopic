@@ -64,12 +64,10 @@ Meteor.publish('commentedUsers', function(projectID) {
     return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1}});
 });
 
-
-
 /***************************************************************************/
 /****** Publications for the view all projects page ******/
 Meteor.publish('allProjects', function() { 
-    return Projects.find({}, {fields:{title: true, hub: true, thumblink: true}});
+    return Projects.find({}, {fields:{title: true, hub: true, thumblink: true, baseline: true}});
 });
 
 Meteor.publish('mainProjectPhoto', function() { 

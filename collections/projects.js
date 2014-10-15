@@ -1,21 +1,6 @@
 Projects = new Meteor.Collection('projects');
 
 Meteor.methods({
-	canModifyProject: function(projectID) {
-		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
-		var projectAuthor = Projects.findOne({_id: projectID}).author;
-
-		// ensure the user is logged in
-		if (!user)
-			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
-
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
-			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
-
-		return true;
-	},
 	createProject: function(projectAttributes) {
 		var user = Meteor.user();
 
@@ -52,7 +37,18 @@ Meteor.methods({
 	},
 
 	updateProject: function(projectAttributes) {
-		Meteor.call('canModifyProject', projectAttributes.id);
+		var user = Meteor.user();
+
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
+
+		// Ensure that the user is in the team or that he is the author
+		if ( (projectAuthor !== user._id) && (!inTeam) )
+			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		var updatedProjectInfo = _.extend(
 			_.pick(
@@ -71,7 +67,18 @@ Meteor.methods({
 		Projects.update({_id: projectAttributes.id}, {$set: updatedProjectInfo});
 	},
 	deleteProject: function(projectID) {
-		Meteor.call('canModifyProject', projectID);
+		var user = Meteor.user();
+		
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var projectAuthor = Projects.findOne({_id: projectID}).author;
+
+		// Ensure that the user is in the team or that he is the author
+		if ( (projectAuthor !== user._id) && (!inTeam) )
+			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		// Remove the project's photos
 		prjPhotos.remove({"metadata.projectID": projectID});
@@ -86,7 +93,18 @@ Meteor.methods({
 		Projects.remove(projectID);
 	},
 	addTag: function(projectAttributes) {
-		Meteor.call('canModifyProject', projectAttributes.id);
+		var user = Meteor.user();
+
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
+
+		// Ensure that the user is in the team or that he is the author
+		if ( (projectAuthor !== user._id) && (!inTeam) )
+			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		var updatedProjectInfo = _.extend(
 			_.pick(
@@ -98,7 +116,18 @@ Meteor.methods({
 		Projects.update({_id:projectAttributes.id}, {$addToSet: {tags: updatedProjectInfo.newTag}});
 	},
 	removeTag: function(projectAttributes) {
-		Meteor.call('canModifyProject', projectAttributes.id);
+		var user = Meteor.user();
+
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
+
+		// Ensure that the user is in the team or that he is the author
+		if ( (projectAuthor !== user._id) && (!inTeam) )
+			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		var updatedProjectInfo = _.extend(
 			_.pick(
@@ -111,3 +140,18 @@ Meteor.methods({
 	},
 
 });
+
+Projects.allow({
+	insert: function(userId) {
+		return !! userId;
+	}
+});
+
+Projects.deny({	
+	update: function() {
+		return false;
+	},
+	remove: function() {
+		return false;
+	}
+})
