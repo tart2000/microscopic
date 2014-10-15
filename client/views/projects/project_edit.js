@@ -78,19 +78,43 @@ Template.projectEdit.events({
     },
     'click .add-tag': function(e) {
         e.preventDefault();
-        var currentProjectId = this._id;
-        var new_tag = $(e.target).parent().find('[id=tagbox]').val();
-        Projects.update({_id:currentProjectId}, {$addToSet: {tags: new_tag}});
-        $('#tagbox').val('');
+
+        var updatedProject = {
+            id: this._id,
+            newTag: $(e.target).parent().find('[id=tagbox]').val(),
+        }
+
+        Meteor.call('addTag', updatedProject, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+            else
+                $('#tagbox').val('');
+        });
+        
     }, 
     'click .remove-tag': function(e) {
         e.preventDefault();
-        var currentProjectId = this._id;
-        var old_tag = $(e.target).parent().parent().text();
-        Projects.update({_id:currentProjectId}, {$pull: {tags: old_tag}});
+        
+        var updatedProject = {
+            id: this._id,
+            oldTag: $(e.target).parent().parent().text()
+        }
+
+         Meteor.call('removeTag', updatedProject, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+        });
     },
     'click .delete-photo': function(e) {
         e.preventDefault();
+
+        // Check that the user can add photos
+        Meteor.call('canModifyProject', this._id, function(error){
+            if (error) {
+                Alert.add(error.reason, 'danger');
+                Router.go('projectPage', {_id: this._id});
+            }   
+        });
 
         if ($(e.target).hasClass("instruction")) 
             var photoType = "instruction";
@@ -132,6 +156,7 @@ Template.projectEdit.events({
         changeRank(this, type, 'decrement', currentProjectID);             
     },
      'change #add-photo-instructions': function(event) {
+
         // Check that the user can add photos
         Meteor.call('canModifyProject', this._id, function(error){
             if (error) {

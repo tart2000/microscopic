@@ -33,17 +33,22 @@ prjPhotos = new FS.Collection("prjphotos", {
     }
 });
 
+/******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */
 prjPhotos.allow({
   insert: function(userId, doc) {
-    return ( (_.without(_.keys(doc), 'type', 'rank').length === 0) && (userId) );
+    if (userId)
+      return true;
   },
   update: function(userId, doc, fieldNames, modifier) {
-    return (userId === doc.metadata.owner);
+    if (userId)
+      return true;
   },
   remove: function(userId, doc) {
-    return false;
+    if (userId)
+      return true;
   },
   download: function(userId) {
-    return true//!!userId;
+    if (userId)
+      return true;
   }
 });
