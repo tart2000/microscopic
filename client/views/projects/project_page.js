@@ -41,4 +41,10 @@ Template.projectPage.helpers({
         var htmlinstructions = converter.makeHtml(instructions); 
         return htmlinstructions;  
     },
+    canEdit: function() {
+        var user = Meteor.user();
+
+        if  ( Teams.findOne({"userID": user._id, "projectID": this._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]}) )
+            return true;
+    }
 });

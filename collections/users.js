@@ -1,20 +1,22 @@
-Accounts.onCreateUser(function(options, user) {
+if (Meteor.isServer) {
+	Accounts.onCreateUser(function(options, user) {
 
-	if (Teams.findOne()) {
-	    // When the user signs is, check if he is in a team
-		var teamsFound = Teams.find({"email" : user.emails[0].address});    
+		if (Teams.findOne()) {
+		    // When the user signs is, check if he is in a team
+			var teamsFound = Teams.find({"email" : user.emails[0].address});    
 
-		teamsFound.forEach(function(team) {
-			Teams.update({'_id':team._id}, {$set: {'userID':user._id, 'user': user.username}});
-		});
-	}
+			teamsFound.forEach(function(team) {
+				Teams.update({'_id':team._id}, {$set: {'userID':user._id, 'user': user.username}});
+			});
+		}
 
 
-	if (options.profile)
-    	user.profile = options.profile;
+		if (options.profile)
+	    	user.profile = options.profile;
 
-	return user;
-});
+		return user;
+	});
+}
 
 Meteor.methods({
 	updateUserPhoto: function(userAttributes) {
