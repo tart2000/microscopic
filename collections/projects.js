@@ -52,18 +52,7 @@ Meteor.methods({
 	},
 
 	updateProject: function(projectAttributes) {
-		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
-		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
-
-		// ensure the user is logged in
-		if (!user)
-			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
-
-
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
-			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+		Meteor.call('canModifyProject', projectAttributes.id);
 
 		var updatedProjectInfo = _.extend(
 			_.pick(
@@ -82,18 +71,7 @@ Meteor.methods({
 		Projects.update({_id: projectAttributes.id}, {$set: updatedProjectInfo});
 	},
 	deleteProject: function(projectID) {
-		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
-		var projectAuthor = Projects.findOne({_id: projectID}).author;
-
-		// ensure the user is logged in
-		if (!user)
-			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
-
-
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
-			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+		Meteor.call('canModifyProject', projectID);
 
 		// Remove the project's photos
 		prjPhotos.remove({"metadata.projectID": projectID});
@@ -108,18 +86,7 @@ Meteor.methods({
 		Projects.remove(projectID);
 	},
 	addTag: function(projectAttributes) {
-		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
-		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
-
-		// ensure the user is logged in
-		if (!user)
-			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
-
-
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
-			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+		Meteor.call('canModifyProject', projectAttributes.id);
 
 		var updatedProjectInfo = _.extend(
 			_.pick(
@@ -131,18 +98,7 @@ Meteor.methods({
 		Projects.update({_id:projectAttributes.id}, {$addToSet: {tags: updatedProjectInfo.newTag}});
 	},
 	removeTag: function(projectAttributes) {
-		var user = Meteor.user();
-		var inTeam = Teams.findOne({"userID": user._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
-		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
-
-		// ensure the user is logged in
-		if (!user)
-			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
-
-
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
-			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+		Meteor.call('canModifyProject', projectAttributes.id);
 
 		var updatedProjectInfo = _.extend(
 			_.pick(
