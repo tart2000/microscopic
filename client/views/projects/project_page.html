@@ -23,9 +23,13 @@
                 
                 <hr>
                 <strong>Team</strong><br/>
-                
+                {{#each teamMembers}}
+                    {{#with getUser this.userID}}
+                        <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
+                    {{/with}}
+                {{/each}}
                 <p></p>
-                {{author}}
+                 <a href="{{pathFor 'userProfile' this.author}}">{{getAuthor}}</a>
                 
                 
                 {{#if hasUrl}}

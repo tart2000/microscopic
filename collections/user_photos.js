@@ -36,6 +36,9 @@ userPhotos.allow({
   // Any logged in user can add a profile pic
   insert: function(userId) { if (userId) return true; },
 
+  // Only the user's owner can update it
+  update: function(userId, doc) { if (userId == doc.ownner) return true; }, 
+
   // Only the user's owner can remove it
   remove: function(userId, doc) { if (userId == doc.ownner) return true; }, 
 

@@ -71,7 +71,7 @@ Meteor.publish('allProjects', function() {
 });
 
 Meteor.publish('mainProjectPhoto', function() { 
-    return prjPhotos.find({"metadata.rank":"1"}, {fields: {"original": false}});
+    return prjPhotos.find({"metadata.rank":1, "metadata.type":"description"}, {fields: {"original": false}});
 });
 
 Meteor.publish('prjphotos', function() { 
