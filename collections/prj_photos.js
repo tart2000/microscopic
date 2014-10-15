@@ -35,7 +35,7 @@ prjPhotos = new FS.Collection("prjphotos", {
 
 prjPhotos.allow({
   insert: function(userId, doc) {
-    return true;//(userId && doc.metadata.owner === userId);
+    return ( (_.without(_.keys(doc), 'type', 'rank').length === 0) && (userId) );
   },
   update: function(userId, doc, fieldNames, modifier) {
     return (userId === doc.metadata.owner);

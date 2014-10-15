@@ -132,18 +132,45 @@ Template.projectEdit.events({
         changeRank(this, type, 'decrement', currentProjectID);             
     },
      'change #add-photo-instructions': function(event) {
+        // Check that the user can add photos
+        Meteor.call('canModifyProject', this._id, function(error){
+            if (error) {
+                Alert.add(error.reason, 'danger');
+                Router.go('projectPage', {_id: this._id});
+            }   
+        });
+
         var photoRank = getPhotoNumber(this._id, 'instruction') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
-        prjPhoto.metadata = {projectID: this._id, type: 'instruction', rank: photoRank};
+
+        prjPhoto.metadata = {
+            projectID: this._id, 
+            type: 'instruction', 
+            rank: photoRank
+        };
 
         prjPhotos.insert(prjPhoto, function (err, fileObj) {});
     }, 
     'change #add-photo-descriptions': function(event) {
+
+        // Check that the user can add photos
+        Meteor.call('canModifyProject', this._id, function(error){
+            if (error) {
+                Alert.add(error.reason, 'danger');
+                Router.go('projectPage', {_id: this._id});
+            }   
+        });
+
         var photoRank = getPhotoNumber(this._id, 'description') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
-        prjPhoto.metadata = {projectID: this._id, type: 'description', rank: photoRank};
+
+        prjPhoto.metadata = {
+            projectID: this._id, 
+            type: 'description', 
+            rank: photoRank
+        };
 
         prjPhotos.insert(prjPhoto, function (err, fileObj) {});
     }, 
