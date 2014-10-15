@@ -1,6 +1,8 @@
 <template name="comment">
     <div class="comment mb">
-        {{> avatarThumb}}
+       {{#with currentUser}}
+            {{> avatarThumb}}
+        {{/with}}
         <div class="arrow-left"></div>
         <div class="comment-content">
             <div class="comment-title">

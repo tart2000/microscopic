@@ -9,9 +9,11 @@ Template.projectPage.helpers({
         return Projects.findOne(this._id).url;
     },
     projectComments: function() {
+        Session.get('commentAdded');
         return Comments.find(); 
     },
     projectCommentCount : function() {
+
         var comments = Comments.find(); 
 
         if (comments)

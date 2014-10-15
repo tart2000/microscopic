@@ -1,6 +1,8 @@
 <template name="commentSubmit">
     <div class="comment">
-        {{> avatarThumb}}
+        {{#with currentUser}}
+            {{> avatarThumb}}
+        {{/with}}
         <div class="arrow-left-submit"></div>
         <div class="comment-submit">
         <form name="comment" class="comment-form">

@@ -60,6 +60,11 @@ Meteor.publish('teams', function(projectID) {
     return Teams.find({"projectID": projectID});
 });
 
+Meteor.publish('commentedUsers', function(projectID) { 
+    return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1}});
+});
+
+
 
 /***************************************************************************/
 /****** Publications for the view all projects page ******/

@@ -12,8 +12,15 @@ Template.commentSubmit.events({
             if (error){
                 throwError(error.reason);
             } else {
-            $body.val('');
+                $body.val('');
+                Session.set('commentAdded', true);
             }
         }); 
     }
 });
+
+Template.commentSubmit.helpers({
+    currentUser: function() {
+        return Meteor.user();
+    },
+})
