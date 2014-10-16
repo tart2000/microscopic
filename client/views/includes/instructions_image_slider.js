@@ -29,7 +29,9 @@ Template.instructionsImageSlider.rendered = function() {
 Template.instructionsImageSlider.helpers({
     projectInstructionImages: function() {
         var images = prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'instruction'}, {sort: {"metadata.rank": 1}});
-        return images;
+        if (images.count() > 0) {
+          return images;  
+        }
     },
 });
 

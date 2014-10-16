@@ -29,7 +29,9 @@ Template.descriptionImageSlider.rendered = function() {
 Template.descriptionImageSlider.helpers({
     projectDescriptionImages: function() {
         var images = prjPhotos.find({"metadata.projectID": this._id, "metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
-        return images;
+        if (images.count() > 0) {
+          return images;
+        }
     }
 });
 
