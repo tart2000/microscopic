@@ -42,6 +42,20 @@ if (Hubs.find().count() === 0) {
     });
 
 	/* The user data */
+    Accounts.createUser({
+        username: 'tart2000',
+        email: 'tart2000design@gmail.com ',
+        password: 'changethis',
+        role: 'admin'
+    });
+
+    Accounts.createUser({
+        username: 'gcool',
+        email: 'george.koulouris1@gmail.com',
+        password: 'changethis',
+        role: 'admin'
+    });
+
     var tinkyId = Accounts.createUser({
         username: 'tinky',
         email: 'tinkywinky@teletubbyland.ln',

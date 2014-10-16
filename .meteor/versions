@@ -4,6 +4,7 @@ accounts-google@1.0.2
 accounts-oauth@1.1.2
 accounts-password@1.0.3
 accounts-twitter@1.0.2
+alanning:roles@1.2.13
 anti:i18n@0.4.3
 application-configuration@1.0.3
 autoupdate@1.1.2
