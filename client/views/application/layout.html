@@ -11,24 +11,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand logo" href="{{pathFor 'homePage'}}">MUSEOMIX</a>
+              <a class="navbar-brand logo" href="{{pathFor 'homePage'}}"><img src="/museomix_2014.png"></a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{{pathFor 'projectsList'}}">Projects</a></li>
                 <li><a href="{{pathFor 'usersList'}}">Community</a></li>        
               </ul>
+              <!-- 
               <form class="navbar-form navbar-left" role="search">
                 <div class="input-group input-group-sm">
                   <input type="text" class="form-control" placeholder="Search">
                   <span class="input-group-addon"><i class="fa fa-search"></i></span>
                 </div>
-                
               </form>
+              -->
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{pathFor 'projectSubmit'}}">New project</a></li>
+                {{#if currentUser}}
+                  <li><a href="{{pathFor 'projectSubmit'}}">New project</a></li>
+                {{/if}}
                 {{> loginButtons}}
-
               </ul>
             </div><!--/.nav-collapse -->
           </div>
@@ -38,7 +40,7 @@
         
 
     <div class="container mt">
-      <div id="main" class="row">
+      <div id="main" >
           {{> alert}}
           {{> yield}}
       </div>

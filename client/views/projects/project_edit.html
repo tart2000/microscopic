@@ -1,67 +1,160 @@
 <template name="projectEdit">
-  <div class="col-md-8 col-md-offset-2">
+  <div id="project-title" class="col-md-12 text-center">
     <h1>Edit your project info</h1>
   </div>
-  <form class="main col-md-8 col-md-offset-2">
-    <div class="form-group">
-        <label class="control-label" for="title">Project name</label>
-        <div class="controls">
-            <input name="title" class="form-control input-lg" type="text" value="{{title}}" placeholder="Project name"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="baseline">Baseline</label>
-        <div class="controls">
-            <input name="baseline" class="form-control" type="text" value="{{baseline}}" placeholder="Your project baseline"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="hub">Edition</label>
-        <div class="controls">
-            <select id="hub" class="form-control">
-                {{#each hubs}}
-                <option value="{{name}}" selected="{{isHub}}">{{name}}</option>
-                {{/each}}
-            </select>
-        </div>
-    </div>
-     <div class="form-group">
-        <label for="licences">Licences</label>
-        <div class="controls">
-            <select id="licences" class="form-control">
-                {{#each licences}}
-                <option value="{{name}}" selected="{{isLicence}}">{{name}}</option>
-                {{/each}}
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="url">External URL</label>
-        <div class="controls">
-            <input name="url" class="form-control" type="text" value="{{url}}" placeholder="http://"/>
-        </div>
-    </div>
-    <div class="form-inline">
-        <label for="tags">Tags</label>
-        <input id="tagbox" class="form-control" type="text" placeholder="Tags"/>
-        <a href="#" class="btn btn-default add-tag">Add</a>
-    </div>
+    <div class="container">
+    <div class="row project-container">
+    <form>        
 
-    <div class="list-tags mt">
-        {{#each projectTags}}
-            <span class="tag">{{this}}  <span data-role="remove"><i class="fa fa-times"></i></span>
-            </span>
-        {{/each}}
+        <div class="col-sm-3 col-sm-push-9">
+            <div class="fixed-sidebar">
+                <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
+                    <li class="active"><a role="tab" data-toggle="tab" href="#basic">Basic info</a></li>
+                    <li class=""><a role="tab" data-toggle="tab" href="#team">Team</a></li>
+                    <li class=""><a role="tab" data-toggle="tab" href="#description">Description</a></li>
+                    <li class=""><a role="tab" data-toggle="tab" href="#instructions">Instructions</a></li>
+                </ul>
+                <div class="right-sidebar">
+                    <div class="form-group">
+                        <div class="controls command-buttons">
+                            <input class="btn btn-block btn-primary submit" type="submit" id="save" value="Save"/>
+                            <a class="btn btn-default btn-block cancel" href="#">Back to project</a>
+                            <a class="btn btn-danger delete btn-block" href="#">Delete project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col-sm-3 -->
+
+        <div class="col-sm-9 col-sm-pull-3">
+            <!-- tabs -->
+            <div class="tab-content">
+                <div class="tab-pane active row" id="basic">
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="title">Project name</label>
+                                <div class="controls">
+                                    <input name="title" class="form-control input-lg" type="text" value="{{title}}" placeholder="Project name"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="baseline">Baseline</label>
+                                <div class="controls">
+                                    <input name="baseline" class="form-control" type="text" value="{{baseline}}" placeholder="Your project baseline"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hub">Edition</label>
+                                <div class="controls">
+                                    <select id="hub" class="form-control">
+                                        {{#each hubs}}
+                                        <option value="{{name}}" selected="{{isHub ..}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="licences">Licences</label>
+                                <div class="controls">
+                                    <select id="licences" class="form-control">
+                                        {{#each licences}}
+                                        <option value="{{name}}" selected="{{isLicence ..}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group pb">
+                                <label class="control-label" for="url">External URL</label>
+                                <div class="controls">
+                                    <input name="url" class="form-control" type="text" value="{{url}}" placeholder="http://"/>
+                                </div>
+                            </div>
+                            <div class="form-inline mt">
+                                <label for="tags">Tags</label>
+                                <input id="tagbox" class="form-control" type="text" placeholder="Tags"/>
+                                <a href="#" class="btn btn-default add-tag">Add</a>
+                            </div>
+                            <div class="list-tags mt">
+                                {{{projectTags2}}}
+                            </div>
+                    </div>
+                </div> <!-- end basic info tab -->
+
+                <div class="tab-pane" id="team">
+                    {{> coreTeamEdit}}
+                    {{> facilitatorEdit}}
+                    {{> thanksEdit}}
+                </div> <!-- end team tab -->
+
+                <div class="tab-pane row" id="description">
+                    <div class="col-md-12">
+                        <label class="control-label" for="projectdescription">Edit your project description. You can use Markdown.</label><br/>
+                        {{>markdownCheatsheet}}
+                        <textarea id="projectdescription" class="form-control" value="{{description}}" rows="15"></textarea>
+                        <label class="control-label mt" for="">Your project images</label> 
+                        <div class="image-import">
+                            <strong>Drag & drop images here</strong> or choose a file: 
+                            <input type="file" name="file" id="add-photo-descriptions">
+                        </div>
+                        <div class="project-images mt">
+                            <label class="control-label">You can reorder your images using the arrows.<br/> The top one will be your project featured image.</label>
+                            {{#each getPhotos 'description'}}
+                                <div id="container-{{this._id}}" class="">
+                                    <div class="img-controls">
+                                        <span id="delete-{{this._id}}" class="delete-photo description"><i class="fa fa-times" style="margin-left:5px"></i></span>
+                                        <span id="rank-up-{{this._id}}" class="rank-up description"><i class="fa fa-arrow-up"></i></span>
+                                    </div>
+                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive"/>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <label class="control-label mt" for="project-video">Your project video</label> 
+                        <div class="controls">
+                            <input name="projectvideo" class="form-control" type="text" value="{{videolink}}" placeholder="http://"/>
+                            <div class="edit">Only Youtube and Vimeo links supported for now</div>
+                        </div>
+                    </div>
+                </div> <!-- end description tab -->
+
+                <div class="tab-pane row" id="instructions">
+                    <div class="col-md-12">
+                        <label class="control-label" for="projectinstructions">Explain how to make your project. You can use Markdown.</label><br/>
+                        {{>markdownCheatsheet}}
+                        <textarea id="projectinstructions" class="form-control" value="{{instructions}}" rows="15"></textarea>
+                        <label class="control-label mt" for="">Your 'how-to' images</label> 
+                        <div class="image-import">
+                            <strong>Drag & drop how-to images here</strong> or choose a file: 
+                            <input type="file" name="file" id="add-photo-instructions">
+                        </div>
+                        <div class="project-images mt">
+                            <label class="control-label">You can reorder your images using the arrows.</label>
+                            {{#each getPhotos 'instruction'}}
+                                <div id="container-{{this._id}}" class="">
+                                    <div class="img-controls">
+                                        <span id="delete-{{this._id}}" class="delete-photo instruction"><i class="fa fa-times" style="margin-left:5px"></i></span>
+                                        <span id="rank-up-{{this._id}}" class="rank-up instruction"><i class="fa fa-arrow-up"></i></span>
+                                    </div>
+                                    <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive"/>
+                                </div>
+                            {{/each}}
+                        </div> 
+                        <label class="control-label mt" for="">Source files</label> 
+                        <div class="image-import">
+                            <strong>Drag & drop source files here</strong> or choose a file: 
+                            <input type="file" name="file" class="update">
+                        </div>
+                        <div class="project-images mt">
+                            <li>file.pdf  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                            <li>another_file.stl  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                        </div> 
+                    </div>
+                </div> <!-- end instructions tab -->
+
+
+            </div> <!-- end tab content -->
+        </div> <!-- end col-sm-9 -->
+
+    </form>
     </div>
-
-
-    <div class="form-group">
-        <div class="controls command-buttons">
-            <a class="btn btn-danger delete" href="#">Delete project</a>
-            <input type="submit" id="save" value="Save" class="btn btn-primary submit right"/>
-            <a class="btn btn-default cancel right" href="#" style="margin-right:15px">Cancel</a>
-        </div>
-    </div>
-
-  </form>
+    </div> <!-- end page -->
 </template>

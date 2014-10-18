@@ -2,30 +2,7 @@ if (Hubs.find().count() === 0) {
 
 	var now = new Date().getTime();
 
-	/* The user data */
-     var tinkyId = Meteor.users.insert({
-         emails : [  {  address : "tinkywinky@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Tinky Winky", thumblink: "/user_images/tinky.jpg" }, 
-         username : "tinky" 
-     });
-     var tinky = Meteor.users.findOne(tinkyId);
-
-     var laaId = Meteor.users.insert({
-         emails : [  {  address : "laalaa@teletubbyland.ln",  verified : false } ], 
-         profile : { name : "Laa Laa", thumblink: "/user_images/laalaa.jpg" }, 
-         username : "laa"
-     });
-     var laa = Meteor.users.findOne(laaId);
-
-     var ladyId = Meteor.users.insert({
-         emails : [  {  address : "ladylee@gmail.com",  verified : false } ], 
-         profile : { name : "Lady Lé", thumblink: "/user_images/lady.jpg" }, 
-         username : "lady"
-     });
-     var lady = Meteor.users.findOne(ladyId);
-
-
-	/* The hub data */
+    /* The hub data */
     var montrealID = Hubs.insert({
         name:'Montreal',
         museum: 'Museum of Fine Arts',
@@ -33,47 +10,57 @@ if (Hubs.find().count() === 0) {
     });
     var montreal = Hubs.findOne(montrealID);
 
-    Hubs.insert({
-        name:'Geneve',
-        museum: 'Musée d\'art et d\'histoire de Genève',
-        thumblink:'/hubs/genevehistoire.png',
+	/* The user data */
+    Accounts.createUser({
+        username: 'tart2000',
+        email: 'tart2000design@gmail.com ',
+        password: 'changethis',
+        role: 'admin'
     });
-    Hubs.insert({
-        name:'Derby',
-        museum: 'Derby Silk Museum',
-        thumblink:'/hubs/derbysilk.png',
+
+    Accounts.createUser({
+        username: 'gcool',
+        email: 'george.koulouris1@gmail.com',
+        password: 'changethis',
+        role: 'admin'
     });
-    Hubs.insert({
-        name:'Nantes',
-        museum: 'Museum of natural history',
-        thumblink:'/hubs/naturenantes.png',
+
+    var tinkyId = Accounts.createUser({
+        username: 'tinky',
+        email: 'tinkywinky@teletubbyland.ln',
+        password: 'tinky',
+        profile : { name : "Tinky Winky", hub : geneveID, role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}},
     });
-    Hubs.insert({
-        name:'Arles',
-        museum: 'Musée départemental d\'Arles antique avec le Museon Arlaten ',
-        thumblink:'/hubs/arlesantique.png',
+
+     var tinky = Meteor.users.findOne(tinkyId);
+
+    var laaId = Accounts.createUser({
+        username: 'laa',
+        emails: 'laalaa@teletubbyland.ln',
+        password: 'asdfasdf',
+        profile : { name : "Laa Laa"}, 
     });
-    Hubs.insert({
-        name:'Lille',
-        museum: 'Musée d\'Histoire Naturelle et de Géologie de Lille',
-        thumblink:'/hubs/geolille.png',
+     var laa = Meteor.users.findOne(laaId);
+
+    var ladyId = Accounts.createUser({
+        username: 'lady',
+        emails: 'ladylee@gmail.com',
+        password: 'asdfasdf',
+        profile : { name : "Lady Lé"}, 
     });
-    Hubs.insert({
-        name:'Saint-Etienne',
-        museum: 'Musée d\'art et d industrie de Saint-Etienne',
-        thumblink:'/hubs/stetienne.png',
-    });
+
+     var lady = Meteor.users.findOne(ladyId);
+
 
     /* The Project Data */
     var omgID = Projects.insert({ 
         title: 'OMG',
         baseline:'Oh My Gallery',
         description: 'Le projet Oh My Gallery ! est un portail de découverte interactif qui ouvre le périmètre géographique et temporel des œuvres de la Galerie de Temps du Louvre-Lens. Autour de la Madeleine à la veilleuse de Georges de La Tour, le prototype propose un voyage virtuel à travers l\'espace et le temps par bonds successifs. Le visiteur crée son propre musée imaginaire.',
-        author: tinky.profile.name,
-        authorID: tinkyId,
+        author: tinkyId,
         hubID:montrealID,
         hub: 'Montreal',
-        thumblink: 'public/images/SWAG.jpg',
+        thumblink: '',
         commentsCount: 0,
         tags:[],
         sumbitted: now - 12 * 3600 * 1000
@@ -83,11 +70,10 @@ if (Hubs.find().count() === 0) {
         title: 'Explora',
         baseline:'Mix li Nord',
         description: 'Avec l\'Explora, découvrez une nouvelle expérience du musée et de la région. A la fois sensoriel et interactif, Explora vous invite à poursuivre votre expérience muséale sur le territoire du Nord-Pas-de-Calais. Soyez curieux, et interagissez, c\'est vous qui choisissez votre destination!',
-        author: laa.profile.name,
-        authorID: laaId,
+        author: laaId,
         hubID:montrealID,
         hub: 'Montreal',
-        thumblink: 'public/images/SWAG.jpg',
+        thumblink: '',
         commentsCount: 0,
         tags:[],
         sumbitted: now - 10 * 3600 * 1000
@@ -98,14 +84,16 @@ if (Hubs.find().count() === 0) {
     	projectID: omgID,
     	userID: laaId,
     	user: laa.profile.name,
-    	thumblink: laa.profile.thumblink
+    	thumblink: laa.profile.thumblink,
+        role: 'core'
     });
 
     Teams.insert({
     	projectID: omgID,
     	userID: tinkyId,
     	user: tinky.profile.name,
-    	thumblink: tinky.profile.thumblink
+    	thumblink: tinky.profile.thumblink,
+        role: 'facilitator'
     });
 
     /* The comment data */
@@ -126,29 +114,6 @@ if (Hubs.find().count() === 0) {
     	sumbitted: now - 9 * 3600 * 1000,
     	body: 'I think ours is better though....'
     });
-
-    /* The project photos */
-    PrjPhotos.insert({
-    	projectID: omgID,
-    	thumlink: 'public/images/SWAG.jpg'
-    });
-
-    /* The Instructions */
-    Instructions.insert({
-    	title: 'STEP 1',
-    	projectID: omgID,
-    	thumlink: 'public/images/SWAG.jpg',
-    	body: 'The 1st step',
-    	rank: 1
-    });
-
-    Instructions.insert({
-    	title: 'STEP 2',
-    	projectID: omgID,
-    	thumlink: 'public/images/SWAG.jpg',
-    	body: 'The 2nd step',
-    	rank: 1
-    })
 
 } 
 

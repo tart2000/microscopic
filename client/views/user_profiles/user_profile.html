@@ -2,23 +2,43 @@
     <div class="container">
         <div class="row project-container">
             <div class="col-sm-3 col-xs-4">
-             	{{#if profile.thumblink}} <img src="{{profile.thumblink}}" class="img-responsive">
+             	{{#if profile.thumblink}} <img src="{{getUserPhoto}}" class="img-responsive">
             	{{else}}
-            		<i class="avatar fa fa-user"></i>
+            		<img src="/default-avatar.png" class="img-responsive">
             	{{/if}}
             	<h3>{{profile.name}} </h3>
                 <h6> {{username}} </h6>
+                {{#if isUser}}
+                    <a class="btn btn-default btn-block mb" href="{{pathFor 'modifyUserProfile'}}">Edit your profile</a>
+                {{/if}}
                 <hr>
                 <div class="social-icons">
-                	<i class="fa fa-facebook-square fa-2x"></i>
-                    <i class="fa fa-twitter-square fa-2x"></i>
-                    <i class="fa fa-linkedin-square fa-2x"></i>
-                    <i class="fa fa-instagram fa-2x"></i>
-                    <i class="fa fa-tumblr-square fa-2x"></i>
-                    <a href="mailto:{{emails.[0].address}}" target="_blank"><i class="fa fa-envelope-square fa-2x"></i></a>
-                    <i class="fa fa-external-link-square fa-2x"></i>
+                	{{#if getSocial 'facebook'}}
+                        <a href="{{getSocial 'facebook'}}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'twitter'}}
+                        <a href="{{getSocial 'twitter'}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'linkedin'}}
+                        <a href="{{getSocial 'linkedin'}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'instagram'}}
+                        <a href="{{getSocial 'instagram'}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                    {{/if}}
+                    {{#if getSocial 'tumblr'}}
+                        <a href="{{getSocial 'tumblr'}}" target="_blank"><i class="fa fa-tumblr-square fa-2x"></i></a>
+                    {{/if}}
+                        <a href="mailto:{{emails.[0].address}}" target="_blank"><i class="fa fa-envelope-square fa-2x"></i></a>
+                    {{#if getSocial 'website'}}
+                        <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
+                    {{/if}}
                 </div>
-                <h7><i class="fa fa-map-marker"></i>Montreal</h7>
+                {{#if profile.hub}}
+                <h7><i class="fa fa-map-marker"></i>{{getHub}}</h7><br/>
+                {{/if}}
+                {{#if profile.role}}
+                <h7><i class="fa fa-user"></i>{{profile.role}}</h7>
+                {{/if}}
             </div> <!-- end first column --> 
 
             <div class="col-sm-9">

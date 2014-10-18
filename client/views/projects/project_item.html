@@ -1,8 +1,8 @@
 <template name="projectItem">
-  <div class="col-md-3">
+  <div class="col-md-3 col-sm-4">
     <div class="project-thumb">
         <a href="{{pathFor 'projectPage'}}">
-        <img class="img-responsive" src="/images/SWAG.jpg">
+        <img class="img-responsive" src="{{#if getPhoto}} {{getPhoto}} {{else}} /images/SWAG.jpg {{/if}}">
         <div class="project-thumb-title">
             <h4>{{title}} - {{baseline}}</h4>
 

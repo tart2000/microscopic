@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 mizzao:bootstrap-3
 iron:router
 sacha:spin
@@ -15,5 +14,14 @@ accounts-facebook
 accounts-twitter
 accounts-google
 handlebars
-ian:accounts-ui-bootstrap-3
 steeve:simple-bootstrap3-alerts
+showdown
+cfs:standard-packages
+cfs:filesystem
+accounts-base
+ian:accounts-ui-bootstrap-3
+cfs:graphicsmagick
+mizzao:autocomplete
+email
+alanning:roles
+

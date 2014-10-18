@@ -1,5 +1,5 @@
 <template name="hubsList">
-    <div class="container">
+
     {{#each hubs}}
         <h2><a href="{{pathFor 'hubPage'}}">{{name}}</a></h2>
             <div class="row">
@@ -11,5 +11,5 @@
                 <h6><a href="{{pathFor 'hubPage'}}">View all projects for {{name}} →</a></h6>
             </div>
     {{/each}}
-    </div>
+
 </template>

@@ -1,0 +1,118 @@
+ <template name="modifyUserProfile">
+    <div class="container">
+        <div class="row project-container">
+            <form>        
+
+                <div class="col-sm-3 col-sm-push-9">
+                    <div class="fixed-sidebar">
+                        <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
+                            <li class="active"><a role="tab" data-toggle="tab" href="#basic">Basic info</a></li>
+                            <li class=""><a role="tab" data-toggle="tab" href="#social">Social</a></li>
+                            <li class=""><a role="tab" data-toggle="tab" href="#preferences">Preferences</a></li>
+                        </ul>
+                        <div class="right-sidebar">
+                            <div class="form-group">
+                                <div class="controls command-buttons">
+                                    <input class="btn btn-block btn-primary submit" type="submit" id="save" value="Save"/>
+                                    <a class="btn btn-default btn-block cancel" href="#">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-sm-3 -->
+
+                <div class="col-sm-9 col-sm-pull-3">
+                    <!-- tabs -->
+                    <div class="tab-content">
+                        <div class="tab-pane active row" id="basic">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="baseline">Name</label>
+                                    <div class="controls">
+                                        <input name="baseline" id="name" class="form-control" type="text" value="{{getUserName}}" placeholder="Your name"/>
+                                    </div>
+                                </div>
+                                Select your profile image: 
+                                    <input id="upload" type="file" />
+                                <img src="{{getUserPhoto}}" class="img-responsive mt"/>
+                                <div class="form-group mt col-md-6">
+                                    <label for="hub">Edition</label>
+                                    <div class="controls">
+                                        <select id="hub" class="form-control">
+                                            {{#each getHubs}}
+                                            <option value="{{name}}" selected="{{isHub ..}}" id="{{_id}}">{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group mt col-md-6">
+                                    <label for="role">Role</label>
+                                    <div class="controls">
+                                        <select id="role" class="form-control">
+                                            <option value="Participant" {{hasRole 'Participant'}}>Participant</option>
+                                            <option value="Support" {{hasRole 'Support'}}>Support</option>
+                                            <option value="Organization" {{hasRole 'Organization'}}>Organization</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end basic info tab -->
+
+                        <div class="tab-pane" id="social">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="facebook" class="col-sm-4 control-label">Facebook</label>
+                                    <div class="col-sm-8">
+                                        <input id="facebook" class="form-control" type="text" placeholder="http://" value="{{getSocial 'facebook'}}" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="twitter" class="col-sm-4 control-label">Twitter</label>
+                                    <div class="col-sm-8">
+                                        <input id="twitter" class="form-control" type="text" placeholder="http://" value="{{getSocial 'twitter'}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="linkedin" class="col-sm-4 control-label">LinkedIn</label>
+                                    <div class="col-sm-8">
+                                        <input id="linkedin" class="form-control" type="text" placeholder="http://" value="{{getSocial 'linkedin'}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="instagram" class="col-sm-4 control-label">Instagram</label>
+                                    <div class="col-sm-8">
+                                        <input id="instagram" class="form-control" type="text" placeholder="http://" value="{{getSocial 'instagram'}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tumblr" class="col-sm-4 control-label">Tumblr</label>
+                                    <div class="col-sm-8">
+                                        <input id="tumblr" class="form-control" type="text" placeholder="http://" value="{{getSocial 'tumblr'}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website" class="col-sm-4 control-label">Personal website</label>
+                                    <div class="col-sm-8">
+                                        <input id="website" class="form-control" type="text" placeholder="http://" value="{{getSocial 'website'}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end social tab -->
+
+                        <div class="tab-pane row" id="preferences">
+                            <div class="col-md-12">
+                                users can modify their settings, change their password here
+
+                                <a class="btn btn-default right" href="#">Delete account  <i class="fa fa-times" style="margin-left:5px"></i></a>
+                            </div>
+                        </div> <!-- end description tab -->
+
+                    </div> <!-- end tab content -->
+                </div> <!-- end col-sm-9 -->
+
+            </form>
+        </div>
+    </div> <!-- end page -->
+
+		
+</template>

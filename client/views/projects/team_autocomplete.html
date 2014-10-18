@@ -1,0 +1,67 @@
+<template name="coreTeamEdit">
+	<label for="coreteam">Coreteam</label>
+    <div class="form-inline">
+        {{> inputAutocomplete settings=settings id="coreteam" class="form-control" type="text" placeholder="Add team member email"}}
+        <a href="#" class="btn btn-default add-member">Add</a>
+    </div>
+     <div class="project-images mt mb">
+        {{#each coreteam}}
+        	<li>
+        		{{#if isRegistered this.user}}
+        			{{this.user}}
+        		{{else}}
+        			{{this.email}}
+        		{{/if}}
+        		<i class="fa fa-times delete-member" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        	</li>
+        {{/each}}
+    </div>
+</template>
+
+<template name="facilitatorEdit">
+	<label for="facilitator">Facilitator</label>
+	<div class="form-inline">
+		{{> inputAutocomplete settings=settings id="facilitator" class="form-control" type="text" placeholder="Faciliatator email"}}
+	    <a href="#" class="btn btn-default add-facilitator">Add</a>
+	</div>
+	 <div class="project-images mt mb">
+	    {{#each facilitators}}
+        	<li>
+        		{{#if isRegistered this.user}}
+        			{{this.user}}
+        		{{else}}
+        			{{this.email}}
+        		{{/if}}
+        		<i class="fa fa-times delete-member" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        	</li>
+        {{/each}}
+	</div>  
+</template>
+
+<template name="thanksEdit">
+	<label for="thanks">Special thanks</label>
+    <div class="form-inline">
+    	{{> inputAutocomplete settings=settings id="thanks" class="form-control" type="text" placeholder="Say tanks!"}}
+        <a href="#" class="btn btn-default add-thanks">Add</a>
+    </div>
+     <div class="project-images mt">
+        {{#each thanksTeam}}
+        	<li>
+        		{{#if isRegistered this.user}}
+        			{{this.user}}
+        		{{else}}
+        			{{this.email}}
+        		{{/if}}
+        		<i class="fa fa-times delete-member" style="margin-left:5px" id="delete-{{this._id}}"></i>
+        	</li>
+        {{/each}}
+    </div>
+</template>
+
+<template name="userDropdown">
+    <span class="label label-default">{{emails.[0].address}}</span>
+</template>
+
+<template name="noMatch">
+    <span class="label label-default">We just can't find it... Just add the email and we'll contact him/her!</span>
+</template>

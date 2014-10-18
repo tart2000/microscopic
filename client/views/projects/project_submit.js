@@ -2,18 +2,22 @@ Template.projectSubmit.events({
     'submit': function(e) {
         e.preventDefault();
 
+        var projectProperties = {
+            title: $(e.target).find('[id=title]').val(), 
+            baseline: $(e.target).find('[id=baseline]').val(),
+            hub: $(e.target).find('[id=hub]').val()
+        }
 
-    var project = {
-        title: $(e.target).find('[id=title]').val(), 
-        baseline: $(e.target).find('[id=baseline]').val(),
-        hub: $(e.target).find('[id=hub]').val(),
-        team: []
-    }
+        Meteor.call('createProject', projectProperties, function(error, id){
+            if (error)
+                Alert.add(error.reason, 'danger');
+            else {
+                Alert.add('your project has been created!', 'success');
+                Router.go('projectPage', {'_id': id});
+            }
 
-    project._id = Projects.insert(project);
-    Router.go('projectPage', project);
-    Alert.add('your project has been created!', 'success');
-    }
+        });
+    }   
 });
 
 Template.projectSubmit.helpers({ 
