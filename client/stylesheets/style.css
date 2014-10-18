@@ -8,6 +8,10 @@ body {
         display: none;
     }
 }
+.navbar-brand .logo {
+    position: relative;
+    top: -2px;
+}
 
 #main {
     margin-top: 80px;
@@ -371,4 +375,11 @@ label {
     width: 100%;
     height: 100%;
 }
-
+.page-content {
+    background-color: white;
+}
+.more-link {
+    float: right;
+    position: relative;
+    top: -10px;
+}

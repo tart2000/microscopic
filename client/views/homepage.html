@@ -1,12 +1,28 @@
 <template name="homePage">
     <div class="jumbotron">
-      <h1>Welcome to Museomix</h1>
+      <h1>MuseomixMTL</h1>
       <p>Museomix is a 3-day creative sprint inside a museum. It is happening in 7 museums in 4 different countries on November 7/8/9 2014.</p>
       <a class="btn btn-primary btn-lg" href="http://museomix.org" target="_blank">Learn more</a>
     </div>
     <div class="row">
     {{#each hubs}}
-      {{> hubItem}} 
+      {{> largeHubItem}} 
     {{/each}}
     </div>
+    <h2>Recent projects</h2>
+    <div class="row">
+      {{#each fourProjects}}
+        {{> projectItem}}
+      {{/each}}
+    </div>
+    <a class="more-link" href="{{pathFor 'projectsList'}}">View all projects <i class="fa fa-arrow-right"></i></a>
+
+    <h2>Active users</h2> 
+    <div class="row">
+      {{#each sixUsers}}
+        {{> userItem}}
+      {{/each}}
+    </div>
+    <a class="more-link" href="{{pathFor 'usersList'}}">View all users <i class="fa fa-arrow-right"></i></a>
+
 </template>

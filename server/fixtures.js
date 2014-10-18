@@ -10,37 +10,6 @@ if (Hubs.find().count() === 0) {
     });
     var montreal = Hubs.findOne(montrealID);
 
-    var geneveID = Hubs.insert({
-        name:'Geneve',
-        museum: 'Musée d\'art et d\'histoire de Genève',
-        thumblink:'/hubs/genevehistoire.png',
-    });
-    Hubs.insert({
-        name:'Derby',
-        museum: 'Derby Silk Museum',
-        thumblink:'/hubs/derbysilk.png',
-    });
-    Hubs.insert({
-        name:'Nantes',
-        museum: 'Museum of natural history',
-        thumblink:'/hubs/naturenantes.png',
-    });
-    Hubs.insert({
-        name:'Arles',
-        museum: 'Musée départemental d\'Arles antique avec le Museon Arlaten ',
-        thumblink:'/hubs/arlesantique.png',
-    });
-    Hubs.insert({
-        name:'Lille',
-        museum: 'Musée d\'Histoire Naturelle et de Géologie de Lille',
-        thumblink:'/hubs/geolille.png',
-    });
-    Hubs.insert({
-        name:'Saint-Etienne',
-        museum: 'Musée d\'art et d industrie de Saint-Etienne',
-        thumblink:'/hubs/stetienne.png',
-    });
-
 	/* The user data */
     Accounts.createUser({
         username: 'tart2000',
@@ -91,7 +60,7 @@ if (Hubs.find().count() === 0) {
         author: tinkyId,
         hubID:montrealID,
         hub: 'Montreal',
-        thumblink: 'public/images/SWAG.jpg',
+        thumblink: '',
         commentsCount: 0,
         tags:[],
         sumbitted: now - 12 * 3600 * 1000
@@ -104,7 +73,7 @@ if (Hubs.find().count() === 0) {
         author: laaId,
         hubID:montrealID,
         hub: 'Montreal',
-        thumblink: 'public/images/SWAG.jpg',
+        thumblink: '',
         commentsCount: 0,
         tags:[],
         sumbitted: now - 10 * 3600 * 1000
@@ -145,23 +114,6 @@ if (Hubs.find().count() === 0) {
     	sumbitted: now - 9 * 3600 * 1000,
     	body: 'I think ours is better though....'
     });
-
-    /* The Instructions */
-    Instructions.insert({
-    	title: 'STEP 1',
-    	projectID: omgID,
-    	thumlink: 'public/images/SWAG.jpg',
-    	body: 'The 1st step',
-    	rank: 1
-    });
-
-    Instructions.insert({
-    	title: 'STEP 2',
-    	projectID: omgID,
-    	thumlink: 'public/images/SWAG.jpg',
-    	body: 'The 2nd step',
-    	rank: 1
-    })
 
 } 
 
