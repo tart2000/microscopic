@@ -11,12 +11,15 @@ Meteor.publish('singleUser', function(userId) {
     return Meteor.users.find(userId, {fields:{emails:true, profile: true, username: true}});
 });
 
-Meteor.publish('singleUserPhoto', function(userID) { 
-    return userPhotos.find({'metadata.owner':userID}, {fields: {"original": false}});
+Meteor.publish('singleUserPhoto', function(userId) { 
+    return userPhotos.find({'metadata.owner':userId}, {fields: {"original": false}});
 });
 
 Meteor.publish('subscribeToHub', function() { 
     return Hubs.find({}, {fields: {name: true}});
+});
+Meteor.publish('userProjects', function(userId) {
+    return Projects.find({'author':userId});
 });
 
 
