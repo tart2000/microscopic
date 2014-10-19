@@ -1,7 +1,10 @@
 <template name="share">
-    <div id="share-btn">
+    
+    <div class="hand" data-toggle="collapse" data-target="#share-btn">
         Share <i class="fa fa-share-alt"></i> 
-        <a href="https://www.facebook.com/sharer/sharer.php"><i class="fa fa-facebook"></i></a>
+    </div>
+    <div id="share-btn" class="collapse">
+        <a href="https://www.facebook.com/sharer.php" target="_blank"><i class="fa fa-facebook"></i></a>
 
         <a href="https://twitter.com/intent/tweet?text={{title}} - {{baseline}}&url={{pageLink}}&hashtags=museomix,museomixmtl" target="popup"><i class="fa fa-twitter"></i></a>
 
