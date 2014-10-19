@@ -56,5 +56,8 @@ Template.userProfile.helpers({
             return false
 
         return true;
+    }, 
+    userProjects: function() {
+        return Projects.find(); 
     }
 });

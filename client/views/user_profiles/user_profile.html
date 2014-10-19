@@ -1,5 +1,19 @@
  <template name="userProfile">
     <div class="container">
+        
+        <div id="project-hub" class="text-right">
+            <h4>
+            {{#if profile.role}}
+            <strong>{{profile.role}} -</strong>
+            {{/if}}
+            {{#if profile.hub}}
+            <strong>  {{getHub}}  </strong><i class="fa fa-map-marker"></i>
+            {{/if}}
+            
+            </h4>
+        </div>
+        
+
         <div class="row project-container">
             <div class="col-sm-3 col-xs-4">
              	{{#if profile.thumblink}} <img src="{{getUserPhoto}}" class="img-responsive">
@@ -33,20 +47,18 @@
                         <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
                     {{/if}}
                 </div>
-                {{#if profile.hub}}
-                <h7><i class="fa fa-map-marker"></i>{{getHub}}</h7><br/>
-                {{/if}}
-                {{#if profile.role}}
-                <h7><i class="fa fa-user"></i>{{profile.role}}</h7>
-                {{/if}}
+                
             </div> <!-- end first column --> 
 
             <div class="col-sm-6">
                 activity goes here (latest comments, etc.)
             </div>    
             <div class="col-sm-3">
-                <strong>Project(s)</strong>
+                <strong>Project(s)</strong><br/>
                 <!-- Show users projects here -->
+                {{#each userProjects}}
+                    <a href="{{pathFor 'projectPage'}}">{{title}} - {{baseline}}</a><br/>
+                {{/each}}
             </div>
         </div>
     </div>
