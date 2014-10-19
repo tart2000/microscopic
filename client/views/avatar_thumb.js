@@ -14,6 +14,10 @@ Template.avatarThumb.helpers({
         return thumb;
     },
 
-})
+});
+
+Template.avatarThumb.rendered = function() {
+    $(".avatar-thumb img").tooltip();
+}
 
 

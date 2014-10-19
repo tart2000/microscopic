@@ -383,3 +383,6 @@ label {
     position: relative;
     top: -15px;
 }
+.tooltip {
+    font-size: 0.8em;
+}
