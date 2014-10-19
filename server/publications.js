@@ -19,7 +19,7 @@ Meteor.publish('subscribeToHub', function() {
     return Hubs.find({}, {fields: {name: true}});
 });
 Meteor.publish('userProjects', function(userId) {
-    return Projects.find({'author':userId});
+    return Projects.find({'author':userId}, {fields: {'title':1, 'baseline':1}});
     /*** TODO Ici, il faudrait appeler tous les projets dans lesquels il fait partie de l'équipe ***/
 });
 

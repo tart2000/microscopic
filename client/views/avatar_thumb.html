@@ -2,7 +2,7 @@
     <div class="avatar-thumb">
         {{#if getUserPhoto}} <img src="{{getUserPhoto}}" class="img-responsive" width="40px" data-toggle="tooltip" data-placement="top" title="{{username}}"> 
         {{else}}
-            <img src="/default-avatar.png" class="img-responsive" width="40px">
+            <img src="/default-avatar.png" class="img-responsive" width="40px" data-toggle="tooltip" data-placement="top" title="{{username}}">
         {{/if}}
     </div>
 </template>
