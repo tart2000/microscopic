@@ -45,8 +45,11 @@
                 activity goes here (latest comments, etc.)
             </div>    
             <div class="col-sm-3">
-                <strong>Project(s)</strong>
+                <strong>Project(s)</strong><br/>
                 <!-- Show users projects here -->
+                {{#each userProjects}}
+                    <a href="{{pathFor 'projectPage'}}">{{title}} - {{baseline}}</a><br/>
+                {{/each}}
             </div>
         </div>
     </div>

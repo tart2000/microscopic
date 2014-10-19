@@ -20,6 +20,7 @@ Meteor.publish('subscribeToHub', function() {
 });
 Meteor.publish('userProjects', function(userId) {
     return Projects.find({'author':userId});
+    /*** TODO Ici, il faudrait appeler tous les projets dans lesquels il fait partie de l'équipe ***/
 });
 
 
