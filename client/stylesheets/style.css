@@ -386,3 +386,10 @@ label {
 .tooltip {
     font-size: 0.8em;
 }
+/** share buttons styling **/ 
+.sharer-0 label {
+    background-color: transparent; 
+    padding: 0px;
+    position: relative;
+    top:-8px;
+}

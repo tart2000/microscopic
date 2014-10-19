@@ -22,6 +22,8 @@
             <div class="right-sidebar">
                 
                 <hr>
+                {{>share}}
+                <hr>
                 <strong>Team</strong><br/>
                 {{#each teamMembers}}
                     {{#with getUser this.userID}}
