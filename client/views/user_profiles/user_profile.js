@@ -52,7 +52,7 @@ Template.userProfile.helpers({
         if (!currentUser)
             return false;
 
-        if (currentUser._id !== this._id)
+        if ((currentUser._id !== this._id) && (!Roles.userIsInRole(currentUser, ['admin'])) )
             return false
 
         return true;

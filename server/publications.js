@@ -45,6 +45,14 @@ Meteor.publish('hubUserPhotos', function(hubID) {
     return userPhotos.find({"metadata.hub": hubID}, {fields: {"original": false, "metadata": false}});
 });
 
+Meteor.publish('hubProjects', function(hubID) {
+    return Projects.find({'hubID': hubID}, {fields: {'title': 1, 'baseline': 1, 'hub': 1}});
+});
+
+Meteor.publish('hubProjectPhotos', function(hubID) { 
+    return prjPhotos.find({"metadata.rank":1, "metadata.type":"description", "metadata.hubID": hubID}, {fields: {"original": false}});
+});
+
 
 /***************************************************************************/
 /****** Publications for the project page ******/
@@ -66,6 +74,10 @@ Meteor.publish('teams', function(projectID) {
 
 Meteor.publish('commentedUsers', function(projectID) { 
     return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1}});
+});
+
+Meteor.publish('projectTeam', function () {
+    return Meteor.users.find({}, {fields: {'username': 1, 'emails':1}});
 });
 
 /***************************************************************************/

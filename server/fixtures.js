@@ -11,25 +11,26 @@ if (Hubs.find().count() === 0) {
     var montreal = Hubs.findOne(montrealID);
 
 	/* The user data */
-    Accounts.createUser({
-        username: 'tart2000',
-        email: 'tart2000design@gmail.com ',
-        password: 'changethis',
-        role: 'admin'
-    });
-
-    Accounts.createUser({
+    var georgeID = Accounts.createUser({
         username: 'gcool',
         email: 'george.koulouris1@gmail.com',
         password: 'changethis',
-        role: 'admin'
     });
+
+    var arthurID = Accounts.createUser({
+        username: 'tart2000',
+        email: 'tart2000design@gmail.com ',
+        password: 'changethis',
+    });
+
+    Roles.addUsersToRoles(georgeID, ['admin']);
+    Roles.addUsersToRoles(arthurID, ['admin']);
 
     var tinkyId = Accounts.createUser({
         username: 'tinky',
         email: 'tinkywinky@teletubbyland.ln',
         password: 'tinky',
-        profile : { name : "Tinky Winky", hub : geneveID, role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}},
+        profile : { name : "Tinky Winky", role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}},
     });
 
      var tinky = Meteor.users.findOne(tinkyId);

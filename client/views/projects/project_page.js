@@ -10,7 +10,7 @@ Template.projectPage.helpers({
     },
     projectComments: function() {
         Session.get('commentAdded');
-        return Comments.find(); 
+        return Comments.find({}, {sort: {submitted: -1}}); 
     },
     projectCommentCount : function() {
 
@@ -47,7 +47,7 @@ Template.projectPage.helpers({
         var inTeam = Teams.findOne({"userID": currentUser._id, "projectID": this._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
         var projectAuthor = this.author;
 
-        if ( (projectAuthor == currentUser._id) || (inTeam) )  
+        if ( (projectAuthor == currentUser._id) || (inTeam) || (Roles.userIsInRole(currentUser, ['admin']))  )  
             return true;
         
     },
@@ -67,5 +67,5 @@ Template.projectPage.helpers({
             return author.username;
 
         return author.name;
-    }
+    }, 
 });

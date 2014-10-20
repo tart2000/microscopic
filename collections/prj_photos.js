@@ -36,6 +36,11 @@ prjPhotos = new FS.Collection("prjphotos", {
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */
 prjPhotos.allow({
   insert: function(userId, doc) {
+    //var remains = _.pluck(doc, "id");
+
+    //if (remains.length == 0) 
+    //  return true;
+
     if (userId)
       return true;
   },
@@ -48,7 +53,6 @@ prjPhotos.allow({
       return true;
   },
   download: function(userId) {
-    if (userId)
       return true;
   }
 });

@@ -46,8 +46,8 @@ Meteor.methods({
 		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
 
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
+		// Check if the user is on the team, the owner or an administrator
+		if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		var updatedProjectInfo = _.extend(
@@ -56,6 +56,7 @@ Meteor.methods({
 				'title', 
 				'baseline',
 				'hub',
+				'hubID',
 				'licence',
 				'url',
 				'description',
@@ -76,8 +77,8 @@ Meteor.methods({
 		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectID}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectID}).author;
 
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
+		// Check if the user is on the team, the owner or an administrator
+		if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		// Remove the project's photos
@@ -102,8 +103,8 @@ Meteor.methods({
 		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
 
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
+		// Check if the user is on the team, the owner or an administrator
+		if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		var updatedProjectInfo = _.extend(
@@ -125,8 +126,8 @@ Meteor.methods({
 		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
 		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
 
-		// Ensure that the user is in the team or that he is the author
-		if ( (projectAuthor !== user._id) && (!inTeam) )
+		// Check if the user is on the team, the owner or an administrator
+		if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
 		var updatedProjectInfo = _.extend(
