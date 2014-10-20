@@ -26,11 +26,11 @@ Meteor.methods({
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
 
-		// ensure that this is the user's profile
-		if (user._id !== userAttributes.id)
+		// ensure that this is the user's profile or that an admin is editing
+		if ( (user._id !== userAttributes.id) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your profile! Leave!");
 
-		Meteor.users.update({_id: user._id}, {$set: {"profile.thumblink": userAttributes.thumblink}});
+		Meteor.users.update({_id: userAttributes.id}, {$set: {"profile.thumblink": userAttributes.thumblink}});
 
 	},
 
@@ -41,8 +41,8 @@ Meteor.methods({
 		if (!user)
 			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
 
-		// ensure that this is the user's profile
-		if (user._id !== userAttributes.id)
+		// ensure that this is the user's profile or that an admin is editing
+		if ( (user._id !== userAttributes.id) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your profile! Leave!");
 
 		var updatedUserInfo = _.extend(
@@ -60,7 +60,7 @@ Meteor.methods({
 			), 
 		{});
 
-		Meteor.users.update({_id: user._id}, {$set: updatedUserInfo});
+		Meteor.users.update({_id: userAttributes.id}, {$set: updatedUserInfo});
 
 	},
 
