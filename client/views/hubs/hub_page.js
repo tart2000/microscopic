@@ -5,6 +5,15 @@ Template.hubPage.helpers({
     hubUsers: function() {
         return Meteor.users.find({'profile.hub':this._id});
     }, 
+    canEdit: function() {
+        var currentUser = Meteor.user();
+
+        if (!currentUser)
+            return false;
+
+        if (Roles.userIsInRole(currentUser, ['admin']))
+            return true;
+    },
     getSocial: function(medium) {
 
         if (!this)

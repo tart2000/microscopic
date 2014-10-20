@@ -33,7 +33,9 @@
                 {{description}}
             </div>
             <div class="col-md-3">
-                <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
+                {{#if canEdit}}
+                    <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
+                {{/if}}
                 <p>{{teams}} teams</p>
                 
             </div>
