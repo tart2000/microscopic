@@ -169,12 +169,12 @@ Template.projectEdit.events({
 
         var prjPhoto = new FS.File(event.target.files[0]);
 
-        prjPhoto.metadata = {
+        /*prjPhoto.metadata = {
             projectID: this._id, 
             type: 'description', 
             rank: photoRank,
             hubID: $('#hub').children(":selected").attr('id'),
-        };
+        };*/
 
         prjPhotos.insert(prjPhoto, function (err, fileObj) {});
     }, 

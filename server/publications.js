@@ -76,6 +76,10 @@ Meteor.publish('commentedUsers', function(projectID) {
     return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1}});
 });
 
+Meteor.publish('projectTeam', function () {
+    return Meteor.users.find({}, {fields: {'username': 1, 'emails':1}});
+});
+
 /***************************************************************************/
 /****** Publications for the view all projects page ******/
 Meteor.publish('allProjects', function() { 
