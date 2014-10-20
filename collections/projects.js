@@ -56,6 +56,7 @@ Meteor.methods({
 				'title', 
 				'baseline',
 				'hub',
+				'hubID',
 				'licence',
 				'url',
 				'description',

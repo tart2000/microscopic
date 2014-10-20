@@ -1,9 +1,9 @@
 Template.hubPage.helpers({ 
     hubProjects: function() {
-        return Projects.find({hub: this.name}); 
+        return Projects.find(); 
     }, 
     hubUsers: function() {
-        return Meteor.users.find({'profile.hub':this._id});
+        return Meteor.users.find();
     }, 
     canEdit: function() {
         var currentUser = Meteor.user();

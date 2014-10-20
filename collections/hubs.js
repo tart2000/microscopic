@@ -28,6 +28,20 @@ Meteor.methods({
 			), 
 		{});
 
+		// Update the projects in the hub if the hub name has changed
+		var currentName = Hubs.findOne({_id: hubAttributes.id}).name;
+
+		if (currentName !== hubAttributes.name) {
+			var hubProjects = Projects.find({"hubID": hubAttributes.id});
+
+			hubProjects.forEach(function(project) {
+				Projects.update({'_id': project._id}, {$set: {'hub': hubAttributes.name}});
+			});
+
+		}
+
 		Hubs.update({_id: hubAttributes.id}, {$set: updatedHubInfo});
+
+
 	}
 })
