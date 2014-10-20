@@ -47,7 +47,7 @@ Template.projectPage.helpers({
         var inTeam = Teams.findOne({"userID": currentUser._id, "projectID": this._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
         var projectAuthor = this.author;
 
-        if ( (projectAuthor == currentUser._id) || (inTeam) )  
+        if ( (projectAuthor == currentUser._id) || (inTeam) || (Roles.userIsInRole(currentUser, ['admin']))  )  
             return true;
         
     },
