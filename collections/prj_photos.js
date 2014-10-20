@@ -33,20 +33,48 @@ prjPhotos = new FS.Collection("prjphotos", {
     }
 });
 
+Meteor.methods({
+  insertProjectPhoto: function(photoMetadata) {
+
+    var user = Meteor.user();
+
+    // ensure the user is logged in
+    if (!user)
+      throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+    var inTeam = Teams.findOne({"userID": user._id, "projectID": photoMetadata.projectID}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+    var projectAuthor = Projects.findOne({_id: photoMetadata.projectID}).author;
+
+    // Check if the user is on the team, the owner or an administrator
+    if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
+      throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+
+    var updatedPhotoMetadata = _.extend(
+      _.pick(
+        photoMetadata, 
+        'projectID', 
+        'type', 
+        'rank', 
+        'hubID'
+      ), 
+    {});
+
+    prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
+  }
+});
+
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */
+
 prjPhotos.allow({
   insert: function(userId, doc) {
-    //var remains = _.pluck(doc, "id");
-
-    //if (remains.length == 0) 
-    //  return true;
-
     if (userId)
       return true;
   },
   update: function(userId, doc, fieldNames, modifier) {
-    if (userId)
+
+    if ( (fieldNames.length == 1)  &&  !(_.contains(fieldNames, 'metadata.projectID')) && (userId) )
       return true;
+
   },
   remove: function(userId, doc) {
     if (userId)

@@ -150,33 +150,54 @@ Template.projectEdit.events({
     },
      'change #add-photo-instructions': function(event) {
 
+        var currentProject = this._id;
+
         var photoRank = getPhotoNumber(this._id, 'instruction') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
 
-        prjPhoto.metadata = {
-            projectID: this._id, 
-            type: 'instruction', 
-            rank: photoRank, 
-            hubID: $('#hub').children(":selected").attr('id'),
-        };
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {
+            if (!err) {
+                // Add the photos metadata on the server
+                var metadata = {
+                    id: fileObj._id,
+                    projectID: currentProject, 
+                    type: 'instruction', 
+                    rank: photoRank,
+                    hubID: $('#hub').children(":selected").attr('id'),
+                };
 
-        prjPhotos.insert(prjPhoto, function (err, fileObj) {});
-    }, 
+                Meteor.call('insertProjectPhoto', metadata, function(error){
+                    if (error)
+                        Alert.add(error.reason, 'danger');
+                });
+            }
+       
     'change #add-photo-descriptions': function(event) {
+
+        var currentProject = this._id;
 
         var photoRank = getPhotoNumber(this._id, 'description') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
 
-        /*prjPhoto.metadata = {
-            projectID: this._id, 
-            type: 'description', 
-            rank: photoRank,
-            hubID: $('#hub').children(":selected").attr('id'),
-        };*/
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {
+            if (!err) {
+                // Add the photos metadata on the server
+                var metadata = {
+                    id: fileObj._id,
+                    projectID: currentProject, 
+                    type: 'description', 
+                    rank: photoRank,
+                    hubID: $('#hub').children(":selected").attr('id'),
+                };
 
-        prjPhotos.insert(prjPhoto, function (err, fileObj) {});
+                Meteor.call('insertProjectPhoto', metadata, function(error){
+                    if (error)
+                        Alert.add(error.reason, 'danger');
+                });
+            }
+        });
     }, 
 });
 
