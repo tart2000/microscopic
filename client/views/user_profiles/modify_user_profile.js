@@ -67,6 +67,9 @@ Template.modifyUserProfile.helpers({
                     return this.profile.social.website;
                 break;
         }
+    }, 
+    shareMail: function() {
+
     }
 
 });
@@ -100,6 +103,17 @@ Template.modifyUserProfile.events({
                 return alert(error.reason);
         });        
     }, 
+    'change #email-contact': function(e) {
+        if ($('#email-contact').is(":checked"))
+            {
+                console.log('share');
+                // Do something here TODO
+
+            } else {
+                console.log('dont share');
+                // Do something here TODO 
+            }
+    },
     'click .cancel':function() {
         Router.go('userProfile', {_id: this._id});
     },

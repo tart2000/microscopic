@@ -67,5 +67,5 @@ Template.projectPage.helpers({
             return author.username;
 
         return author.name;
-    }
+    }, 
 });
