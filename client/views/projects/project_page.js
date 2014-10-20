@@ -10,7 +10,7 @@ Template.projectPage.helpers({
     },
     projectComments: function() {
         Session.get('commentAdded');
-        return Comments.find(); 
+        return Comments.find({}, {sort: {submitted: -1}}); 
     },
     projectCommentCount : function() {
 
