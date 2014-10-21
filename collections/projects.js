@@ -13,7 +13,8 @@ Meteor.methods({
 				projectAttributes, 
 				'title', 
 				'baseline',
-				'hub'
+				'hub', 
+				'hubID'
 			), 
 			{
 				author: user._id,

@@ -59,8 +59,7 @@ Meteor.methods({
       ), 
     {});
 
-    if (Meteor.isServer)
-      prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
+    prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
   },
 });
 
@@ -88,6 +87,7 @@ prjPhotos.allow({
       return true;
   },
   download: function(userId) {
+    if (userId)
       return true;
   }
 });

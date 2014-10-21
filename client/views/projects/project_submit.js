@@ -5,8 +5,11 @@ Template.projectSubmit.events({
         var projectProperties = {
             title: $(e.target).find('[id=title]').val(), 
             baseline: $(e.target).find('[id=baseline]').val(),
-            hub: $(e.target).find('[id=hub]').val()
+            hub: $(e.target).find('[id=hub]').val(),
+            hubID: $('#hub').children(":selected").attr('id'),
         }
+
+        console.log(projectProperties.hubID);
 
         Meteor.call('createProject', projectProperties, function(error, id){
             if (error)

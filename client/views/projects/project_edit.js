@@ -40,7 +40,7 @@ Template.projectEdit.events({
             title: $(e.target).find('[name=title]').val(), 
             baseline: $(e.target).find('[name=baseline]').val(),
             hub: $(e.target).find('[id=hub]').val(),
-            hubID: $(e.target).find('[id=hub]').children(":selected").attr('id'),
+            hubID: $('#hub').children(":selected").attr('id'),
             licence:  $(e.target).find('[id=licences]').val(),
             url: $(e.target).find('[name=url]').val(), 
             description: $(e.target).find('[id=projectdescription]').val(),
