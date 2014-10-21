@@ -172,7 +172,8 @@ Template.projectEdit.events({
                         Alert.add(error.reason, 'danger');
                 });
             }
-       
+       });
+    },
     'change #add-photo-descriptions': function(event) {
 
         var currentProject = this._id;
