@@ -236,7 +236,15 @@ Template.projectEdit.helpers({
     },
     isLicence: function(currentProjectId) {
         var thisProject = Projects.findOne(currentProjectId);
+
+        if (!thisProject)
+            return;
+
         var thisProjectLicence = thisProject.licence;
+
+        if (!thisProjectLicence)
+            return;
+
         var licenceOption = this.name;
         if (licenceOption === thisProjectLicence) {
             return 'selected';
@@ -244,7 +252,14 @@ Template.projectEdit.helpers({
     },
     isHub: function(currentProjectId) {
         var thisProject = Projects.findOne(currentProjectId);
+        if (!thisProject)
+            return;
+        
         var thisProjectHub = thisProject.hub;
+
+        if (!thisProjectHub)
+            return;
+
         var hubOption = this.name;
         if (hubOption === thisProjectHub) {
             return 'selected';

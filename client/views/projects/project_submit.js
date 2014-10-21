@@ -9,8 +9,6 @@ Template.projectSubmit.events({
             hubID: $('#hub').children(":selected").attr('id'),
         }
 
-        console.log(projectProperties.hubID);
-
         Meteor.call('createProject', projectProperties, function(error, id){
             if (error)
                 Alert.add(error.reason, 'danger');
