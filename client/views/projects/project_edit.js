@@ -30,7 +30,7 @@ Template.projectEdit.rendered = function() {
 },
 
 Template.projectEdit.events({ 
-    'submit': function(e) {
+    'click .submit': function(e) {
         e.preventDefault();
 
         var currentProjectId = this._id;
