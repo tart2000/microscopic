@@ -8,6 +8,10 @@ body {
         display: none;
     }
 }
+#iron-router-progress {
+    background-color : #1ABC9C;
+    height: 1px;
+}
 .navbar-brand .logo {
     position: relative;
     top: -2px;

@@ -7,11 +7,11 @@ Meteor.publish('hubs', function() {
 
 /***************************************************************************/
 /****** Publications for the view / modification of user profiles ******/
-Meteor.publish('singleUser', function(userId) {
+Meteor.publish('singleUser', function (userId) {
     return Meteor.users.find(userId, {fields:{emails:true, profile: true, username: true}});
 });
 
-Meteor.publish('singleUserPhoto', function(userId) { 
+Meteor.publish('singleUserPhoto', function (userId) { 
     return userPhotos.find({'metadata.owner':userId}, {fields: {"original": false}});
 });
 
@@ -41,38 +41,38 @@ Meteor.publish('hubUsers', function (hubID) {
     return Meteor.users.find({"profile.hub": hubID}, {fields: {'username': 1, 'profile.thumblink':1}});
 });
 
-Meteor.publish('hubUserPhotos', function(hubID) {
+Meteor.publish('hubUserPhotos', function (hubID) {
     return userPhotos.find({"metadata.hub": hubID}, {fields: {"original": false, "metadata": false}});
 });
 
-Meteor.publish('hubProjects', function(hubID) {
+Meteor.publish('hubProjects', function (hubID) {
     return Projects.find({'hubID': hubID}, {fields: {'title': 1, 'baseline': 1, 'hub': 1}});
 });
 
-Meteor.publish('hubProjectPhotos', function(hubID) { 
+Meteor.publish('hubProjectPhotos', function (hubID) { 
     return prjPhotos.find({"metadata.rank":1, "metadata.type":"description", "metadata.hubID": hubID}, {fields: {"original": false}});
 });
 
 
 /***************************************************************************/
 /****** Publications for the project page ******/
-Meteor.publish('comments', function(projectID) { 
+Meteor.publish('comments', function (projectID) { 
     return Comments.find({"projectId": projectID}, {sort: {submitted: -1}});
 });
 
-Meteor.publish('singleProject', function(projectID) { 
+Meteor.publish('singleProject', function (projectID) { 
     return Projects.find({_id: projectID});
 });
 
-Meteor.publish('singleProjectPhotos', function(projectID) { 
+Meteor.publish('singleProjectPhotos', function (projectID) { 
     return prjPhotos.find({"metadata.projectID": projectID}, {fields: {"original": false}});
 });
 
-Meteor.publish('teams', function(projectID) { 
+Meteor.publish('teams', function (projectID) { 
     return Teams.find({"projectID": projectID});
 });
 
-Meteor.publish('commentedUsers', function(projectID) { 
+Meteor.publish('commentedUsers', function (projectID) { 
     return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1}});
 });
 
