@@ -59,11 +59,18 @@ Meteor.methods({
       ), 
     {});
 
-    prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
+    if (Meteor.isServer)
+      prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
   },
 });
 
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */
+prjPhotos.deny({
+  update: function(userId, doc, fieldNames, modifier) {
+    if ( (modifier["$set"].projectID) || (modifier["$set"].type) || (modifier["$set"].hubID) )
+      return true;
+  }
+});
 
 prjPhotos.allow({
   insert: function(userId, doc) {
@@ -72,7 +79,7 @@ prjPhotos.allow({
   },
   update: function(userId, doc, fieldNames, modifier) {
 
-    if ( (fieldNames.length == 1)  &&  !(_.contains(fieldNames, 'metadata.projectID')) && (userId) )
+    if ( (fieldNames.length == 1)  && (userId) )
       return true;
 
   },
