@@ -1,3 +1,9 @@
+Template.projectPage.rendered = function() {
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        Alert.clear();
+    });
+},
+
 Template.projectPage.helpers({ 
     projectTags: function() {
         return this.tags; 

@@ -1,3 +1,10 @@
+Template.userProfile.rendered = function() {
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        Alert.clear();
+    });
+},
+
+
 Template.userProfile.helpers({ 
 	getUserPhoto: function() {
 		return userPhotos.findOne(this.profile.thumblink).url();
