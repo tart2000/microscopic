@@ -36,8 +36,33 @@ Meteor.methods({
 
 		return projectID;
 	},
-
 	updateProject: function(projectAttributes) {
+		var user = Meteor.user();
+
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+		var inTeam = Teams.findOne({"userID": user._id, "projectID": projectAttributes.id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+		var projectAuthor = Projects.findOne({_id: projectAttributes.id}).author;
+
+		// Check if the user is on the team, the owner or an administrator
+		if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
+			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+
+		var updatedProjectInfo = _.extend(
+			_.omit(
+				projectAttributes, 
+				'_id', 
+				'author',
+				'created'
+			),
+		{});
+			
+
+		Projects.update({_id: projectAttributes.id}, {$set: updatedProjectInfo});
+	},
+	submitProject: function(projectAttributes) {
 		var user = Meteor.user();
 
 		// ensure the user is logged in
