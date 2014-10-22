@@ -19,8 +19,14 @@ Meteor.publish('subscribeToHub', function() {
     return Hubs.find({}, {fields: {name: true}});
 });
 Meteor.publish('userProjects', function(userId) {
-    return Projects.find({'author':userId}, {fields: {'title':1, 'baseline':1}});
-    /*** TODO Ici, il faudrait appeler tous les projets dans lesquels il fait partie de l'équipe ***/
+    var projectIDs = [];
+    var teamCursor = Teams.find({"userID": userId});
+
+    teamCursor.forEach(function(team) {
+        projectIDs.push(team.projectID);
+    })
+
+    return Projects.find({'_id': {$in: projectIDs}}, {fields: {'title':1, 'baseline':1}, sort: {created: -1}});
 });
 
 
