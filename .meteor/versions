@@ -30,6 +30,7 @@ cfs:reactive-property@0.0.0
 cfs:standard-packages@0.0.2
 cfs:storage-adapter@0.0.0
 cfs:tempstore@0.0.2
+cfs:ui@0.0.0
 cfs:upload-http@0.0.2
 cfs:worker@0.0.0
 check@1.0.2

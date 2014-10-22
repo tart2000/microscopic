@@ -184,6 +184,9 @@ Template.projectEdit.events({
 
         prjPhotos.insert(prjPhoto, function (err, fileObj) {
             if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('photoID', fileObj._id);
+                
                 // Add the photos metadata on the server
                 var metadata = {
                     id: fileObj._id,
@@ -212,6 +215,10 @@ Template.projectEdit.helpers({
                 return prjPhotos.find({"metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         }
         
+    },
+    getPhoto: function() {
+        var newPhotoID = Session.get('photoID');
+        return prjPhotos.findOne({"_id": newPhotoID});
     },
     currentProjectId: function() {
         return this._id;
