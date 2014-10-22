@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label for="hub">Edition</label>
                                 <div class="controls">
-                                    <select id="hub" class="form-control">
+                                    <select id="hub" name="hub" class="form-control reactive-dropdown">
                                         {{#each hubs}}
                                             <option value="{{name}}" selected="{{isHub ..}}" id="{{_id}}">{{name}}</option>
                                         {{/each}}
@@ -56,7 +56,7 @@
                              <div class="form-group">
                                 <label for="licences">Licences</label>
                                 <div class="controls">
-                                    <select id="licences" class="form-control">
+                                    <select id="licences" name="licence" class="form-control reactive-dropdown">
                                         {{#each licences}}
                                         <option value="{{name}}" selected="{{isLicence ..}}">{{name}}</option>
                                         {{/each}}

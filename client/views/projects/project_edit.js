@@ -43,6 +43,21 @@ Template.projectEdit.events({
                 Alert.add(error.reason, 'danger');
         })
     },
+    'click .reactive-dropdown': function(e) {
+        var updatedProject = {};
+
+        updatedProject[$(e.target).attr('name')] = $(e.target).val();
+        updatedProject['id'] = this._id;
+
+        if ($(e.target).attr('name') == 'hub')
+            updatedProject['hubID'] = $(e.target).children(":selected").attr('id');
+
+        Meteor.call('updateProject', updatedProject, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+        })
+
+    },
     'click .submit': function(e) {
         e.preventDefault();
 
