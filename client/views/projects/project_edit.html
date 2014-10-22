@@ -97,9 +97,7 @@
                             <input type="file" name="file" id="add-photo-descriptions">
                             <div class="progress mt">
                                 {{#with getPhoto}}
-                                    {{#unless this.isUploaded}}
-                                        {{> FS.UploadProgressBar bootstrap=true}}
-                                    {{/unless}}
+                                    {{> FS.UploadProgressBar bootstrap=true}}
                                 {{/with}}
                             </div>
                         </div>
