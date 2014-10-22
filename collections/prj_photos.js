@@ -87,7 +87,6 @@ prjPhotos.allow({
       return true;
   },
   download: function(userId) {
-    if (userId)
       return true;
   }
 });
