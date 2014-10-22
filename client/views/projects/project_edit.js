@@ -30,6 +30,19 @@ Template.projectEdit.rendered = function() {
 },
 
 Template.projectEdit.events({ 
+    'keyup .reactive-text':function(e) {
+
+        var updatedProject = {};
+
+        updatedProject[$(e.target).attr('name')] = $(e.target).val();
+        updatedProject['id'] = this._id;
+        
+
+        Meteor.call('updateProject', updatedProject, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+        })
+    },
     'click .submit': function(e) {
         e.preventDefault();
 
@@ -48,7 +61,7 @@ Template.projectEdit.events({
             videolink: $(e.target).find('[name=projectvideo]').val(),
         };
 
-        Meteor.call('updateProject', projectProperties, function(error){
+        Meteor.call('submitProject', projectProperties, function(error){
             if (error)
                 Alert.add(error.reason, 'danger');
             else
@@ -234,6 +247,10 @@ Template.projectEdit.helpers({
     },
     projectTags2: function() {
         var tags = this.tags;
+
+        if (!tags)
+            return;
+
         var length = tags.length; 
         var thetags = "";
         for (var i=0; i < length; i++) {

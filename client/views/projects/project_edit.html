@@ -34,13 +34,13 @@
                             <div class="form-group">
                                 <label class="control-label" for="title">Project name</label>
                                 <div class="controls">
-                                    <input name="title" class="form-control input-lg" type="text" value="{{title}}" placeholder="Project name"/>
+                                    <input name="title" class="form-control input-lg reactive-text" type="text" value="{{title}}" placeholder="Project name"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="baseline">Baseline</label>
                                 <div class="controls">
-                                    <input name="baseline" class="form-control" type="text" value="{{baseline}}" placeholder="Your project baseline"/>
+                                    <input name="baseline" class="form-control  reactive-text" type="text" value="{{baseline}}" placeholder="Your project baseline"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -66,7 +66,7 @@
                             <div class="form-group pb">
                                 <label class="control-label" for="url">External URL</label>
                                 <div class="controls">
-                                    <input name="url" class="form-control" type="text" value="{{url}}" placeholder="http://"/>
+                                    <input name="url" class="form-control  reactive-text" type="text" value="{{url}}" placeholder="http://"/>
                                 </div>
                             </div>
                             <div class="form-inline mt">
@@ -90,7 +90,7 @@
                     <div class="col-md-12">
                         <label class="control-label" for="projectdescription">Edit your project description. You can use Markdown.</label><br/>
                         {{>markdownCheatsheet}}
-                        <textarea id="projectdescription" class="form-control" value="{{description}}" rows="15"></textarea>
+                        <textarea id="projectdescription" name='description' class="form-control reactive-text" value="{{description}}" rows="15"></textarea>
                         <label class="control-label mt" for="">Your project images</label> 
                         <div class="image-import">
                             <strong>Drag & drop images here</strong> or choose a file: 
@@ -115,7 +115,7 @@
                         </div>
                         <label class="control-label mt" for="project-video">Your project video</label> 
                         <div class="controls">
-                            <input name="projectvideo" class="form-control" type="text" value="{{videolink}}" placeholder="http://"/>
+                            <input name="projectvideo" class="form-control  reactive-text" type="text" value="{{videolink}}" placeholder="http://"/>
                             <div class="edit">Only Youtube and Vimeo links supported for now</div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                     <div class="col-md-12">
                         <label class="control-label" for="projectinstructions">Explain how to make your project. You can use Markdown.</label><br/>
                         {{>markdownCheatsheet}}
-                        <textarea id="projectinstructions" class="form-control" value="{{instructions}}" rows="15"></textarea>
+                        <textarea id="projectinstructions" name='instructions' class="form-control reactive-text" value="{{instructions}}" rows="15"></textarea>
                         <label class="control-label mt" for="">Your 'how-to' images</label> 
                         <div class="image-import">
                             <strong>Drag & drop how-to images here</strong> or choose a file: 
