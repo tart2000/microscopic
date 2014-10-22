@@ -50,7 +50,17 @@ Meteor.methods({
 		if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
 
-		Projects.update({_id: projectAttributes.id}, {$set: projectAttributes});
+		var updatedProjectInfo = _.extend(
+			_.omit(
+				projectAttributes, 
+				'_id', 
+				'author',
+				'created'
+			),
+		{});
+			
+
+		Projects.update({_id: projectAttributes.id}, {$set: updatedProjectInfo});
 	},
 	submitProject: function(projectAttributes) {
 		var user = Meteor.user();
