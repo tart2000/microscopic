@@ -30,7 +30,7 @@ Template.projectEdit.rendered = function() {
 },
 
 Template.projectEdit.events({ 
-    'submit': function(e) {
+    'click .submit': function(e) {
         e.preventDefault();
 
         var currentProjectId = this._id;
@@ -40,7 +40,7 @@ Template.projectEdit.events({
             title: $(e.target).find('[name=title]').val(), 
             baseline: $(e.target).find('[name=baseline]').val(),
             hub: $(e.target).find('[id=hub]').val(),
-            hubID: $(e.target).find('[id=hub]').children(":selected").attr('id'),
+            hubID: $('#hub').children(":selected").attr('id'),
             licence:  $(e.target).find('[id=licences]').val(),
             url: $(e.target).find('[name=url]').val(), 
             description: $(e.target).find('[id=projectdescription]').val(),
@@ -150,33 +150,58 @@ Template.projectEdit.events({
     },
      'change #add-photo-instructions': function(event) {
 
+        var currentProject = this._id;
+
         var photoRank = getPhotoNumber(this._id, 'instruction') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
 
-        prjPhoto.metadata = {
-            projectID: this._id, 
-            type: 'instruction', 
-            rank: photoRank, 
-            hubID: $('#hub').children(":selected").attr('id'),
-        };
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {
+            if (!err) {
+                // Add the photos metadata on the server
+                var metadata = {
+                    id: fileObj._id,
+                    projectID: currentProject, 
+                    type: 'instruction', 
+                    rank: photoRank,
+                    hubID: $('#hub').children(":selected").attr('id'),
+                };
 
-        prjPhotos.insert(prjPhoto, function (err, fileObj) {});
-    }, 
+                Meteor.call('insertProjectPhoto', metadata, function(error){
+                    if (error)
+                        Alert.add(error.reason, 'danger');
+                });
+            }
+       });
+    },
     'change #add-photo-descriptions': function(event) {
+
+        var currentProject = this._id;
 
         var photoRank = getPhotoNumber(this._id, 'description') + 1;
 
         var prjPhoto = new FS.File(event.target.files[0]);
 
-        /*prjPhoto.metadata = {
-            projectID: this._id, 
-            type: 'description', 
-            rank: photoRank,
-            hubID: $('#hub').children(":selected").attr('id'),
-        };*/
+        prjPhotos.insert(prjPhoto, function (err, fileObj) {
+            if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('photoID', fileObj._id);
+                
+                // Add the photos metadata on the server
+                var metadata = {
+                    id: fileObj._id,
+                    projectID: currentProject, 
+                    type: 'description', 
+                    rank: photoRank,
+                    hubID: $('#hub').children(":selected").attr('id'),
+                };
 
-        prjPhotos.insert(prjPhoto, function (err, fileObj) {});
+                Meteor.call('insertProjectPhoto', metadata, function(error){
+                    if (error)
+                        Alert.add(error.reason, 'danger');
+                });
+            }
+        });
     }, 
 });
 
@@ -190,6 +215,10 @@ Template.projectEdit.helpers({
                 return prjPhotos.find({"metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         }
         
+    },
+    getPhoto: function() {
+        var newPhotoID = Session.get('photoID');
+        return prjPhotos.findOne({"_id": newPhotoID});
     },
     currentProjectId: function() {
         return this._id;
@@ -214,7 +243,15 @@ Template.projectEdit.helpers({
     },
     isLicence: function(currentProjectId) {
         var thisProject = Projects.findOne(currentProjectId);
+
+        if (!thisProject)
+            return;
+
         var thisProjectLicence = thisProject.licence;
+
+        if (!thisProjectLicence)
+            return;
+
         var licenceOption = this.name;
         if (licenceOption === thisProjectLicence) {
             return 'selected';
@@ -222,7 +259,14 @@ Template.projectEdit.helpers({
     },
     isHub: function(currentProjectId) {
         var thisProject = Projects.findOne(currentProjectId);
+        if (!thisProject)
+            return;
+        
         var thisProjectHub = thisProject.hub;
+
+        if (!thisProjectHub)
+            return;
+
         var hubOption = this.name;
         if (hubOption === thisProjectHub) {
             return 'selected';

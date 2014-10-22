@@ -1,3 +1,9 @@
+Template.projectPage.rendered = function() {
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        Alert.clear();
+    });
+},
+
 Template.projectPage.helpers({ 
     projectTags: function() {
         return this.tags; 
@@ -21,23 +27,39 @@ Template.projectPage.helpers({
     },
     licenceImage: function() {
         var thisLicence = this.licence;
+
+        if (!thisLicence)
+            return;
+        
         var theLicence = Licences.findOne({name: thisLicence});
         return theLicence.thumblink;
     }, 
     licenceLink: function() {
         var thisLicence = this.licence;
+
+        if (!thisLicence)
+            return;
+
         var theLicence = Licences.findOne({name: thisLicence});
         return theLicence.url;
     }, 
     htmldescription: function() {
         var converter = new Showdown.converter();
         var description = this.description;
+
+        if (!description)
+            return;
+
         var htmldescription = converter.makeHtml(description); 
         return htmldescription;  
     },
     htmlinstructions: function() {
         var converter = new Showdown.converter();
         var instructions = this.instructions;
+
+        if (!instructions)
+            return;
+
         var htmlinstructions = converter.makeHtml(instructions); 
         return htmlinstructions;  
     },

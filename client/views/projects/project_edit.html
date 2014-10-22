@@ -17,7 +17,7 @@
                 <div class="right-sidebar">
                     <div class="form-group">
                         <div class="controls command-buttons">
-                            <input class="btn btn-block btn-primary submit" type="submit" id="save" value="Save"/>
+                            <input class="btn btn-block btn-primary submit" id="save" value="Save"/>
                             <a class="btn btn-default btn-block cancel" href="#">Back to project</a>
                             <a class="btn btn-danger delete btn-block" href="#">Delete project</a>
                         </div>
@@ -95,6 +95,13 @@
                         <div class="image-import">
                             <strong>Drag & drop images here</strong> or choose a file: 
                             <input type="file" name="file" id="add-photo-descriptions">
+                            <div class="progress mt">
+                                {{#with getPhoto}}
+                                    {{#unless this.isUploaded}}
+                                        {{> FS.UploadProgressBar bootstrap=true}}
+                                    {{/unless}}
+                                {{/with}}
+                            </div>
                         </div>
                         <div class="project-images mt">
                             <label class="control-label">You can reorder your images using the arrows.<br/> The top one will be your project featured image.</label>

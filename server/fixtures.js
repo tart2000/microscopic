@@ -15,12 +15,18 @@ if (Hubs.find().count() === 0) {
         username: 'gcool',
         email: 'george.koulouris1@gmail.com',
         password: 'changethis',
+        profile : { 
+            hub: montrealID,
+        }
     });
 
     var arthurID = Accounts.createUser({
         username: 'tart2000',
         email: 'tart2000design@gmail.com ',
         password: 'changethis',
+        profile : { 
+            hub: montrealID,
+        }
     });
 
     Roles.addUsersToRoles(georgeID, ['admin']);
@@ -30,7 +36,14 @@ if (Hubs.find().count() === 0) {
         username: 'tinky',
         email: 'tinkywinky@teletubbyland.ln',
         password: 'tinky',
-        profile : { name : "Tinky Winky", role : 'Participant', social: {facebook: "https://www.facebook.com/tinky.winky.54738"}},
+        profile : { 
+            name : "Tinky Winky", 
+            role : 'Participant', 
+            social: {
+                facebook: "https://www.facebook.com/tinky.winky.54738"
+            }, 
+            hub: montrealID,
+        },
     });
 
      var tinky = Meteor.users.findOne(tinkyId);
@@ -39,7 +52,10 @@ if (Hubs.find().count() === 0) {
         username: 'laa',
         emails: 'laalaa@teletubbyland.ln',
         password: 'asdfasdf',
-        profile : { name : "Laa Laa"}, 
+        profile : { 
+            name : "Laa Laa",
+            hub: montrealID,
+        }, 
     });
      var laa = Meteor.users.findOne(laaId);
 
@@ -47,7 +63,10 @@ if (Hubs.find().count() === 0) {
         username: 'lady',
         emails: 'ladylee@gmail.com',
         password: 'asdfasdf',
-        profile : { name : "Lady Lé"}, 
+        profile : { 
+            name : "Lady Lé",
+            hub: montrealID,
+        }, 
     });
 
      var lady = Meteor.users.findOne(ladyId);
