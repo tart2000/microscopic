@@ -106,12 +106,38 @@ Template.modifyUserProfile.events({
     'change #email-contact': function(e) {
         if ($('#email-contact').is(":checked"))
             {
-                console.log('share');
-                // Do something here TODO
+                e.preventDefault();
+
+                var userAttributes = {
+                    id: this._id,
+                    'profile.social.shareMail': true,
+                };
+
+                Meteor.call('updateUserInfo', userAttributes, function(error) {
+                    if (error) {
+                        Alert.add(error.reason, 'danger');
+                    }
+                    else {
+                        Alert.add('pepole can now contact you by email', 'success');
+                    }
+                }); 
 
             } else {
-                console.log('dont share');
-                // Do something here TODO 
+                e.preventDefault();
+
+                var userAttributes = {
+                    id: this._id,
+                    'profile.social.shareMail': false,
+                };
+
+                Meteor.call('updateUserInfo', userAttributes, function(error) {
+                    if (error) {
+                        Alert.add(error.reason, 'danger');
+                    }
+                    else {
+                        Alert.add('your mail is not shared anymore', 'success');
+                    }
+                }); 
             }
     },
     'click .cancel':function() {

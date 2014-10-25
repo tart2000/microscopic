@@ -55,7 +55,8 @@ Meteor.methods({
 				'profile.social.linkedin',
 				'profile.social.instagram',
 				'profile.social.tumblr',
-				'profile.social.website'
+				'profile.social.website',
+				'profile.social.shareMail'
 			), 
 		{});
 
