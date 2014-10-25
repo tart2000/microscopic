@@ -192,11 +192,20 @@ hr {
 .md {
     margin-right: 15px;
 }
+.bmt {
+    margin-top: 30px;
+}
+.bmb {
+    margin-bottom: 30px;
+}
 .pt {
     padding-top: 15px;
 }
 .pb {
     padding-bottom: 15px;
+}
+.grey {
+    background-color: #F9FAFB;
 }
 .input-lg {
     height: 60px;

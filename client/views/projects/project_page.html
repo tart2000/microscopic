@@ -18,7 +18,8 @@
                 {{#if this.instructions}}
                     <li class=""><a role="tab" data-toggle="tab" href="#instructions">Instructions</a></li>
                 {{/if}}
-                <li><a role="tab" data-toggle="tab" href="#discussion">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
+                <!--
+                <li><a role="tab" data-toggle="tab" href="#discussion">Discussion <span class="badge">{{projectCommentCount}}</span></a></li> -->
                 <!-- wait before we have updates 
                 <li><a role="tab" data-toggle="tab" href="#updates">Updates <span class="badge">12</span></a></li> 
                 -->
@@ -72,6 +73,18 @@
                             <span></span>
                             {{{htmldescription}}}
                         </div>
+                        <div class="row pt grey mb"></div>
+                        {{#if currentUser}}
+                            {{> commentSubmit}}
+                        {{else}}
+                            <div class="text-right comment-please">Please log in to leave a comment</div>
+                        {{/if}} 
+                        <p></p>
+                        <ul class="comments">
+                            {{#each projectComments}}
+                              {{> comment}}
+                            {{/each}}
+                        </ul>
                     </div>
                 </div> <!-- end first tab -->
 
@@ -86,17 +99,7 @@
                 </div> <!-- end second tab -->
 
                 <div class="tab-pane" id="discussion">
-                    {{#if currentUser}}
-                        {{> commentSubmit}}
-                    {{else}}
-                        <div class="text-right comment-please">Please log in to leave a comment</div>
-                    {{/if}} 
-                    <p></p>
-                    <ul class="comments">
-                        {{#each projectComments}}
-                          {{> comment}}
-                        {{/each}}
-                    </ul>
+
                     
 
                 </div> <!-- end tab -->
