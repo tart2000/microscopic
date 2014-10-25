@@ -24,37 +24,41 @@
                 <li><a role="tab" data-toggle="tab" href="#updates">Updates <span class="badge">12</span></a></li> 
                 -->
             </ul>
-            <div class="right-sidebar">
-                
-                {{>share}}
-                <hr>
-                <strong>Team</strong><br/>
-                {{#each teamMembers}}
-                    {{#with getUser this.userID}}
-                        <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
-                    {{/with}}
-                {{/each}}
-                <p></p>
-                <strong>Facilitator</strong><br/>
-                
-                
-                {{#if hasUrl}}
-                    <hr>
-                    <a href="{{url}}">{{url}}</a>
-                {{/if}}
-                
-                {{#if hasTags}}
-                    <hr>
-                    <div class="tagbox">
-                    {{#each projectTags}}
-                        <span class="tag">{{this}}</span>
+            <div class="right-sidebar row">
+                <div class="col-sm-12 mb">
+                    {{>share}}
+                </div>
+                <div class="col-sm-12 col-xs-4">
+                    <strong>Team</strong><br/>
+                    {{#each teamMembers}}
+                        {{#with getUser this.userID}}
+                            <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
+                        {{/with}}
                     {{/each}}
-                    </div>
-                {{/if}}
-                {{#if licence}} 
-                    <hr>
-                    <a href="{{licenceLink}}" target="_blank"><img src="{{licenceImage}}" class="img-responsive mt" width="120px"></a>
-                {{/if}}
+                </div>
+                <div class="col-sm-12 col-xs-4">
+                    <strong>Facilitator</strong><br/>
+                </div>
+                <div class="col-sm-12 col-xs-4">
+                    {{#if hasUrl}}
+                        <hr>
+                        <a href="{{url}}">{{url}}</a>
+                    {{/if}}
+                </div>
+                <div class="col-sm-12 col-xs-4">
+                    {{#if hasTags}}
+                        <div class="tagbox">
+                        {{#each projectTags}}
+                            <span class="tag">{{this}}</span>
+                        {{/each}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="col-sm-12 col-xs-4">
+                    {{#if licence}} 
+                        <a href="{{licenceLink}}" target="_blank"><img src="{{licenceImage}}" class="img-responsive mt" width="120px"></a>
+                    {{/if}}
+                </div>
             </div>
         </div> <!-- end col-sm-3 -->
 
