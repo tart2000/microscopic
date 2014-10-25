@@ -68,9 +68,6 @@ Template.modifyUserProfile.helpers({
                 break;
         }
     }, 
-    shareMail: function() {
-
-    }
 
 });
 
@@ -110,7 +107,7 @@ Template.modifyUserProfile.events({
 
                 var userAttributes = {
                     id: this._id,
-                    'profile.social.shareMail': true,
+                    'profile.social.shareMail': "checked",
                 };
 
                 Meteor.call('updateUserInfo', userAttributes, function(error) {
@@ -118,7 +115,7 @@ Template.modifyUserProfile.events({
                         Alert.add(error.reason, 'danger');
                     }
                     else {
-                        Alert.add('pepole can now contact you by email', 'success');
+                        
                     }
                 }); 
 
@@ -127,7 +124,7 @@ Template.modifyUserProfile.events({
 
                 var userAttributes = {
                     id: this._id,
-                    'profile.social.shareMail': false,
+                    'profile.social.shareMail': "",
                 };
 
                 Meteor.call('updateUserInfo', userAttributes, function(error) {
@@ -135,7 +132,7 @@ Template.modifyUserProfile.events({
                         Alert.add(error.reason, 'danger');
                     }
                     else {
-                        Alert.add('your mail is not shared anymore', 'success');
+                        
                     }
                 }); 
             }
