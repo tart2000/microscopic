@@ -406,3 +406,6 @@ label {
 .hand {
     cursor: pointer; 
 }
+.arrow {
+    cursor: default;
+}

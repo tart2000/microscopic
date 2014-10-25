@@ -1,8 +1,10 @@
 <template name="avatarThumb">
     <div class="avatar-thumb">
-        {{#if getUserPhoto}} <img src="{{getUserPhoto}}" class="img-responsive" width="40px" data-toggle="tooltip" data-placement="top" title="{{username}}"> 
-        {{else}}
-            <img src="/default-avatar.png" class="img-responsive" width="40px" data-toggle="tooltip" data-placement="top" title="{{username}}">
-        {{/if}}
+        <a href="{{pathFor 'userProfile'}}">
+            {{#if getUserPhoto}} <img src="{{getUserPhoto}}" class="img-responsive" width="40px" data-toggle="tooltip" data-placement="top" title="{{username}}"> 
+            {{else}}
+                <img src="/default-avatar.png" class="img-responsive" width="40px" data-toggle="tooltip" data-placement="top" title="{{username}}">
+            {{/if}}
+        </a>
     </div>
 </template>
