@@ -19,6 +19,8 @@ Meteor.methods({
 				'country',
 				'description',
 				'teams',
+				'museumLogo',
+				'museumLink',
 				'social.facebook',
 				'social.twitter',
 				'social.linkedin',

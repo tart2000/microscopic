@@ -12,6 +12,8 @@ Template.hubEdit.events({
             'country': $(e.target).find('[name=country]').val(),
             'description': $(e.target).find('[id=hubdescription]').val(), 
             'teams': $(e.target).find('[name=teams]').val(),
+            'museumLogo': $(e.target).find('[name=museumLogo]').val(),
+            'museumLink': $(e.target).find('[name=museumLink]').val(),
             'social.facebook': $(e.target).find('[id=facebook]').val(),
             'social.twitter': $(e.target).find('[id=twitter]').val(),
             'social.linkedin': $(e.target).find('[id=linkedin]').val(),

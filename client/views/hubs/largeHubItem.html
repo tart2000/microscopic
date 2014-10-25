@@ -13,27 +13,31 @@
                     </div>
                 </div>
                 <div class="col-sm-2 col-xs-4">
-                    <p>{{teams}} teams</p>
                     {{#if this.social}}
                     <div class="social-icons mt">
-                        {{#if getSocial 'facebook'}}
-                            <a href="{{getSocial 'facebook'}}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
-                        {{/if}}
-                        {{#if getSocial 'twitter'}}
-                            <a href="{{getSocial 'twitter'}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
-                        {{/if}}
-                        {{#if getSocial 'linkedin'}}
-                            <a href="{{getSocial 'linkedin'}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
-                        {{/if}}
-                        {{#if getSocial 'instagram'}}
-                            <a href="{{getSocial 'instagram'}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
-                        {{/if}}
-                        {{#if getSocial 'tumblr'}}
-                            <a href="{{getSocial 'tumblr'}}" target="_blank"><i class="fa fa-tumblr-square fa-2x"></i></a>
-                        {{/if}}
-                        {{#if getSocial 'website'}}
-                            <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
-                        {{/if}}
+                        <div class="col-md-12">
+                            {{#if museumLogo}}
+                                <a href="{{museumLink}}"><img src="{{museumLogo}}" class="img-responsive mb"></a>
+                            {{/if}}
+                            {{#if getSocial 'facebook'}}
+                                <a href="{{getSocial 'facebook'}}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+                            {{/if}}
+                            {{#if getSocial 'twitter'}}
+                                <a href="{{getSocial 'twitter'}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+                            {{/if}}
+                            {{#if getSocial 'linkedin'}}
+                                <a href="{{getSocial 'linkedin'}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                            {{/if}}
+                            {{#if getSocial 'instagram'}}
+                                <a href="{{getSocial 'instagram'}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                            {{/if}}
+                            {{#if getSocial 'tumblr'}}
+                                <a href="{{getSocial 'tumblr'}}" target="_blank"><i class="fa fa-tumblr-square fa-2x"></i></a>
+                            {{/if}}
+                            {{#if getSocial 'website'}}
+                                <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
+                            {{/if}}
+                        </div>
                     </div>
                     {{/if}}
                 </div>

@@ -36,8 +36,12 @@
                 {{#if canEdit}}
                     <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
                 {{/if}}
-                <p>{{teams}} teams</p>
-                
+                {{#if museumLogo}}
+                    <a href="{{museumLink}}"><img src="{{museumLogo}}" class="img-responsive"></a>
+                {{/if}}
+                {{#if teams}}
+                    <p>{{teams}} teams</p>  
+                {{/if}}            
             </div>
         </div> 
     </div><!-- end project container -->
