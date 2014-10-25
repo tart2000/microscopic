@@ -93,6 +93,9 @@ h4 {
     font-weight: 300;
     color: rgb(80, 80, 80);
 }
+h4:hover {
+    color:  #1ABC9C;
+}
 h1 {
     font-size: 50px;
     margin-top: 5px;
