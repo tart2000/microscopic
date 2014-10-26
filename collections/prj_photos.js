@@ -8,11 +8,12 @@ prjPhotos = new FS.Collection("prjphotos", {
 
 
           gm(readStream, fileObj.name()).size({bufferStream: true }, function (err, size) {
-            if (size.width > 4/3*size.height) {
+          	this.resize(null, dimensionY).gravity('Center').extent(dimensionX, dimensionY).stream().pipe(writeStream);
+            /*if (size.width >= size.height) {
               this.resize(null, dimensionY).gravity('Center').extent(dimensionX, dimensionY).stream().pipe(writeStream);
             } else {
               this.resize(dimensionX, null).gravity('Center').extent(dimensionX, dimensionY).stream().pipe(writeStream);
-            }
+            }*/
           })
         }
       })
