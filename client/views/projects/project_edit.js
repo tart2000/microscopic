@@ -34,6 +34,9 @@ Template.projectEdit.events({
 
         var updatedProject = {};
 
+        $('#save').removeClass('disabled');
+        $('#save').val('Save');
+
         updatedProject[$(e.target).attr('name')] = $(e.target).val();
         updatedProject['id'] = this._id;
         
@@ -41,10 +44,17 @@ Template.projectEdit.events({
         Meteor.call('updateProject', updatedProject, function(error){
             if (error)
                 Alert.add(error.reason, 'danger');
+            else {
+                $('#save').addClass('disabled');
+                $('#save').val('Saved!');
+            }
         })
     },
     'click .reactive-dropdown': function(e) {
         var updatedProject = {};
+
+        $('#save').removeClass('disabled');
+        $('#save').val('Save');
 
         updatedProject[$(e.target).attr('name')] = $(e.target).val();
         updatedProject['id'] = this._id;
@@ -55,6 +65,10 @@ Template.projectEdit.events({
         Meteor.call('updateProject', updatedProject, function(error){
             if (error)
                 Alert.add(error.reason, 'danger');
+            else {
+                $('#save').addClass('disabled');
+                $('#save').val('Saved!');
+            }
         })
 
     },
