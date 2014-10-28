@@ -152,6 +152,18 @@ Template.projectEdit.events({
                 Alert.add(error.reason, 'danger');
         });
     },
+    'click .delete-file': function(e) {
+
+        var file = {
+            id: $(e.target).attr('id'),
+            projectID: Projects.findOne(this.metadata.projectID)._id
+        }
+
+        Meteor.call('removeFile', file, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+        });
+    },
     'click .delete-photo': function(e) {
         e.preventDefault();
 

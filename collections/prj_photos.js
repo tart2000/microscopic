@@ -60,7 +60,7 @@ Meteor.methods({
     {});
 
     prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
-  },
+  }
 });
 
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */
