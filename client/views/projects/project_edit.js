@@ -204,6 +204,9 @@ Template.projectEdit.events({
 
         prjPhotos.insert(prjPhoto, function (err, fileObj) {
             if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('fileID', fileObj._id);
+
                 // Add the photos metadata on the server
                 var metadata = {
                     id: fileObj._id,
@@ -231,7 +234,7 @@ Template.projectEdit.events({
         prjPhotos.insert(prjPhoto, function (err, fileObj) {
             if (!err) {
                 // Set the session variable to track upload progress
-                Session.set('photoID', fileObj._id);
+                Session.set('fileID', fileObj._id);
                 
                 // Add the photos metadata on the server
                 var metadata = {
@@ -243,6 +246,30 @@ Template.projectEdit.events({
                 };
 
                 Meteor.call('insertProjectPhoto', metadata, function(error){
+                    if (error)
+                        Alert.add(error.reason, 'danger');
+                });
+            }
+        });
+    }, 
+    'change #add-file': function(event) {
+
+        var currentProject = this._id;
+
+        var prjFile = new FS.File(event.target.files[0]);
+
+        prjFiles.insert(prjFile, function (err, fileObj) {
+            if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('fileID', fileObj._id);
+                
+                // Add the file's metadata on the server
+                var metadata = {
+                    id: fileObj._id,
+                    projectID: currentProject
+                };
+
+                Meteor.call('insertProjectFile', metadata, function(error){
                     if (error)
                         Alert.add(error.reason, 'danger');
                 });
@@ -276,11 +303,21 @@ Template.projectEdit.helpers({
             case 'description':
                 return prjPhotos.find({"metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         }
-        
+    },
+    getFiles: function(type) {
+        return prjFiles.find();
     },
     getPhoto: function() {
-        var newPhotoID = Session.get('photoID');
-        return prjPhotos.findOne({"_id": newPhotoID});
+        var newPhotoID = Session.get('fileID');
+
+        if (newPhotoID)
+            return prjPhotos.findOne({"_id": newPhotoID});
+    },
+    getFile: function() {
+        var newFileID = Session.get('fileID');
+
+        if (newFileID)
+            return prjFiles.findOne({"_id": newFileID});
     },
     currentProjectId: function() {
         return this._id;

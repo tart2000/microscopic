@@ -93,7 +93,7 @@
                         <textarea id="projectdescription" name='description' class="form-control reactive-text" value="{{description}}" rows="15"></textarea>
                         <label class="control-label mt" for="">Your project images</label> 
                         <div class="image-import">
-                            <strong>Drag & drop images here</strong> or choose a file: 
+                            <strong>Drag & drop images here</strong> or choose a file (max 2MB and ideally 900x600px): 
                             <input type="file" name="file" id="add-photo-descriptions">
                             <div class="progress mt">
                                 {{#with getPhoto}}
@@ -128,8 +128,13 @@
                         <textarea id="projectinstructions" name='instructions' class="form-control reactive-text" value="{{instructions}}" rows="15"></textarea>
                         <label class="control-label mt" for="">Your 'how-to' images</label> 
                         <div class="image-import">
-                            <strong>Drag & drop how-to images here</strong> or choose a file: 
+                            <strong>Drag & drop how-to images here</strong> or choose a file (max 2MB and ideally 900x600px): 
                             <input type="file" name="file" id="add-photo-instructions">
+                            <div class="progress mt">
+                                {{#with getPhoto}}
+                                    {{> FS.UploadProgressBar bootstrap=true}}
+                                {{/with}}
+                            </div>
                         </div>
                         <div class="project-images mt">
                             <label class="control-label">You can reorder your images using the arrows.</label>
@@ -145,12 +150,22 @@
                         </div> 
                         <label class="control-label mt" for="">Source files</label> 
                         <div class="image-import">
-                            <strong>Drag & drop source files here</strong> or choose a file: 
-                            <input type="file" name="file" class="update">
+                            <strong>Drag & drop source files here</strong> or choose a file (max 20MB): 
+                            <input type="file" name="file" class="update" id="add-file">
+                            <div class="progress mt">
+                                {{#with getFile}}
+                                    {{> FS.UploadProgressBar bootstrap=true}}
+                                {{/with}}
+                            </div>
                         </div>
                         <div class="project-images mt">
-                            <li>file.pdf  <i class="fa fa-times" style="margin-left:5px"></i></li>
-                            <li>another_file.stl  <i class="fa fa-times" style="margin-left:5px"></i></li>
+                            {{#each getFiles}}
+                                <li>
+                                    <a href="{{this.url}}" download="{{this.original.name}}"> {{this.original.name}} </a>
+                                    <i class="fa fa-times" style="margin-left:5px" id="{{this._id}}"></i>
+                                </li>
+                            {{/each}}
+                            
                         </div> 
                     </div>
                 </div> <!-- end instructions tab -->

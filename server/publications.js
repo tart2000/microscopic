@@ -86,6 +86,10 @@ Meteor.publish('projectTeam', function () {
     return Meteor.users.find({}, {fields: {'username': 1, 'emails':1}});
 });
 
+Meteor.publish('projectFiles', function (projectID) {
+    return prjFiles.find({"metadata.projectID" : projectID}, {sort: {'createdAt': -1}});
+});
+
 /***************************************************************************/
 /****** Publications for the view all projects page ******/
 Meteor.publish('allProjects', function() { 

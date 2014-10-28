@@ -1,19 +1,18 @@
-/*prjFiles = new FS.Collection("prjfiles", {
+prjFiles = new FS.Collection("prjfiles", {
     stores: [
-      new FS.Store.FileSystem("prjphotos", {
+      new FS.Store.FileSystem("prjfiles", {
       })
     ],
     filter: {
-      maxSize: 100000000, //3 MB
+      maxSize: 20000000, //3 MB
       allow: {
-        contentTypes: ['image/*'], //allow only images in this FS.Collection
-        extensions: ['png', 'jpg', 'jpeg', 'gif', 'tiff']
+        //allow any type of file in this FS.Collection
       },
       onInvalid: function () {
         if (Meteor.isClient) {
-          alert('You did a no-no...! Your file is too large (max 100mb).');
+          alert('You did a no-no...! Your file is too large (max 20mb)');
         } else {
-          console.log('You did a no-no...! Your file is too large (max 100mb).');
+          console.log('You did a no-no...! Your file is too large (max 20mb)');
         }
       }
     }
@@ -38,10 +37,38 @@ Meteor.methods({
     var updatedFileMetadata = _.extend(
       _.pick(
         fileMetadata, 
-        'projectID', 
+        'projectID'
       ), 
     {});
 
     prjFiles.update({_id: fileMetadata.id}, {$set: {'metadata' : updatedFileMetadata}});
   },
-});*/
+});
+
+
+/******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT FILES!! */
+prjFiles.deny({
+  update: function(userId, doc, fieldNames, modifier) {
+    if ( modifier["$set"].projectID )
+      return true;
+  }
+});
+
+prjFiles.allow({
+  insert: function(userId, doc) {
+    if (userId)
+      return true;
+  },
+  update: function(userId, doc, fieldNames, modifier) {
+    if ( (fieldNames.length == 1)  && (userId) )
+      return true;
+  },
+  remove: function(userId, doc) {
+    if (userId)
+      return true;
+  },
+  download: function(userId) {
+    if (userId)
+      return true;
+  }
+});
