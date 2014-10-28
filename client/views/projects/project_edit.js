@@ -39,7 +39,6 @@ Template.projectEdit.events({
 
         updatedProject[$(e.target).attr('name')] = $(e.target).val();
         updatedProject['id'] = this._id;
-        
 
         Meteor.call('updateProject', updatedProject, function(error){
             if (error)
@@ -49,6 +48,11 @@ Template.projectEdit.events({
                 $('#save').val('Saved!');
             }
         })
+
+        // Set a session variable with the position of the cursor
+        // We are only interested in textareas
+        if ($(e.target).is('textarea'))
+            Session.set('cursorPos', $(e.target).caret());
     },
     'click .reactive-dropdown': function(e) {
         var updatedProject = {};
@@ -249,6 +253,22 @@ Template.projectEdit.events({
 
 
 Template.projectEdit.helpers({ 
+    getCursorPos: function() {
+        var cursorPos = Session.get('cursorPos');
+        var textArea = document.activeElement;
+
+
+        // Get the session variable hodling position of the cursor
+        // We are only interested in textareas
+        if (textArea.tagName !== 'TEXTAREA')
+            return;
+
+        // Check if the session variable has been set
+        if (!cursorPos)
+            return;
+
+        $('#' + textArea.id).caret(cursorPos);
+    },
     getPhotos: function(type) {
         switch(type) {
             case 'instruction':
