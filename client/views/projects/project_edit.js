@@ -155,7 +155,7 @@ Template.projectEdit.events({
     'click .delete-file': function(e) {
 
         var file = {
-            id: $(e.target).attr('id'),
+            id: this._id,
             projectID: Projects.findOne(this.metadata.projectID)._id
         }
 
@@ -195,6 +195,7 @@ Template.projectEdit.events({
         });
     },
     'click .rank-up': function(e) {
+        e.preventDefault();
 
         var currentProjectID = Projects.findOne(this.metadata.projectID)._id;
 
@@ -203,7 +204,7 @@ Template.projectEdit.events({
         else 
             var type = "description";
 
-        e.preventDefault();
+        console.log(type);
         changeRank(this, type, 'decrement', currentProjectID);             
     },
      'change #add-photo-instructions': function(event) {

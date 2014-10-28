@@ -80,10 +80,6 @@ prjFiles.allow({
     if ( (fieldNames.length == 1)  && (userId) )
       return true;
   },
-  remove: function(userId, doc) {
-    if (userId)
-      return true;
-  },
   download: function(userId) {
     if (userId)
       return true;

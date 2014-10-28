@@ -18,16 +18,16 @@ prjPhotos = new FS.Collection("prjphotos", {
       })
     ],
     filter: {
-      maxSize: 3000000, //3 MB
+      maxSize: 2000000, //3 MB
       allow: {
         contentTypes: ['image/*'], //allow only images in this FS.Collection
         extensions: ['png', 'jpg', 'jpeg', 'gif', 'tiff']
       },
       onInvalid: function () {
         if (Meteor.isClient) {
-          alert('You did a no-no...! Your file is too large (max 3mb) or it\'s not an image.');
+          alert('You did a no-no...! Your file is too large (max 2mb) or it\'s not an image.');
         } else {
-          console.log('You did a no-no...! Your file is too large (max 3mb) or it\'s not an image.');
+          console.log('You did a no-no...! Your file is too large (max 2mb) or it\'s not an image.');
         }
       }
     }
@@ -60,7 +60,7 @@ Meteor.methods({
     {});
 
     prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
-  }
+  },
 });
 
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */

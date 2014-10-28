@@ -104,10 +104,10 @@
                         <div class="project-images mt">
                             <label class="control-label">You can reorder your images using the arrows.<br/> The top one will be your project featured image.</label>
                             {{#each getPhotos 'description'}}
-                                <div id="container-{{this._id}}" class="">
+                                <div id="container-{{this._id}}" class="{{this.metadata.type}}">
                                     <div class="img-controls">
                                         <span id="delete-{{this._id}}" class="delete-photo description"><i class="fa fa-times" style="margin-left:5px"></i></span>
-                                        <span id="rank-up-{{this._id}}" class="rank-up description"><i class="fa fa-arrow-up"></i></span>
+                                        <span id="rank-up-{{this._id}}" class="rank-up description"><i class="{{this.metadata.type}} fa fa-arrow-up"></i></span>
                                     </div>
                                     <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive"/>
                                 </div>
@@ -139,10 +139,10 @@
                         <div class="project-images mt">
                             <label class="control-label">You can reorder your images using the arrows.</label>
                             {{#each getPhotos 'instruction'}}
-                                <div id="container-{{this._id}}" class="">
+                                <div id="container-{{this._id}}" class="{{this.metadata.type}}">
                                     <div class="img-controls">
                                         <span id="delete-{{this._id}}" class="delete-photo instruction"><i class="fa fa-times" style="margin-left:5px"></i></span>
-                                        <span id="rank-up-{{this._id}}" class="rank-up instruction"><i class="fa fa-arrow-up"></i></span>
+                                        <span id="rank-up-{{this._id}}" class="rank-up instruction"><i class="{{this.metadata.type}} fa fa-arrow-up"></i></span>
                                     </div>
                                     <img src="{{this.url}}" id="photo-{{this._id}}" width="30%" class="img-responsive"/>
                                 </div>
@@ -161,8 +161,8 @@
                         <div class="project-images mt">
                             {{#each getFiles}}
                                 <li>
-                                    <a href="{{this.url}}" download="{{this.original.name}}"> {{this.original.name}} </a>
-                                    <i class="delete-file fa fa-times" style="margin-left:5px" id="{{this._id}}"></i>
+                                    <a href="{{this.url}}" download="{{this.original.name}}" target="_blank"> {{this.original.name}} </a>
+                                    <i class="delete-file fa fa-times" style="margin-left:5px"></i>
                                 </li>
                             {{/each}}
                             
