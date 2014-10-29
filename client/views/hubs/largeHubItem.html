@@ -1,19 +1,48 @@
  <template name="largeHubItem">
   <div class="col-md-12">
     <div class="project-thumb">
-        <a href="{{pathFor 'hubPage'}}">
-            <div class="row">
-                <div class="col-sm-3 col-xs-12">
-                    <img class="img-responsive" src="{{thumblink}}">
-                </div>
-                <div class="col-sm-7 col-xs-8">
-                    <h4>{{name}} - {{museum}}</h4>
-                </div>
-                <div class="col-sm-2 col-xs-4">
-                    <p>{{teams}} teams</p>
+        <div class="row">
+            <div class="col-sm-3 col-xs-12">
+                 <a href="{{pathFor 'hubPage'}}"><img class="img-responsive" src="{{thumblink}}"></a>
+            </div>
+            <div class="col-sm-7 col-xs-8">
+                <div class="col-md-12">
+                     <a href="{{pathFor 'hubPage'}}">
+                        <h4>{{name}} - {{museum}}</h4>
+                        <p>{{shortDescription}}</p>
+                    </a>
                 </div>
             </div>
-        </a>
+            <div class="col-sm-2 col-xs-4">
+                {{#if this.social}}
+                <div class="social-icons mt">
+                    <div class="col-md-12">
+                        {{#if museumLogo}}
+                            <a href="{{museumLink}}"><img src="{{museumLogo}}" class="img-responsive mb"></a>
+                        {{/if}}
+                        {{#if getSocial 'facebook'}}
+                            <a href="{{getSocial 'facebook'}}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+                        {{/if}}
+                        {{#if getSocial 'twitter'}}
+                            <a href="{{getSocial 'twitter'}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+                        {{/if}}
+                        {{#if getSocial 'linkedin'}}
+                            <a href="{{getSocial 'linkedin'}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                        {{/if}}
+                        {{#if getSocial 'instagram'}}
+                            <a href="{{getSocial 'instagram'}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                        {{/if}}
+                        {{#if getSocial 'tumblr'}}
+                            <a href="{{getSocial 'tumblr'}}" target="_blank"><i class="fa fa-tumblr-square fa-2x"></i></a>
+                        {{/if}}
+                        {{#if getSocial 'website'}}
+                            <a href="{{getSocial 'website'}}" target="_blank"><i class="fa fa-external-link-square fa-2x"></i></a>
+                        {{/if}}
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
     </div>
   </div>
 </template>

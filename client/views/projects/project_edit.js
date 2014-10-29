@@ -34,17 +34,31 @@ Template.projectEdit.events({
 
         var updatedProject = {};
 
+        $('#save').removeClass('disabled');
+        $('#save').val('Save');
+
         updatedProject[$(e.target).attr('name')] = $(e.target).val();
         updatedProject['id'] = this._id;
-        
 
         Meteor.call('updateProject', updatedProject, function(error){
             if (error)
                 Alert.add(error.reason, 'danger');
+            else {
+                $('#save').addClass('disabled');
+                $('#save').val('Saved!');
+            }
         })
+
+        // Set a session variable with the position of the cursor
+        // We are only interested in textareas
+        if ($(e.target).is('textarea'))
+            Session.set('cursorPos', $(e.target).caret());
     },
     'click .reactive-dropdown': function(e) {
         var updatedProject = {};
+
+        $('#save').removeClass('disabled');
+        $('#save').val('Save');
 
         updatedProject[$(e.target).attr('name')] = $(e.target).val();
         updatedProject['id'] = this._id;
@@ -55,6 +69,10 @@ Template.projectEdit.events({
         Meteor.call('updateProject', updatedProject, function(error){
             if (error)
                 Alert.add(error.reason, 'danger');
+            else {
+                $('#save').addClass('disabled');
+                $('#save').val('Saved!');
+            }
         })
 
     },
@@ -69,7 +87,7 @@ Template.projectEdit.events({
             baseline: $(e.target).find('[name=baseline]').val(),
             hub: $(e.target).find('[id=hub]').val(),
             hubID: $('#hub').children(":selected").attr('id'),
-            licence:  $(e.target).find('[id=licences]').val(),
+            licence:  $(e.target).find('[id=licence]').val(),
             url: $(e.target).find('[name=url]').val(), 
             description: $(e.target).find('[id=projectdescription]').val(),
             instructions: $(e.target).find('[id=projectinstructions]').val(),
@@ -134,6 +152,18 @@ Template.projectEdit.events({
                 Alert.add(error.reason, 'danger');
         });
     },
+    'click .delete-file': function(e) {
+
+        var file = {
+            id: this._id,
+            projectID: Projects.findOne(this.metadata.projectID)._id
+        }
+
+        Meteor.call('removeFile', file, function(error){
+            if (error)
+                Alert.add(error.reason, 'danger');
+        });
+    },
     'click .delete-photo': function(e) {
         e.preventDefault();
 
@@ -165,6 +195,7 @@ Template.projectEdit.events({
         });
     },
     'click .rank-up': function(e) {
+        e.preventDefault();
 
         var currentProjectID = Projects.findOne(this.metadata.projectID)._id;
 
@@ -173,7 +204,7 @@ Template.projectEdit.events({
         else 
             var type = "description";
 
-        e.preventDefault();
+        console.log(type);
         changeRank(this, type, 'decrement', currentProjectID);             
     },
      'change #add-photo-instructions': function(event) {
@@ -186,6 +217,9 @@ Template.projectEdit.events({
 
         prjPhotos.insert(prjPhoto, function (err, fileObj) {
             if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('fileID', fileObj._id);
+
                 // Add the photos metadata on the server
                 var metadata = {
                     id: fileObj._id,
@@ -213,7 +247,7 @@ Template.projectEdit.events({
         prjPhotos.insert(prjPhoto, function (err, fileObj) {
             if (!err) {
                 // Set the session variable to track upload progress
-                Session.set('photoID', fileObj._id);
+                Session.set('fileID', fileObj._id);
                 
                 // Add the photos metadata on the server
                 var metadata = {
@@ -231,10 +265,50 @@ Template.projectEdit.events({
             }
         });
     }, 
+    'change #add-file': function(event) {
+
+        var currentProject = this._id;
+
+        var prjFile = new FS.File(event.target.files[0]);
+
+        prjFiles.insert(prjFile, function (err, fileObj) {
+            if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('fileID', fileObj._id);
+                
+                // Add the file's metadata on the server
+                var metadata = {
+                    id: fileObj._id,
+                    projectID: currentProject
+                };
+
+                Meteor.call('insertProjectFile', metadata, function(error){
+                    if (error)
+                        Alert.add(error.reason, 'danger');
+                });
+            }
+        });
+    }, 
 });
 
 
 Template.projectEdit.helpers({ 
+    getCursorPos: function() {
+        var cursorPos = Session.get('cursorPos');
+        var textArea = document.activeElement;
+
+
+        // Get the session variable hodling position of the cursor
+        // We are only interested in textareas
+        if (textArea.tagName !== 'TEXTAREA')
+            return;
+
+        // Check if the session variable has been set
+        if (!cursorPos)
+            return;
+
+        $('#' + textArea.id).caret(cursorPos);
+    },
     getPhotos: function(type) {
         switch(type) {
             case 'instruction':
@@ -242,11 +316,21 @@ Template.projectEdit.helpers({
             case 'description':
                 return prjPhotos.find({"metadata.type": 'description'}, {sort: {"metadata.rank": 1}});
         }
-        
+    },
+    getFiles: function(type) {
+        return prjFiles.find();
     },
     getPhoto: function() {
-        var newPhotoID = Session.get('photoID');
-        return prjPhotos.findOne({"_id": newPhotoID});
+        var newPhotoID = Session.get('fileID');
+
+        if (newPhotoID)
+            return prjPhotos.findOne({"_id": newPhotoID});
+    },
+    getFile: function() {
+        var newFileID = Session.get('fileID');
+
+        if (newFileID)
+            return prjFiles.findOne({"_id": newFileID});
     },
     currentProjectId: function() {
         return this._id;

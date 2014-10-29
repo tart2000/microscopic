@@ -8,7 +8,7 @@ prjPhotos = new FS.Collection("prjphotos", {
 
 
           gm(readStream, fileObj.name()).size({bufferStream: true }, function (err, size) {
-            if (size.width >= size.height) {
+            if (size.width > 4/3*size.height) {
               this.resize(null, dimensionY).gravity('Center').extent(dimensionX, dimensionY).stream().pipe(writeStream);
             } else {
               this.resize(dimensionX, null).gravity('Center').extent(dimensionX, dimensionY).stream().pipe(writeStream);
@@ -18,16 +18,16 @@ prjPhotos = new FS.Collection("prjphotos", {
       })
     ],
     filter: {
-      maxSize: 3000000, //3 MB
+      maxSize: 2000000, //3 MB
       allow: {
         contentTypes: ['image/*'], //allow only images in this FS.Collection
         extensions: ['png', 'jpg', 'jpeg', 'gif', 'tiff']
       },
       onInvalid: function () {
         if (Meteor.isClient) {
-          alert('You did a no-no...! Your file is too large (max 3mb) or it\'s not an image.');
+          alert('You did a no-no...! Your file is too large (max 2mb) or it\'s not an image.');
         } else {
-          console.log('You did a no-no...! Your file is too large (max 3mb) or it\'s not an image.');
+          console.log('You did a no-no...! Your file is too large (max 2mb) or it\'s not an image.');
         }
       }
     }
@@ -87,7 +87,6 @@ prjPhotos.allow({
       return true;
   },
   download: function(userId) {
-    if (userId)
       return true;
   }
 });

@@ -93,6 +93,9 @@ h4 {
     font-weight: 300;
     color: rgb(80, 80, 80);
 }
+h4:hover {
+    color:  #1ABC9C;
+}
 h1 {
     font-size: 50px;
     margin-top: 5px;
@@ -189,11 +192,20 @@ hr {
 .md {
     margin-right: 15px;
 }
+.bmt {
+    margin-top: 30px;
+}
+.bmb {
+    margin-bottom: 30px;
+}
 .pt {
     padding-top: 15px;
 }
 .pb {
     padding-bottom: 15px;
+}
+.grey {
+    background-color: #F9FAFB;
 }
 .input-lg {
     height: 60px;
@@ -393,4 +405,7 @@ label {
 /** share buttons styling **/ 
 .hand {
     cursor: pointer; 
+}
+.arrow {
+    cursor: default;
 }

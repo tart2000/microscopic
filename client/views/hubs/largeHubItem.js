@@ -1,25 +1,17 @@
-Template.hubPage.rendered = function() {
-    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-        Alert.clear();
-    });
+Template.largeHubItem.rendered = function() {
+    
 },
 
-Template.hubPage.helpers({ 
-    hubProjects: function() {
-        return Projects.find(); 
-    }, 
-    hubUsers: function() {
-        return Meteor.users.find();
-    }, 
-    canEdit: function() {
-        var currentUser = Meteor.user();
+String.prototype.truncate = function() {
+    var re = this.match(/^.{0,230}[\S]*/);
+    var l = re[0].length;
+    var re = re[0].replace(/\s$/,'');
+    if(l < this.length)
+        re = re + " ...";
+    return re;
+};
 
-        if (!currentUser)
-            return false;
-
-        if (Roles.userIsInRole(currentUser, ['admin']))
-            return true;
-    },
+Template.largeHubItem.helpers({ 
     getSocial: function(medium) {
 
         if (!this)
@@ -60,5 +52,9 @@ Template.hubPage.helpers({
             return socialLink;
         else
             return false;
+    },
+    shortDescription: function() {
+        var descr = this.description; 
+        return descr.truncate(); 
     },
 });

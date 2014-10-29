@@ -5,10 +5,11 @@
         {{/with}}
         <div class="arrow-left"></div>
         <div class="comment-content">
-            <div class="comment-title">
-                <strong>{{author}}</strong><div class="comment-meta text-right">{{submittedText}}</div>
+            <div class="comment-title arrow">
+                <a href="/users/{{userId}}"><strong>{{author}}</strong></a>
+                <div class="comment-meta text-right">{{submittedText}}</div>
             </div>
-            <div class="comment-body">
+            <div class="comment-body arrow">
                 {{body}}
             </div>    
         </div>

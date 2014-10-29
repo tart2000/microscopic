@@ -4,8 +4,15 @@
     </div>
     <div class="col-md-12 project-container">
         <div class="row">
-            <div class="col-md-3">
-                <img src="{{thumblink}}" class="img-responsive" alt="Responsive image"> 
+            
+            <div class="col-sm-3 col-sm-push-9">
+                {{#if canEdit}}
+                    <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
+                {{/if}}
+                    <a href="{{museumLink}}"><img src="{{thumblink}}" class="img-responsive" alt="Responsive image"></a>
+                {{#if museumLogo}}
+                    <a href="{{museumLink}}"><img src="{{museumLogo}}" class="img-responsive mt"></a>
+                {{/if}}
                 {{#if this.social}}
                 <div class="social-icons mt">
                     {{#if getSocial 'facebook'}}
@@ -28,16 +35,12 @@
                     {{/if}}
                 </div>
                 {{/if}}
+                {{#if teams}}
+                    <p>{{teams}} teams</p>  
+                {{/if}}            
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-9 col-sm-pull-3">
                 {{description}}
-            </div>
-            <div class="col-md-3">
-                {{#if canEdit}}
-                    <a class="btn btn-default btn-block mb" href="{{pathFor 'hubEdit'}}">Edit hub</a>
-                {{/if}}
-                <p>{{teams}} teams</p>
-                
             </div>
         </div> 
     </div><!-- end project container -->
@@ -47,7 +50,9 @@
         <ul class="nav nav-pills choices" role="tablist" id="tabs">
             <li class="active"><a role="tab" data-toggle="tab" href="#projects">Projects</a></li>
             <li class=""><a role="tab" data-toggle="tab" href="#community">Community</a></li>
+            <!-- Not yet
             <li><a role="tab" data-toggle="tab" href="#disc">Discussion <span class="badge">{{projectCommentCount}}</span></a></li>
+            -->
         </ul>
         <!-- end navtabs -->
     </div>
@@ -72,22 +77,24 @@
                 
             </div> <!-- end community tab -->
 
+            <!-- soon comments
             <div class="tab-pane row" id="disc">
                 <div class="col-md-8">
 
-                <!-- 
+                
                     <ul class="comments">
                     {{#each projectComments}}
                       {{> comment}}
                     {{/each}}
                   </ul>
                   {{> commentSubmit}}
-                -->
+                
                 </div>
                 <div class="col-md-4">
 
                 </div>
-            </div> <!-- end comments tab -->
+            </div> -->
+            <!-- end comments tab -->
 
         </div> <!-- end tab content -->
 

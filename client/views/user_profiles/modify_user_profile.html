@@ -1,8 +1,10 @@
  <template name="modifyUserProfile">
+    <div id="project-title" class="col-md-12 text-center">
+        <h1>Update your profile</h1>
+    </div>
     <div class="container-fluid">
         <div class="row project-container">
             <form>        
-
                 <div class="col-sm-3 col-sm-push-9">
                     <div class="fixed-sidebar">
                         <ul class="nav nav-pills nav-stacked" role="tablist" id="tabs">
@@ -100,7 +102,7 @@
                                     <div class="col-sm-4">
                                     </div>
                                     <div class="col-sm-8">
-                                        <input id="email-contact" type="checkbox" checked={{isChecked}}><label for="email-contact" class="ml control-label">Allow people to contact me by email</label>
+                                        <input id="email-contact" type="checkbox" {{this.profile.social.shareMail}}/><label for="email-contact" class="ml control-label">Allow people to contact me by email</label>
                                     </div>
                                 </div>
                             </div>

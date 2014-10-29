@@ -2,7 +2,7 @@
     <div id="project-title" class="col-md-12 text-center">
         <h1>Edit hub info</h1>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row project-container">
             <form>        
                 <div class="col-sm-3 col-sm-push-9">
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="hubdescription">Hub description</label>
-                                    <textarea id="hubdescription" class="form-control" value="{{description}}" rows="10"></textarea>
+                                    <textarea id="hubdescription" class="form-control" value="{{description}}" rows="6"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="teams">Number of teams</label>
@@ -105,7 +105,18 @@
 
                         <div class="tab-pane row" id="museum">
                             <div class="col-md-12">
-                                
+                                <div class="form-group">
+                                    <label class="control-label" for="museumLogo">Museum logo</label>
+                                    <div class="controls">
+                                        <input name="museumLogo" class="form-control" type="text" value="{{museumLogo}}" placeholder="museum logo link"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="museumLink">Museum logo</label>
+                                    <div class="controls">
+                                        <input name="museumLink" class="form-control" type="text" value="{{museumLink}}" placeholder="museum logo link"/>
+                                    </div>
+                                </div>
                             </div>
                         </div> <!-- end museum tab -->
 

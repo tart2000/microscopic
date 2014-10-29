@@ -64,7 +64,10 @@ Template.projectPage.helpers({
         return htmlinstructions;  
     },
     canEdit: function() {
-         var currentUser = Meteor.user();
+        var currentUser = Meteor.user();
+
+        if (!currentUser)
+            return false;
 
         var inTeam = Teams.findOne({"userID": currentUser._id, "projectID": this._id}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
         var projectAuthor = this.author;

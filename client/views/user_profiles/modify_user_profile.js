@@ -68,9 +68,6 @@ Template.modifyUserProfile.helpers({
                 break;
         }
     }, 
-    shareMail: function() {
-
-    }
 
 });
 
@@ -106,12 +103,38 @@ Template.modifyUserProfile.events({
     'change #email-contact': function(e) {
         if ($('#email-contact').is(":checked"))
             {
-                console.log('share');
-                // Do something here TODO
+                e.preventDefault();
+
+                var userAttributes = {
+                    id: this._id,
+                    'profile.social.shareMail': "checked",
+                };
+
+                Meteor.call('updateUserInfo', userAttributes, function(error) {
+                    if (error) {
+                        Alert.add(error.reason, 'danger');
+                    }
+                    else {
+                        
+                    }
+                }); 
 
             } else {
-                console.log('dont share');
-                // Do something here TODO 
+                e.preventDefault();
+
+                var userAttributes = {
+                    id: this._id,
+                    'profile.social.shareMail': "",
+                };
+
+                Meteor.call('updateUserInfo', userAttributes, function(error) {
+                    if (error) {
+                        Alert.add(error.reason, 'danger');
+                    }
+                    else {
+                        
+                    }
+                }); 
             }
     },
     'click .cancel':function() {
