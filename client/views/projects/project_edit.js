@@ -204,7 +204,6 @@ Template.projectEdit.events({
         else 
             var type = "description";
 
-        console.log(type);
         changeRank(this, type, 'decrement', currentProjectID);             
     },
      'change #add-photo-instructions': function(event) {
