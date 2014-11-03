@@ -91,7 +91,7 @@ Template.projectEdit.events({
             url: $(e.target).find('[name=url]').val(), 
             description: $(e.target).find('[id=projectdescription]').val(),
             instructions: $(e.target).find('[id=projectinstructions]').val(),
-            videolink: $(e.target).find('[name=projectvideo]').val(),
+            projectvideo: $(e.target).find('[name=projectvideo]').val(),
         };
 
         Meteor.call('submitProject', projectProperties, function(error){
@@ -388,4 +388,8 @@ Template.projectEdit.helpers({
             return 'selected';
         };
     },
+    getProjectVideo: function() {
+        if (this.projectvideo)
+            return this.projectvideo;
+    }
 });
