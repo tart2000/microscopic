@@ -1,6 +1,7 @@
 body {
     background-color: white;     
     font-size: 16px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 @media (max-width: 992px) {
@@ -84,6 +85,16 @@ body {
 }
 #footer h4 {
     text-transform: uppercase;
+}
+.jumbotron {
+    background-color: white;
+}
+.intro {
+    padding-left: 38px;
+    padding-right: 38px;
+}
+.page-content {
+    padding: 50px;
 }
 /* Flat UI fixes */
 h4 {

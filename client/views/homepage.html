@@ -1,8 +1,26 @@
 <template name="homePage">
     <div class="jumbotron">
-      <h1>MuseomixMTL</h1>
-      <p>Museomix is a 3-day creative sprint inside a museum. It is happening in 7 museums in 4 different countries on November 7/8/9 2014.</p>
-      <a class="btn btn-primary btn-lg" href="http://museomix.org" target="_blank">Learn more</a>
+      <div class="row centered">
+        <div class="col-md-4">
+          <img src="/header-1.png" class="img-responsive">
+        </div>
+        <div class="col-md-4">
+          <img src="/header-2.png" class="img-responsive">
+        </div>
+        <div class="col-md-4">
+          <img src="/header-3.png" class="img-responsive">
+        </div>
+        <div class="col-md-12 intro">
+          <p>Museomix is a 3-day creative sprint inside a museum. It is happening in 7 museums in 4 different countries on November 7/8/9 2014.</p>
+          <p>This website is for documenting projects happening in Montreal. It was developed specially for the event and is tested in Montreal only this year.</p>
+        </div>
+        <div class="col-md-12 intro">
+          <a class="btn btn-default" href="{{pathFor 'how-to'}}" target="_blank">How-to</a>
+          <a class="btn btn-default" href="{{pathFor 'feedback'}}" target="_blank">Feedback</a>
+          <a class="btn btn-default" href="http://museomixmtl.com" target="_blank">MuseomixMTL</a>
+          <a class="btn btn-default" href="http://museomix.org" target="_blank">Museomix.org</a>
+        </div>
+      </div>
     </div>
     <div class="row">
     {{#each hubs}}
