@@ -1,0 +1,20 @@
+<template name="userActivity">
+	<div>
+		{{#each getActivity}}
+			<div>
+				{{#if isComment this}}
+					I wrote  <i>#{{body}}</i>
+					<a href="{{pathFor 'projectPage' _id=projectId}}">
+						@{{getProjectName projectId}}
+					</a>
+				{{else}}
+					I became a <i>#{{role}} member</i>
+					<a href="{{pathFor 'projectPage' _id=projectID}}">
+						@{{getProjectName projectID}}
+					</a>
+				{{/if}}
+				({{getTimePassed}})
+			</div>
+		{{/each}}
+	</div>
+</template>

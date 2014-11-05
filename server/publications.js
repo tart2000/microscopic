@@ -20,6 +20,18 @@ Meteor.publish('singleUser', function (userId) {
     return Meteor.users.find(userId, {fields:{emails:true, profile: true, username: true}});
 });
 
+Meteor.publish('recentComments', function (userId) {
+    return Comments.find({"userId": userId}, {fields: { body:true, projectId: true, submitted: true}, sort: {"submited": -1, limit: 5}});
+});
+
+Meteor.publish('userTeams', function (userId) {
+    return Teams.find({"userID": userId}, {fields: { projectID:true, submitted: true, role: true}, sort: {"submited": -1, limit: 5}});
+});
+
+Meteor.publish('userProjects', function(userId) {
+    return Projects.find({}, {fields: {'title':true, 'baseline':true}, sort: {created: -1}});
+});
+
 Meteor.publish('singleUserPhoto', function (userId) { 
     return userPhotos.find({'metadata.owner':userId}, {fields: {"original": false}});
 });
@@ -27,17 +39,6 @@ Meteor.publish('singleUserPhoto', function (userId) {
 Meteor.publish('subscribeToHub', function() { 
     return Hubs.find({}, {fields: {name: true}});
 });
-Meteor.publish('userProjects', function(userId) {
-    var projectIDs = [];
-    var teamCursor = Teams.find({"userID": userId});
-
-    teamCursor.forEach(function(team) {
-        projectIDs.push(team.projectID);
-    })
-
-    return Projects.find({'_id': {$in: projectIDs}}, {fields: {'title':1, 'baseline':1}, sort: {created: -1}});
-});
-
 
 /***************************************************************************/
 /****** Publications for the community ******/

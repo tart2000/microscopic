@@ -64,7 +64,10 @@ Meteor.methods({
             	'email',
             	'role'
 			), 
-		{});
+			{
+				submitted: new Date().getTime(),
+
+		});
 
 		Teams.insert(newMember);
 	},

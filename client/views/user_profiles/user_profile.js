@@ -65,6 +65,13 @@ Template.userProfile.helpers({
         return true;
     }, 
     userProjects: function() {
-        return Projects.find(); 
+        var projectIDs = [];
+        var teamCursor = Teams.find({"userID": this._id});
+
+        teamCursor.forEach(function(team) {
+            projectIDs.push(team.projectID);
+        })
+
+        return Projects.find({'_id': {$in: projectIDs}});
     }
 });
