@@ -66,7 +66,7 @@ Template.userProfile.helpers({
     }, 
     userProjects: function() {
         var projectIDs = [];
-        var teamCursor = Teams.find({"userID": this._id});
+        var teamCursor = Teams.find();
 
         teamCursor.forEach(function(team) {
             projectIDs.push(team.projectID);
