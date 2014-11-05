@@ -34,9 +34,17 @@
                                         <input name="baseline" id="name" class="form-control" type="text" value="{{getUserName}}" placeholder="Your name"/>
                                     </div>
                                 </div>
-                                Select your profile image: 
-                                    <input id="upload" type="file" />
-                                <img src="{{getUserPhoto}}" class="img-responsive mt"/>
+                                <label class="control-label mt" for="">Your profile pic</label> 
+		                        <div class="image-import">
+		                            <strong>Drag & drop images here</strong> or choose a file (max 2MB and ideally 250x250px): 
+		                            <input type="file" name="file" id="upload-photo">
+		                            <div class="progress mt">
+		                                {{#with getPhoto}}
+		                                    {{> FS.UploadProgressBar bootstrap=true}}
+		                                {{/with}}
+		                            </div>
+		                        	<img src="{{getUserPhoto}}" class="img-responsive mt"/>
+		                        </div>
                                 <div class="form-group mt col-md-6">
                                     <label for="hub">Edition</label>
                                     <div class="controls">
