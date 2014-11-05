@@ -54,12 +54,12 @@ Meteor.methods({
 			_.omit(
 				projectAttributes, 
 				'_id', 
+				'id',
 				'author',
 				'created'
 			),
 		{});
 			
-
 		Projects.update({_id: projectAttributes.id}, {$set: updatedProjectInfo});
 	},
 	submitProject: function(projectAttributes) {
@@ -87,7 +87,7 @@ Meteor.methods({
 				'url',
 				'description',
 				'instructions',
-				'videolink'
+				'projectvideo'
 			), 
 		{});
 
@@ -164,8 +164,7 @@ Meteor.methods({
 		{});
 
 		Projects.update({_id:projectAttributes.id}, {$pull: {tags: updatedProjectInfo.oldTag}});
-	},
-
+	}
 });
 
 Projects.allow({

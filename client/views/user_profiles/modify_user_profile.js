@@ -68,11 +68,16 @@ Template.modifyUserProfile.helpers({
                 break;
         }
     }, 
+    getPhoto: function() {
+        var newPhotoID = Session.get('photoID');
 
+        if (newPhotoID)
+            return userPhotos.findOne({"_id": newPhotoID});
+    }
 });
 
 Template.modifyUserProfile.events({
-    'change #upload': function(event, template) {
+    'change #upload-photo': function(event, template) {
 
         // Check if the user already has a photo & remove it
         if (this.profile.thumblink) {
@@ -87,7 +92,12 @@ Template.modifyUserProfile.events({
             hub: $('[id=hub]').children(":selected").attr("id")
         };
 
-        var handle = userPhotos.insert(newPhoto, function (err, fileObj) {});
+        var handle = userPhotos.insert(newPhoto, function (err, fileObj) {
+            if (!err) {
+                // Set the session variable to track upload progress
+                Session.set('photoID', fileObj._id);
+            }
+        });
 
         // Update the user info
         var user = {

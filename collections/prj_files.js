@@ -66,6 +66,7 @@ Meteor.methods({
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT FILES!! */
 prjFiles.deny({
   update: function(userId, doc, fieldNames, modifier) {
+
     if ( modifier["$set"].projectID )
       return true;
   }
@@ -77,7 +78,7 @@ prjFiles.allow({
       return true;
   },
   update: function(userId, doc, fieldNames, modifier) {
-    if ( (fieldNames.length == 1)  && (userId) )
+    if (userId)
       return true;
   },
   download: function(userId) {

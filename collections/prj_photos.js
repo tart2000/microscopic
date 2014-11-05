@@ -18,7 +18,7 @@ prjPhotos = new FS.Collection("prjphotos", {
       })
     ],
     filter: {
-      maxSize: 2000000, //3 MB
+      maxSize: 2202009.6, //2 MB
       allow: {
         contentTypes: ['image/*'], //allow only images in this FS.Collection
         extensions: ['png', 'jpg', 'jpeg', 'gif', 'tiff']
@@ -78,7 +78,7 @@ prjPhotos.allow({
   },
   update: function(userId, doc, fieldNames, modifier) {
 
-    if ( (fieldNames.length == 1)  && (userId) )
+    if (userId)
       return true;
 
   },

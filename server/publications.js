@@ -4,6 +4,15 @@ Meteor.publish('hubs', function() {
     return Hubs.find();
 });
 
+/***************************************************************************/
+/****** Publications for the sign-in page ******/
+Meteor.publish('allUsernames', function () {
+    return Meteor.users.find({}, {fields:{username:true}});
+});
+
+Meteor.publish('unverifiedTeamMembers', function () {
+    return Teams.find({"userID": ""}, {fields:{email:true}});
+});
 
 /***************************************************************************/
 /****** Publications for the view / modification of user profiles ******/

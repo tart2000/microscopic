@@ -13,7 +13,13 @@ Meteor.methods({
 	      to: to,
 	      from: from,
 	      subject: 'Hey Museomixer, join my project!',
-	      text: 'You have been added to the museomix platform by ' + personInviting + '. Go to xxx & create an account using this email address. Then, start creating amazing projects!'
+	      text: 'You have been added to the museomix platform by ' + 
+	      			personInviting + 
+	      			'. Go to <a href="http://projects.museomixmtl.com/sign-up/' + 
+	      			to + '">' +	      			 
+	      			'http://projects.museomixmtl.com/sign-up/' + 
+	      			to + 
+	      			'</a> & create an account. Then, start creating amazing projects!'
 	    });
 	},
 	addMember: function(memberAttributes) {
