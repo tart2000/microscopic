@@ -76,8 +76,11 @@ Template.projectPage.helpers({
             return true;
         
     },
-    teamMembers: function() {
-        return Teams.find();
+    hasTeam: function(role) {
+        return Teams.findOne({"role":role}) ? true : false;
+    },
+    teamMembers: function(role) {
+        return Teams.find({"role":role});
     },
     getUser: function(userID) {
         return Meteor.users.findOne(userID);

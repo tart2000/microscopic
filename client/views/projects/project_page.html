@@ -28,17 +28,36 @@
                 <div class="col-sm-12 mb">
                     {{>share}}
                 </div>
-                <div class="col-sm-12 col-xs-4">
-                    <strong>Team</strong><br/>
-                    {{#each teamMembers}}
-                        {{#with getUser this.userID}}
-                            <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
-                        {{/with}}
-                    {{/each}}
-                </div>
-                <div class="col-sm-12 col-xs-4">
-                    <strong>Facilitator</strong><br/>
-                </div>
+                {{#if hasTeam 'core'}}
+                    <div class="col-sm-12 col-xs-4">
+                        <strong>Core Team</strong><br/>
+                        {{#each teamMembers 'core'}}
+                            {{#with getUser this.userID}}
+                                <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
+                            {{/with}}
+                        {{/each}}
+                    </div>
+                {{/if}}
+                {{#if hasTeam 'facilitator'}}
+                    <div class="col-sm-12 col-xs-4">
+                        <strong>Facilitator</strong><br/>
+                        {{#each teamMembers 'facilitator'}}
+                            {{#with getUser this.userID}}
+                                <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
+                            {{/with}}
+                        {{/each}}
+                    </div>
+                {{/if}}
+                {{#if hasTeam 'thanks'}}
+                    <div class="col-sm-12 col-xs-4">
+                        <strong>Sp. Thanks</strong><br/>
+                        {{#each teamMembers 'thanks'}}
+                            {{#with getUser this.userID}}
+                                <a href="{{pathFor 'userProfile' this._id}}">{{> avatarThumb}}</a>
+                            {{/with}}
+                        {{/each}}
+                    </div>
+                {{/if}}
                 <div class="col-sm-12 col-xs-4">
                     {{#if hasUrl}}
                         <hr>
