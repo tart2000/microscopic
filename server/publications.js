@@ -4,6 +4,68 @@ Meteor.publish('hubs', function() {
     return Hubs.find();
 });
 
+Meteor.publish('mostActiveUsers', function() { 
+    // We estimate the "activeness" of a user by how many comments 
+    // he/she has written, the number of projects he/she is involved with
+    // and whether there is a photo
+    var scoreArray = [];
+    var userCursor = Meteor.users.find();
+
+    var compare = function compare(a,b) {
+      if (a.last_nom < b.last_nom)
+         return -1;
+      if (a.last_nom > b.last_nom)
+        return 1;
+      return 0;
+    }
+
+    userCursor.forEach(function(user) {
+
+        // If the user has a photo, we give him an extra 10 points
+        var photoScore = userPhotos.find({'metadata.userID': user._id}) ? 10 : 0;
+
+        scoreArray.push({
+            'user': user._id,
+            'score': Comments.find({"userId": user._id}).count() + Teams.find({"userID": user._id}).count() + photoScore
+        });        
+    });
+
+    // Sort the array
+    scoreArray.sort(function(a,b) {
+        return (a.score < b.score) ? 1 : ((b.score > a.score) ? -1 : 0);
+    });
+
+    // Get the first 6
+    var bestFour = [];
+    var maxUsers = (Meteor.users.find().count() < 6) ? Meteor.users.find().count() : 6;
+    for (var i = 0; i < maxUsers; i++) {
+        bestFour.push(scoreArray[i].user);
+    }
+
+    // return the cursor for the first 4
+    return Meteor.users.find({'_id': {$in: bestFour}}, {fields: {'username': 1, 'profile.thumblink':1, 'profile.hub':1}});
+});
+
+Meteor.publish('mostActiveProjects', function() { 
+    // We estimate the "activeness" of a project by the number of comments, 
+    // & the number of photos.
+    var score = [];
+    var projectCursor = Projects.find();
+
+    projectCursor.forEach(function(project) {
+        score[project._id] = Comments.find({"projectId": project._id}).count() + prjPhotos.find({"metadata.projectID": project._id}).count();
+    });
+
+    // Sort the array
+
+    // Get the first 4
+
+    // return the cursor for the first 4
+
+    //console.log(score);
+
+});
+
 /***************************************************************************/
 /****** Publications for the sign-in page ******/
 Meteor.publish('allUsernames', function () {
