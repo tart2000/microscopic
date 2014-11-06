@@ -15,11 +15,8 @@ Meteor.methods({
 	      subject: 'Hey Museomixer, join my project!',
 	      text: 'You have been added to the museomix platform by ' + 
 	      			personInviting + 
-	      			'. Go to <a href="http://projects.museomixmtl.com/sign-up/' + 
-	      			to + '">' +	      			 
-	      			'http://projects.museomixmtl.com/sign-up/' + 
-	      			to + 
-	      			'</a> & create an account. Then, start creating amazing projects!'
+	      			'. Go to http://projects.museomixmtl.com/sign-up/' + to + 
+	      			' & create an account. Then, start creating amazing projects!'
 	    });
 	},
 	addMember: function(memberAttributes) {
