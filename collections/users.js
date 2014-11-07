@@ -10,8 +10,10 @@ if (Meteor.isServer) {
 			});
 		}
 
-		if (options.profile)
+		if (options.profile) {
 	    	user.profile = options.profile;
+	    	user.profile.score = 0;
+		}
 
 		return user;
 	});
@@ -29,8 +31,13 @@ Meteor.methods({
         if ( (user._id !== userAttributes.id) && (!Roles.userIsInRole(user, ['admin'])) )
 			throw new Meteor.Error(401, "Dude, this is not your profile! Leave!");
 
-		Meteor.users.update({_id: userAttributes.id}, {$set: {"profile.thumblink": userAttributes.thumblink}});
+		// Update the user score if he doesn't have a photo
+		if (!user.profile.thumblink) {
+	    	var userScore = user.profile.score + 10;
+	    	Meteor.users.update({'_id': user._id}, {$set: {'profile.score': userScore}});
+	    }
 
+		Meteor.users.update({_id: userAttributes.id}, {$set: {"profile.thumblink": userAttributes.thumblink}});
 	},
 
 	updateUserInfo: function(userAttributes) {

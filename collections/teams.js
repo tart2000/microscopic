@@ -15,7 +15,7 @@ Meteor.methods({
 	      subject: 'Hey Museomixer, join my project!',
 	      text: 'You have been added to the museomix platform by ' + 
 	      			personInviting + 
-	      			'. Go to http://projects.museomixmtl.com/sign-up/' + to + 
+	      			'. Go to http://projects.museomixmtl.com/sign-in/' + to + 
 	      			' & create an account. Then, start creating amazing projects!'
 	    });
 	},
@@ -50,6 +50,8 @@ Meteor.methods({
 				var personInviting = user.username;
 
 			Meteor.call('sendEmail', memberAttributes.email, user.emails[0].address, personInviting );
+		} else {
+			// If the user exists, update his/her score
 		}
 
 		var newMember = _.extend(
@@ -65,6 +67,8 @@ Meteor.methods({
 				submitted: new Date().getTime(),
 
 		});
+
+		
 
 		Teams.insert(newMember);
 	},

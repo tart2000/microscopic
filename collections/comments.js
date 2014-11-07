@@ -19,6 +19,10 @@ Meteor.methods({
             author: user.username, 
             submitted: new Date().getTime()
         });
+
+        // Update the user score
+        var userScore = user.profile.score + 1;
+        Meteor.users.update({'_id': user._id}, {$set: {'profile.score': userScore}});
         
         return Comments.insert(newComment); 
     }

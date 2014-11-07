@@ -20,6 +20,7 @@ Template.signIn.helpers({
 	isValidEmail: function() {
 		var emailInUrl = Router.current().params.email;
 
+		console.log(emailInUrl);
 		if ( !Teams.findOne({"email": emailInUrl}) ) {
 			if (!Session.get('success'))
 				Alert.add("Are you sure you copied the right url? Probably not... Try again and if it doesn't work, ask the person to delete & re-enter you in the team.", "danger", {
