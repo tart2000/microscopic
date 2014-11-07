@@ -320,6 +320,8 @@ hr {
 }
 .user-thumb-title {
     padding: 5px 10px 5px 10px;
+    height: 2em;
+    overflow-y: hidden;
 }
 #cheatsheet p {
     font-size: 14px;
