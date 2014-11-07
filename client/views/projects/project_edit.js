@@ -190,6 +190,10 @@ Template.projectEdit.events({
             }
         }
 
+        // Update the project score#
+        Meteor.call('removeProjectPhoto', currentProjectID, function(error){});
+
+
         $("#container-" + deletedPhotoID).hide(300, function() {
             prjPhotos.remove(deletedPhotoID);
         });

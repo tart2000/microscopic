@@ -11,21 +11,7 @@ Meteor.publish('mostActiveUsers', function() {
 Meteor.publish('mostActiveProjects', function() { 
     // We estimate the "activeness" of a project by the number of comments, 
     // & the number of photos.
-    var score = [];
-    var projectCursor = Projects.find();
-
-    projectCursor.forEach(function(project) {
-        score[project._id] = Comments.find({"projectId": project._id}).count() + prjPhotos.find({"metadata.projectID": project._id}).count();
-    });
-
-    // Sort the array
-
-    // Get the first 4
-
-    // return the cursor for the first 4
-
-    //console.log(score);
-
+    return Projects.find({}, {sort: {'score': 1}, limit: 6});
 });
 
 /***************************************************************************/

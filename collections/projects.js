@@ -18,7 +18,8 @@ Meteor.methods({
 			), 
 			{
 				author: user._id,
-				created: new Date().getTime()
+				created: new Date().getTime(),
+				score: 0
 			}
 		);
 

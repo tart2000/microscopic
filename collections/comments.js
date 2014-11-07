@@ -23,6 +23,10 @@ Meteor.methods({
         // Update the user score
         var userScore = user.profile.score + 1;
         Meteor.users.update({'_id': user._id}, {$set: {'profile.score': userScore}});
+
+        // Update the project score
+        var projectScore = project.score + 1;
+        Projects.update({'_id': project._id}, {$set: {'score': projectScore}});
         
         return Comments.insert(newComment); 
     }

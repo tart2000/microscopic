@@ -59,8 +59,31 @@ Meteor.methods({
       ), 
     {});
 
+    // Increment the project score (the more photos, the better!) 
+    var projectScore = Projects.findOne({'_id': photoMetadata.projectID}).score + 1;
+    Projects.update({'_id': photoMetadata.projectID}, {$set: {'score': projectScore}});
+
     prjPhotos.update({_id: photoMetadata.id}, {$set: {'metadata' : updatedPhotoMetadata}});
   },
+
+  removeProjectPhoto: function(projectID) {
+    var user = Meteor.user();
+
+    // ensure the user is logged in
+    if (!user)
+      throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+    var inTeam = Teams.findOne({"userID": user._id, "projectID": projectID}, {$or: [{"role" : "core"},{"role" : "facilitator"}]});
+    var projectAuthor = Projects.findOne({_id: projectID}).author;
+
+    // Check if the user is on the team, the owner or an administrator
+    if ( (projectAuthor !== user._id) && (!inTeam) && (!Roles.userIsInRole(user, ['admin'])) )
+      throw new Meteor.Error(401, "Dude, this is not your team! Leave!");
+
+    // Decrement the project score (the more photos, the better!) 
+    var projectScore = Projects.findOne({'_id': projectID}).score - 1;
+    Projects.update({'_id': projectID}, {$set: {'score': projectScore}});
+  }
 });
 
 /******** THIS IS VERY DANGEROUS! ANYONE CAN MODIFY THE DATA OF OTHER PROJECT PHOTOS!! */
