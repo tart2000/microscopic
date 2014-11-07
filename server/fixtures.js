@@ -44,7 +44,6 @@ if (Licences.find().count() === 0) {
         name: 'CC-BY',
         thumblink: '/licences/ccby.png',
         url: 'http://creativecommons.org/licenses/by/2.0/',
-        projectID: omgID
     });
     Licences.insert({
         name:'CC-BY-SA', 
