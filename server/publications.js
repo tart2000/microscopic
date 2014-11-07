@@ -5,7 +5,7 @@ Meteor.publish('hubs', function() {
 });
 
 Meteor.publish('mostActiveUsers', function() { 
-    return Meteor.users.find({}, {sort: {'score': 1}, limit: 6});
+    return Meteor.users.find({}, {sort: {'profile.score': 1}, limit: 6});
 });
 
 Meteor.publish('mostActiveProjects', function() { 
