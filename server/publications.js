@@ -45,11 +45,11 @@ Meteor.publish('singleUser', function (userId) {
 });
 
 Meteor.publish('recentComments', function (userId) {
-    return Comments.find({"userId": userId}, {fields: { body:true, projectId: true, submitted: true}, sort: {"submited": -1, limit: 5}});
+    return Comments.find({"userId": userId}, {fields: { body:true, projectId: true, submitted: true}, sort: {"submited": -1}, limit: 5});
 });
 
 Meteor.publish('userTeams', function (userId) {
-    return Teams.find({"userID": userId}, {fields: { projectID:true, submitted: true, role: true}, sort: {"submited": -1, limit: 5}});
+    return Teams.find({"userID": userId}, {fields: { projectID:true, submitted: true, role: true}, sort: {"submited": -1}, limit: 5});
 });
 
 Meteor.publish('userProjects', function(userId) {
