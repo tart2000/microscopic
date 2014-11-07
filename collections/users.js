@@ -71,4 +71,25 @@ Meteor.methods({
 
 	},
 
+	deleteUser: function(userID) {
+		var user = Meteor.user();
+
+		// ensure the user is logged in
+		if (!user)
+			throw new Meteor.Error(401, "Dude, how did you get here? You're not even logged in!");
+
+		// ensure that this is the user's profile or that an admin is editing
+        if ( (user._id !== userID) && (!Roles.userIsInRole(user, ['admin'])) )
+			throw new Meteor.Error(401, "Dude, this is not your profile! Leave!");
+
+		// Remove the user from the teams
+		Teams.remove({'userID': userID});
+
+		// Remove the user's comments
+		Comments.remove({'userID': userID})
+
+		// Remove the user
+		Meteor.users.remove({'_id': userID});
+	}
+
 });

@@ -150,6 +150,17 @@ Template.modifyUserProfile.events({
     'click .cancel':function() {
         Router.go('userProfile', {_id: this._id});
     },
+    'click #deleteMe':function() {
+        alert('Noooo! You`re leaving us..?! Forever?!');
+        Meteor.call('deleteUser', this._id, function(error) {
+            if (error) {
+                Alert.add(error.reason, 'danger');
+            } else {
+                Alert.add('Sorry to see you leave :(', 'success');
+                Router.go('homePage');
+            }
+        });
+    },
     'submit': function(e) {
         e.preventDefault();
 
