@@ -96,4 +96,13 @@ Template.projectPage.helpers({
 
         return author.name;
     }, 
+    videolink: function() {
+        if (!this.projectvideo)
+            return false;
+
+        if (this.projectvideo == '')
+            return false;
+
+        return true;
+    }
 });

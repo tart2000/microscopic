@@ -4,7 +4,7 @@ Template.videoEmbed.rendered = function() {
 
 Template.videoEmbed.helpers({
   video: function() {
-    var link = this.videolink; 
+    var link = this.projectvideo; 
     var chtemele = function(type, url) {
         switch(type) {
             case 'youtube':
