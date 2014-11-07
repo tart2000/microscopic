@@ -6,7 +6,7 @@ if(Meteor.isClient) {
 };
 
 Template._loginButtonsLoggedIn.rendered = function (){
-    $( "#login-buttons-open-change-password" ).before( "<a href='#' id='profileLink' class='btn btn-default btn-block'>Your profile</a>" );
+    $( "#login-buttons-open-change-password" ).before( "<div id='profileLink' class='btn btn-default btn-block'>Your profile</div>" );
 };
 Template._loginButtonsLoggedIn.events({
     'click #profileLink': function(event) {

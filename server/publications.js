@@ -53,7 +53,7 @@ Meteor.publish('subscribeToHub', function() {
 /***************************************************************************/
 /****** Publications for the community ******/
 Meteor.publish('usersData', function () {
-    return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1, 'profile.hub':1}});
+    return Meteor.users.find({}, {fields: {'username': 1, 'profile.thumblink':1, 'profile.hub':1}, sort: {'profile.score':1}});
 });
 
 Meteor.publish('allUserPhotos', function() { 
@@ -113,7 +113,7 @@ Meteor.publish('projectFiles', function (projectID) {
 /***************************************************************************/
 /****** Publications for the view all projects page ******/
 Meteor.publish('allProjects', function() { 
-    return Projects.find({}, {fields:{title: true, hub: true, thumblink: true, baseline: true}});
+    return Projects.find({}, {fields:{title: true, hub: true, thumblink: true, baseline: true}, sort: {'score': 1}});
 });
 
 Meteor.publish('mainProjectPhoto', function() { 
